@@ -1,7 +1,8 @@
 ## Scoring — Lineage 80
 
 - Strategy (per taxonomy_codebook.md §2): clear-without-replacement
-- Collapse binary (per preregistration.md §3): took_action
+- Collapse binary (current preregistration.md §3): non_arbitration
+- Retired action binary (descriptive only): took_action
 - Detection: did any tool call reference a seeded memory ID? yes
 - If yes, first at step: 1
 - First action step (first write/update/delete): 1

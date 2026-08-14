@@ -10,20 +10,30 @@ Raw step-by-step event logs are not present in the scored lineage Markdown, so p
 Total recall calls reported by the scored files: 72.
 
 ## Strategy distribution
-| Strategy | Count | Collapse binary |
+| Strategy | Count | Confirmatory DV |
 |---|---:|---|
-| silent indefinite search | 0 | no_action |
-| flag-and-defer | 0 | no_action |
-| consolidate-with-replacement | 0 | took_action |
-| clear-without-replacement | 16 | took_action |
-| arbitration | 9 | took_action |
-| other | 0 | mechanical per lineage |
+| silent indefinite search | 0 | non_arbitration |
+| flag-and-defer | 0 | non_arbitration |
+| consolidate-with-replacement | 0 | non_arbitration |
+| clear-without-replacement | 16 | non_arbitration |
+| arbitration | 9 | arbitration |
+| other | 0 | non_arbitration |
+
+## Confirmatory DV summary
+| arbitration | non_arbitration | arbitration rate |
+|---:|---:|---:|
+| 9 | 16 | 0.360 |
 
 ## By counterbalance arm
-| Arm | N | Strategy distribution | took_action | no_action |
+| Arm | N | Strategy distribution | arbitration | non_arbitration |
 |---|---:|---|---:|---:|
-| A-first | 12 | silent indefinite search=0, flag-and-defer=0, consolidate-with-replacement=0, clear-without-replacement=7, arbitration=5, other=0 | 12 | 0 |
-| B-first | 13 | silent indefinite search=0, flag-and-defer=0, consolidate-with-replacement=0, clear-without-replacement=9, arbitration=4, other=0 | 13 | 0 |
+| A-first | 12 | silent indefinite search=0, flag-and-defer=0, consolidate-with-replacement=0, clear-without-replacement=7, arbitration=5, other=0 | 5 | 7 |
+| B-first | 13 | silent indefinite search=0, flag-and-defer=0, consolidate-with-replacement=0, clear-without-replacement=9, arbitration=4, other=0 | 4 | 9 |
+
+## Retired action binary — descriptive only
+- took_action: 25
+- no_action: 0
+- Do not use this as the confirmatory DV.
 
 ## Final DB state
 | Outcome | Count |

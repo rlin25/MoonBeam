@@ -1,10 +1,94 @@
 {
   "source_format": "markdown",
+  "confirmatory_dv": "arbitration_vs_non_arbitration",
+  "confirmatory_direction": "A_minus_B",
   "comparisons": {
     "A_vs_B": {
-      "comparison": "B-A",
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "A-B",
       "condition_1": "A",
       "condition_2": "B",
+      "n1": 100,
+      "arbitrations1": 85,
+      "rate1": 0.85,
+      "n2": 100,
+      "arbitrations2": 25,
+      "rate2": 0.25,
+      "difference": 0.6,
+      "ci95_low": 0.4754245604414425,
+      "ci95_high": 0.6938060111202367,
+      "odds_ratio": 17.0,
+      "fisher_p_two_sided": 3.898564562712131e-18,
+      "table": [
+        [
+          85,
+          15
+        ],
+        [
+          25,
+          75
+        ]
+      ]
+    },
+    "A_vs_C": {
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "A-C",
+      "condition_1": "A",
+      "condition_2": "C",
+      "n1": 100,
+      "arbitrations1": 85,
+      "rate1": 0.85,
+      "n2": 100,
+      "arbitrations2": 85,
+      "rate2": 0.85,
+      "difference": 0.0,
+      "ci95_low": -0.100518238685726,
+      "ci95_high": 0.100518238685726,
+      "odds_ratio": 1.0,
+      "fisher_p_two_sided": 1.0,
+      "table": [
+        [
+          85,
+          15
+        ],
+        [
+          85,
+          15
+        ]
+      ]
+    },
+    "B_vs_C": {
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "B-C",
+      "condition_1": "B",
+      "condition_2": "C",
+      "n1": 100,
+      "arbitrations1": 25,
+      "rate1": 0.25,
+      "n2": 100,
+      "arbitrations2": 85,
+      "rate2": 0.85,
+      "difference": -0.6,
+      "ci95_low": -0.6938060111202367,
+      "ci95_high": -0.4754245604414425,
+      "odds_ratio": 0.058823529411764705,
+      "fisher_p_two_sided": 3.898564562712131e-18,
+      "table": [
+        [
+          25,
+          75
+        ],
+        [
+          85,
+          15
+        ]
+      ]
+    }
+  },
+  "retired_action_binary_descriptive_only": {
+    "A_vs_B": {
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "A-B",
       "n1": 100,
       "actions1": 100,
       "rate1": 1.0,
@@ -28,18 +112,17 @@
       ]
     },
     "A_vs_C": {
-      "comparison": "C-A",
-      "condition_1": "A",
-      "condition_2": "C",
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "A-C",
       "n1": 100,
       "actions1": 100,
       "rate1": 1.0,
       "n2": 100,
       "actions2": 99,
       "rate2": 0.99,
-      "difference": -0.010000000000000009,
-      "ci95_low": -0.054486196178705426,
-      "ci95_high": 0.027898470739711842,
+      "difference": 0.010000000000000009,
+      "ci95_low": -0.027898470739711842,
+      "ci95_high": 0.054486196178705426,
       "odds_ratio": null,
       "fisher_p_two_sided": 1.0,
       "table": [
@@ -54,18 +137,17 @@
       ]
     },
     "B_vs_C": {
-      "comparison": "C-B",
-      "condition_1": "B",
-      "condition_2": "C",
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "B-C",
       "n1": 100,
       "actions1": 100,
       "rate1": 1.0,
       "n2": 100,
       "actions2": 99,
       "rate2": 0.99,
-      "difference": -0.010000000000000009,
-      "ci95_low": -0.054486196178705426,
-      "ci95_high": 0.027898470739711842,
+      "difference": 0.010000000000000009,
+      "ci95_low": -0.027898470739711842,
+      "ci95_high": 0.054486196178705426,
       "odds_ratio": null,
       "fisher_p_two_sided": 1.0,
       "table": [
@@ -113,11 +195,210 @@
     "trials": 10000
   },
   "achieved_power_mde": {
-    "baseline": 1.0,
-    "n": 100,
+    "baseline": 0.85,
+    "n_per_condition": 100,
     "target_power": 0.8,
-    "mde": null,
-    "power_at_mde": null,
-    "grid": []
+    "mde": 0.12,
+    "direction": "higher",
+    "comparison_rate": 0.97,
+    "power_at_mde": 0.8276666666666667,
+    "grid": [
+      {
+        "effect": 0.01,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.84,
+            "power": 0.03666666666666667
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.86,
+            "power": 0.03666666666666667
+          }
+        ],
+        "max_power": 0.03666666666666667
+      },
+      {
+        "effect": 0.02,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.83,
+            "power": 0.04066666666666666
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.87,
+            "power": 0.044
+          }
+        ],
+        "max_power": 0.044
+      },
+      {
+        "effect": 0.03,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.82,
+            "power": 0.062
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.88,
+            "power": 0.065
+          }
+        ],
+        "max_power": 0.065
+      },
+      {
+        "effect": 0.04,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.8099999999999999,
+            "power": 0.08866666666666667
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.89,
+            "power": 0.092
+          }
+        ],
+        "max_power": 0.092
+      },
+      {
+        "effect": 0.05,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.7999999999999999,
+            "power": 0.114
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.9,
+            "power": 0.13166666666666665
+          }
+        ],
+        "max_power": 0.13166666666666665
+      },
+      {
+        "effect": 0.060000000000000005,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.7899999999999999,
+            "power": 0.15133333333333332
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.91,
+            "power": 0.19266666666666668
+          }
+        ],
+        "max_power": 0.19266666666666668
+      },
+      {
+        "effect": 0.06999999999999999,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.78,
+            "power": 0.185
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.9199999999999999,
+            "power": 0.26566666666666666
+          }
+        ],
+        "max_power": 0.26566666666666666
+      },
+      {
+        "effect": 0.08,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.77,
+            "power": 0.24233333333333335
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.9299999999999999,
+            "power": 0.35333333333333333
+          }
+        ],
+        "max_power": 0.35333333333333333
+      },
+      {
+        "effect": 0.09,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.76,
+            "power": 0.30533333333333335
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.94,
+            "power": 0.474
+          }
+        ],
+        "max_power": 0.474
+      },
+      {
+        "effect": 0.09999999999999999,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.75,
+            "power": 0.369
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.95,
+            "power": 0.583
+          }
+        ],
+        "max_power": 0.583
+      },
+      {
+        "effect": 0.11,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.74,
+            "power": 0.4236666666666667
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.96,
+            "power": 0.706
+          }
+        ],
+        "max_power": 0.706
+      },
+      {
+        "effect": 0.12,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.73,
+            "power": 0.49033333333333334
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.97,
+            "power": 0.8276666666666667
+          }
+        ],
+        "max_power": 0.8276666666666667
+      }
+    ],
+    "observed_A_rate": 0.85,
+    "observed_B_rate": 0.25,
+    "observed_difference_A_minus_B": 0.6,
+    "simulated_power_at_observed_rates": 1.0
   }
 }

@@ -7,7 +7,7 @@ import pandas as pd
 from .io import iter_lineage_json, iter_lineage_markdown, dump_json
 from .scoring import score_lineage
 from .reporting import observations_markdown, scoring_markdown
-from .stats import collapsed_comparison, permutation_3x5, achieved_mde
+from .stats import arbitration_comparison, action_comparison_descriptive, permutation_3x5, achieved_mde, observed_power, ensure_confirmatory_dv
 from .constants import STRATEGIES
 from .validation import held_out_sample, held_out_template, codebook_hash
 from .audit import audit_sample
@@ -47,6 +47,7 @@ def run(input_dir: str, output_dir: str, codebook: str | None = None,
         dump_json({k:v for k,v in s.items() if k!="events"}, cdir/f"lineage_{int(s['lineage_id']):03d}.json")
 
     df=pd.DataFrame([{k:v for k,v in s.items() if k not in {"events","new_entries_created"}} for s in scored])
+    df=ensure_confirmatory_dv(df)
     df.to_csv(out/"lineage_scoring.csv",index=False)
 
     # Audit any legacy/invalid collapse labels that had to be normalized from
@@ -63,12 +64,31 @@ def run(input_dir: str, output_dir: str, codebook: str | None = None,
         cdir=out/f"condition_{cond.lower()}"; cdir.mkdir(parents=True,exist_ok=True)
         (cdir/"observations.md").write_text(observations_markdown(scored,cond,today),encoding="utf-8")
 
-    comps={"A_vs_B":collapsed_comparison(df,"A","B"),"A_vs_C":collapsed_comparison(df,"A","C"),"B_vs_C":collapsed_comparison(df,"B","C")}
+    # CURRENT confirmatory DV: arbitration vs non_arbitration. A-B is the headline direction.
+    comps={"A_vs_B":arbitration_comparison(df,"A","B"),
+           "A_vs_C":arbitration_comparison(df,"A","C"),
+           "B_vs_C":arbitration_comparison(df,"B","C")}
+    # Keep the retired action collapse only as an explicitly labeled descriptive diagnostic.
+    retired={"A_vs_B":action_comparison_descriptive(df,"A","B"),
+             "A_vs_C":action_comparison_descriptive(df,"A","C"),
+             "B_vs_C":action_comparison_descriptive(df,"B","C")}
     core5=[s for s in STRATEGIES if s!="other"]
     perm=permutation_3x5(df,core5,trials=permutation_trials)
-    a=df[df.condition=="A"]; baseline=float((a.collapse_binary=="took_action").mean()) if len(a) else float("nan")
+    a=df[df.condition=="A"]; b=df[df.condition=="B"]
+    baseline=float((a.strategy=="arbitration").mean()) if len(a) else float("nan")
     mde=achieved_mde(baseline,n=len(a),trials=power_trials) if len(a) else {}
-    dump_json({"source_format":source_format,"comparisons":comps,"descriptive_3x5":perm,"achieved_power_mde":mde},out/"statistics.json")
+    if len(a) and len(b):
+        pa=float((a.strategy=="arbitration").mean()); pb=float((b.strategy=="arbitration").mean())
+        mde["observed_A_rate"]=pa; mde["observed_B_rate"]=pb
+        mde["observed_difference_A_minus_B"]=pa-pb
+        mde["simulated_power_at_observed_rates"]=observed_power(pa,pb,len(a),len(b),trials=power_trials)
+    dump_json({"source_format":source_format,
+               "confirmatory_dv":"arbitration_vs_non_arbitration",
+               "confirmatory_direction":"A_minus_B",
+               "comparisons":comps,
+               "retired_action_binary_descriptive_only":retired,
+               "descriptive_3x5":perm,
+               "achieved_power_mde":mde},out/"statistics.json")
 
     vdir=out/"validation"; vdir.mkdir(exist_ok=True)
     sample=held_out_sample(scored)

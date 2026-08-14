@@ -1,6 +1,6 @@
-# Project Moonbeam Data + Statistics Pipeline
+# Treylon — Project Moonbeam Data + Statistics Pipeline
 
-This package implements the **data/statistics** portion of Project Moonbeam.
+This package implements Treylon's **data/statistics** portion of Project Moonbeam.
 
 ## Current input: Richard's scored Markdown run folders
 
@@ -47,8 +47,8 @@ python run_analysis.py --input /path/to/folder --condition A --output analysis_o
 - `lineage_scoring.csv` — one normalized row per lineage
 - `condition_a/observations.md`, `condition_b/observations.md`, `condition_c/observations.md`
 - `statistics.json`
-  - confirmatory two-sided Fisher exact A vs B
-  - B − A action-rate difference
+  - confirmatory two-sided Fisher exact A vs B on **arbitration vs non_arbitration**
+  - **A − B arbitration-rate difference**
   - Newcombe/Wilson 95% CI
   - exploratory A/C and B/C comparisons
   - descriptive 3×5 strategy table
@@ -69,9 +69,13 @@ Likewise, the preregistered blind human-coding validation should use the corresp
 
 ## Statistical conventions
 
-The confirmatory A-vs-B table is `[[A took_action, A no_action], [B took_action, B no_action]]`, with a two-sided Fisher exact test. The reported raw difference is **B − A**. Its 95% interval uses Newcombe's hybrid-score construction from Wilson score intervals.
+**Current confirmatory DV:** `arbitration` vs `non_arbitration`, derived mechanically from the final strategy label. `arbitration` means the lineage's strategy is `arbitration`; every other strategy, including `other`, is `non_arbitration`.
+
+The confirmatory A-vs-B table is `[[A arbitration, A non_arbitration], [B arbitration, B non_arbitration]]`, with a two-sided Fisher exact test. The reported raw difference is **A − B**, so A=85% and B=25% is reported as **+60 percentage points**. Its 95% interval uses Newcombe's hybrid-score construction from Wilson score intervals.
 
 Condition C comparisons are exploratory only. The 3×5 test is descriptive only and must not be described as an additional confirmatory significance finding.
+
+The older `took_action/no_action` variable is retained in `lineage_scoring.csv` and `statistics.json` only as a **retired descriptive diagnostic**. It is not used for the confirmatory Fisher test, confirmatory confidence interval, achieved-power/MDE calculation, or counterbalance robustness figure.
 
 ## Legacy JSON support
 
@@ -96,34 +100,16 @@ It attempts to generate:
 
 This version is aligned to Richard's current repository layout. Point `--input` at the repository's `runs/` directory; the reader prefers `condition_a/scoring/lineage_*.md`, `condition_b/scoring/lineage_*.md`, and `condition_c/scoring/lineage_*.md` and ignores transcript Markdown as primary scoring input.
 
-The current harness defines the preregistered collapse binary independently of the strategy label: a lineage is `took_action` when an update/edit or forget/delete targets either seeded memory, otherwise `no_action`. Current scored Markdown should therefore report only `took_action` or `no_action`. If an older summary instead reports a legacy value such as `non_arbitration`, the parser does **not** treat that as `no_action`; it derives the action binary from the seeded final states and records every such correction in `collapse_binary_normalization_audit.csv`.
+The parser preserves Richard's older `took_action/no_action` field when present, but the analysis now derives the **current confirmatory DV directly from `strategy`**: `arbitration` versus `non_arbitration`. This prevents an older action-collapse label from silently driving the headline statistics.
 
-With the current `MoonBeam-master` runs used for compatibility testing, all 150 scored Markdown files already used the current binary labels, so the normalization audit contained zero adjusted rows.
+`collapse_binary_normalization_audit.csv` still records any legacy action labels that had to be normalized for descriptive action analyses, but those labels do not affect the confirmatory arbitration analysis.
 
 ## Paper-oriented charts
 
 Every run now creates `analysis_output/charts/` with eight figures and a plain-English `charts/README.md`. The first three are the recommended paper-facing figures:
 
-1. action rate by condition with 95% Wilson intervals;
-2. effect-size forest plot for B−A (confirmatory), C−A and C−B (exploratory);
+1. arbitration rate by condition with 95% Wilson intervals;
+2. effect-size forest plot for **A−B** (confirmatory), A−C and B−C (exploratory);
 3. 100% stacked strategy composition by condition.
 
-Secondary figures show cumulative timing of first action, recall-count distributions, the counterbalance robustness split, first/second seed final states, and arbitration direction. The generated `charts/README.md` explains what each figure measures and summarizes what the current input data show. If a field is unavailable, that figure is skipped rather than populated with invented values.
-
-## What the charts tell you?
-
-1. Action Rate with 95% CI — Shows the percentage of lineages in each condition that edited or deleted at least one seeded memory. The confidence intervals show how much uncertainty there is around each condition’s observed action rate.
-
-2. Effect-Size Forest Plot — Shows how large the differences in action rates are between conditions, especially the main B−A comparison. The 95% confidence intervals help show whether the observed differences are consistent with no real difference (zero).
-
-3. Strategy Composition — Shows which behavioral strategies the model used in Conditions A, B, and C and what percentage of each condition fell into each strategy. This helps reveal behavioral differences that may be hidden when only looking at the simpler took_action/no_action outcome.
-
-4. Cumulative First Action — Shows how quickly lineages took their first write, edit, or delete action across the seven experimental steps. It helps determine whether one condition caused models to intervene in memory earlier than another.
-
-5. Recall Distribution — Shows how many explicit memory recall calls each lineage made in the different conditions. This helps reveal whether models searched their memory more extensively in some conditions before deciding what to do.
-
-6. Counterbalance Robustness — Compares action rates depending on which contradictory seeded entry was presented first. It checks whether the ordering of the two memories may have influenced behavior, but it should be treated as a robustness check rather than a main finding.
-
-7. Seed Final States — Shows whether the first and second seeded memories ended the lineage unchanged, edited, or deleted. This helps reveal how models treated the individual conflicting memories rather than simply whether they took any action at all.
-
-8. Arbitration Direction — Looks only at lineages classified as arbitration and shows whether the model kept the first or second seeded entry. This helps identify whether models showed a tendency to favor one side of the contradiction, particularly based on presentation order.
+Secondary figures show cumulative timing of first action, recall-count distributions, the counterbalance **arbitration-rate** robustness split, first/second seed final states, and arbitration direction. The generated `charts/README.md` explains what each figure measures and summarizes what the current input data show. If a field is unavailable, that figure is skipped rather than populated with invented values.

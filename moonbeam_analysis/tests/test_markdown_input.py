@@ -24,6 +24,7 @@ def test_parse_scored_markdown(tmp_path: Path):
     assert r['lineage_id']==1
     assert r['counterbalance_arm']=='B-first'
     assert r['strategy']=='arbitration'
+    assert r['confirmatory_dv']=='arbitration'
     assert r['collapse_binary']=='took_action'
     assert r['first_action_step']==1
     assert r['recall_count']==1

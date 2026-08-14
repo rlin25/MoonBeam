@@ -142,6 +142,7 @@ def parse_scored_markdown(path: str | Path, explicit_condition: str | None = Non
         "lineage_id": lineage_id,
         "counterbalance_arm": arm,
         "strategy": strategy.strip().lower(),
+        "confirmatory_dv": "arbitration" if strategy.strip().lower() == "arbitration" else "non_arbitration",
         "collapse_binary": collapse,
         "collapse_binary_reported": collapse_reported.strip().lower(),
         "collapse_binary_source": collapse_source,

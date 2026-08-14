@@ -204,6 +204,7 @@ def score_lineage(record: dict) -> dict[str, Any]:
         "error_step": record.get("error_step"),
         "counterbalance_arm": record.get("counterbalance_arm"),
         "strategy": strategy,
+        "confirmatory_dv": "arbitration" if strategy == "arbitration" else "non_arbitration",
         "collapse_binary": "took_action" if took_action else "no_action",
         "detection": "yes" if detection else "no",
         "first_detection_step": first_detection_step,

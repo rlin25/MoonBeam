@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from .constants import STRATEGIES
-from .stats import collapsed_comparison, wilson_interval
+from .stats import arbitration_comparison, wilson_interval
 
 CONDITION_ORDER = ["A", "B", "C"]
 ARM_ORDER = ["A-first", "B-first"]
@@ -37,83 +37,48 @@ def _pp(x: float) -> str:
     return "NA" if pd.isna(x) else f"{100*x:+.1f} percentage points"
 
 
-def _action_rate_ci(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
-    if not {"condition", "collapse_binary"}.issubset(df.columns):
-        return False, "Required action fields were unavailable."
+def _arbitration_rate_ci(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
+    if not {"condition", "strategy"}.issubset(df.columns):
+        return False, "Required arbitration fields were unavailable."
     d = _condition_subset(df)
-    rows = []
+    rows=[]
     for cond in CONDITION_ORDER:
-        s = d[d.condition == cond]
-        n = len(s)
-        if not n:
-            continue
-        x = int((s.collapse_binary == "took_action").sum())
-        lo, hi = wilson_interval(x, n)
-        rows.append((cond, x/n, lo, hi, x, n))
-    if not rows:
-        return False, "No usable condition data were available."
-
-    fig, ax = plt.subplots(figsize=(7.4, 4.8))
-    xs = np.arange(len(rows))
-    rates = np.array([r[1] for r in rows]) * 100
-    lows = np.array([r[2] for r in rows]) * 100
-    highs = np.array([r[3] for r in rows]) * 100
-    yerr = np.vstack([rates-lows, highs-rates])
-    ax.errorbar(xs, rates, yerr=yerr, fmt="o", capsize=6, markersize=7)
-    ax.set_xticks(xs, [f"Condition {r[0]}" for r in rows])
-    ax.set_ylabel("Lineages taking action (%)")
-    ax.set_ylim(0, 105)
-    ax.set_title("Action rate by condition with 95% Wilson intervals")
-    ax.axhline(0, linewidth=0.8)
-    for x, rate, row in zip(xs, rates, rows):
-        ax.annotate(f"{row[4]}/{row[5]}\n{rate:.1f}%", (x, rate), xytext=(0, 10), textcoords="offset points", ha="center")
-    _save(fig, path)
-
-    summary = "; ".join(f"{r[0]}: {r[4]}/{r[5]} ({100*r[1]:.1f}%)" for r in rows)
-    return True, (
-        "This is the primary outcome figure. Each point is the percentage of lineages that edited or deleted at least one seeded entry; "
-        "the whisker is its 95% Wilson interval. Higher points mean the condition more often triggered intervention in seeded memory. "
-        f"Current data: {summary}. Because the rates are near the ceiling, the figure mainly shows how little room remains for the conditions to differ on this binary outcome."
-    )
+        q=d[d.condition==cond]; n=len(q)
+        if not n: continue
+        x=int((q.strategy.astype(str).str.lower()=="arbitration").sum()); lo,hi=wilson_interval(x,n)
+        rows.append((cond,x/n,lo,hi,x,n))
+    if not rows: return False,"No usable condition data were available."
+    fig,ax=plt.subplots(figsize=(7.4,4.8)); xs=np.arange(len(rows))
+    rates=np.array([r[1] for r in rows])*100; lows=np.array([r[2] for r in rows])*100; highs=np.array([r[3] for r in rows])*100
+    ax.errorbar(xs,rates,yerr=np.vstack([rates-lows,highs-rates]),fmt="o",capsize=6,markersize=7)
+    ax.set_xticks(xs,[f"Condition {r[0]}" for r in rows]); ax.set_ylabel("Lineages ending in arbitration (%)"); ax.set_ylim(0,105)
+    ax.set_title("Arbitration rate by condition with 95% Wilson intervals")
+    for x,rate,row in zip(xs,rates,rows): ax.annotate(f"{row[4]}/{row[5]}\n{rate:.1f}%",(x,rate),xytext=(0,10),textcoords="offset points",ha="center")
+    _save(fig,path)
+    summary="; ".join(f"{r[0]}: {r[4]}/{r[5]} ({100*r[1]:.1f}%)" for r in rows)
+    return True,("This is the current primary dependent-variable figure. Each point is the percentage of lineages classified as arbitration, and each whisker is a 95% Wilson interval. "
+                 "Higher values mean the model more often resolved the contradiction by preserving one claim and eliminating the competing one. Current data: "+summary+".")
 
 
 def _effect_size_forest(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
-    needed = {"condition", "collapse_binary"}
-    if not needed.issubset(df.columns):
-        return False, "Required action fields were unavailable."
-    comparisons = [
-        ("B − A (confirmatory)", collapsed_comparison(df, "A", "B")),
-        ("C − A (exploratory)", collapsed_comparison(df, "A", "C")),
-        ("C − B (exploratory)", collapsed_comparison(df, "B", "C")),
+    if not {"condition","strategy"}.issubset(df.columns): return False,"Required arbitration fields were unavailable."
+    comparisons=[
+        ("A − B (confirmatory)", arbitration_comparison(df,"A","B")),
+        ("A − C (exploratory)", arbitration_comparison(df,"A","C")),
+        ("B − C (exploratory)", arbitration_comparison(df,"B","C")),
     ]
-    if any(pd.isna(c[1]["difference"]) for c in comparisons):
-        return False, "At least one condition was missing, so effect-size comparisons could not be drawn."
-
-    labels = [c[0] for c in comparisons]
-    diffs = np.array([c[1]["difference"] for c in comparisons]) * 100
-    lows = np.array([c[1]["ci95_low"] for c in comparisons]) * 100
-    highs = np.array([c[1]["ci95_high"] for c in comparisons]) * 100
-    ys = np.arange(len(labels))[::-1]
-
-    fig, ax = plt.subplots(figsize=(8.6, 4.8))
-    for y, diff, lo, hi in zip(ys, diffs, lows, highs):
-        ax.plot([lo, hi], [y, y], linewidth=2)
-        ax.plot(diff, y, "o", markersize=7)
-    ax.axvline(0, linestyle="--", linewidth=1)
-    ax.set_yticks(ys, labels)
-    ax.set_xlabel("Difference in action rate (percentage points)")
-    ax.set_title("Action-rate effect sizes with 95% confidence intervals")
-    bound = max(10, math.ceil(max(abs(lows).max(), abs(highs).max()) / 5) * 5)
-    ax.set_xlim(-bound, bound)
-    _save(fig, path)
-
-    ab = comparisons[0][1]
-    return True, (
-        "This is the most direct visual companion to the statistical test. The dot is the observed difference in action rate and the line is its 95% confidence interval; "
-        "the dashed vertical line at 0 means no difference. The confirmatory comparison is B − A; C comparisons are exploratory only. "
-        f"Current B − A estimate: {_pp(ab['difference'])}, 95% CI [{100*ab['ci95_low']:.1f}, {100*ab['ci95_high']:.1f}] percentage points. "
-        "An interval crossing 0 means the data are compatible with no difference as well as effects within the interval."
-    )
+    if any(pd.isna(c[1]["difference"]) for c in comparisons): return False,"At least one condition was missing."
+    labels=[c[0] for c in comparisons]; diffs=np.array([c[1]["difference"] for c in comparisons])*100
+    lows=np.array([c[1]["ci95_low"] for c in comparisons])*100; highs=np.array([c[1]["ci95_high"] for c in comparisons])*100; ys=np.arange(len(labels))[::-1]
+    fig,ax=plt.subplots(figsize=(8.6,4.8))
+    for y,diff,lo,hi in zip(ys,diffs,lows,highs): ax.plot([lo,hi],[y,y],linewidth=2); ax.plot(diff,y,"o",markersize=7)
+    ax.axvline(0,linestyle="--",linewidth=1); ax.set_yticks(ys,labels); ax.set_xlabel("Difference in arbitration rate (percentage points)")
+    ax.set_title("Arbitration-rate effect sizes with 95% confidence intervals")
+    bound=max(10,math.ceil(max(abs(lows).max(),abs(highs).max())/5)*5); ax.set_xlim(-bound,bound); _save(fig,path)
+    ab=comparisons[0][1]
+    return True,("This is the visual companion to the confirmatory Fisher test. The dot is the difference in arbitration rate and the line is its 95% confidence interval; 0 means no difference. "
+                 f"The confirmatory direction is A − B. Current A − B estimate: {_pp(ab['difference'])}, 95% CI [{100*ab['ci95_low']:.1f}, {100*ab['ci95_high']:.1f}] percentage points; Fisher p={ab['fisher_p_two_sided']:.3g}. "
+                 "The C comparisons are exploratory only.")
 
 
 def _strategy_100pct(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
@@ -146,8 +111,8 @@ def _strategy_100pct(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
             dominant.append(f"{cond}: {top} {n}/{total} ({100*n/total:.1f}%)")
     return True, (
         "Each bar represents 100% of a condition, split by the lineage's overall behavioral strategy. This is better than raw grouped bars for comparing composition across equally sized conditions. "
-        "It answers whether the model reached similar action rates through different behaviors. Current dominant strategies: " + "; ".join(dominant) + ". "
-        "This taxonomy view is descriptive; the preregistered headline test still uses the collapsed took_action/no_action outcome."
+        "It shows the full behavioral composition underlying the binary arbitration/non-arbitration DV. Current dominant strategies: " + "; ".join(dominant) + ". "
+        "This taxonomy view is descriptive; the current preregistered headline test collapses it to arbitration versus non_arbitration."
     )
 
 
@@ -220,44 +185,28 @@ def _recall_distribution(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
 
 
 def _counterbalance_ci(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
-    needed = {"condition", "counterbalance_arm", "collapse_binary"}
-    if not needed.issubset(df.columns):
-        return False, "Counterbalance fields were unavailable."
-    d = _condition_subset(df)
-    d = d[d.counterbalance_arm.isin(ARM_ORDER)]
-    rows=[]
+    needed={"condition","counterbalance_arm","strategy"}
+    if not needed.issubset(df.columns): return False,"Counterbalance fields were unavailable."
+    d=_condition_subset(df); d=d[d.counterbalance_arm.isin(ARM_ORDER)]; rows=[]
     for cond in CONDITION_ORDER:
         for arm in ARM_ORDER:
-            s=d[(d.condition==cond)&(d.counterbalance_arm==arm)]
-            if len(s):
-                x=int((s.collapse_binary=="took_action").sum()); n=len(s); lo,hi=wilson_interval(x,n)
-                rows.append((cond,arm,x/n,lo,hi,x,n))
-    if not rows: return False, "No usable counterbalance observations were available."
-
-    fig, ax=plt.subplots(figsize=(8.2,5.2))
-    base=np.arange(len(CONDITION_ORDER)); offsets={"A-first":-0.12,"B-first":0.12}
+            q=d[(d.condition==cond)&(d.counterbalance_arm==arm)]
+            if len(q):
+                x=int((q.strategy.astype(str).str.lower()=="arbitration").sum()); n=len(q); lo,hi=wilson_interval(x,n); rows.append((cond,arm,x/n,lo,hi,x,n))
+    if not rows:return False,"No usable counterbalance observations were available."
+    fig,ax=plt.subplots(figsize=(8.2,5.2)); base=np.arange(len(CONDITION_ORDER)); offsets={"A-first":-0.12,"B-first":0.12}
     for arm in ARM_ORDER:
-        subset=[r for r in rows if r[1]==arm]
-        xs=np.array([base[CONDITION_ORDER.index(r[0])] + offsets[arm] for r in subset])
-        rates=np.array([r[2] for r in subset])*100
-        lo=np.array([r[3] for r in subset])*100; hi=np.array([r[4] for r in subset])*100
-        ax.errorbar(xs,rates,yerr=np.vstack([rates-lo,hi-rates]),fmt="o",capsize=5,label=arm)
-    ax.set_xticks(base,[f"Condition {c}" for c in CONDITION_ORDER])
-    ax.set_ylim(0,105); ax.set_ylabel("Lineages taking action (%)")
-    ax.set_title("Counterbalance robustness check")
-    ax.legend(title="Seeding order")
-    _save(fig,path)
+        subset=[r for r in rows if r[1]==arm]; xs=np.array([base[CONDITION_ORDER.index(r[0])]+offsets[arm] for r in subset]); rates=np.array([r[2] for r in subset])*100
+        lo=np.array([r[3] for r in subset])*100; hi=np.array([r[4] for r in subset])*100; ax.errorbar(xs,rates,yerr=np.vstack([rates-lo,hi-rates]),fmt="o",capsize=5,label=arm)
+    ax.set_xticks(base,[f"Condition {c}" for c in CONDITION_ORDER]); ax.set_ylim(0,105); ax.set_ylabel("Arbitration rate (%)"); ax.set_title("Counterbalance robustness check: arbitration rate"); ax.legend(title="Seeding order"); _save(fig,path)
     summaries=[]
     for cond in CONDITION_ORDER:
         parts=[]
         for arm in ARM_ORDER:
             match=[r for r in rows if r[0]==cond and r[1]==arm]
             if match: parts.append(f"{arm} {match[0][5]}/{match[0][6]} ({100*match[0][2]:.1f}%)")
-        if parts: summaries.append(f"{cond}: " + ", ".join(parts))
-    return True, (
-        "This robustness figure checks whether the action rate looks materially different depending on which contradictory seed was inserted first. It is not powered as an order-effect test, so differences should be described as observations, not findings. "
-        "Current split: " + "; ".join(summaries) + "."
-    )
+        if parts:summaries.append(f"{cond}: "+", ".join(parts))
+    return True,("This robustness figure checks whether arbitration rates differ depending on which contradictory seed was inserted first. It is not powered as an order-effect test, so arm differences are observations rather than confirmatory findings. Current split: "+"; ".join(summaries)+".")
 
 
 def _seed_states(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
@@ -314,7 +263,7 @@ def _arbitration_direction(df: pd.DataFrame, path: Path) -> tuple[bool, str]:
         n=int(table.loc[c].sum())
         if n: summaries.append(f"{c}: kept first {int(table.loc[c,'kept_first'])}/{n}, kept second {int(table.loc[c,'kept_second'])}/{n}")
     return True, (
-        "Among arbitration cases only, this figure shows whether the first or second seeded entry survived. It helps diagnose directional/position preference, but it should not be mistaken for the overall action rate because many lineages act without arbitrating. "
+        "Among arbitration cases only, this figure shows whether the first or second seeded entry survived. It helps diagnose directional/position preference, but it is conditional on already being in the arbitration category and therefore answers a different question from the overall arbitration rate. "
         "Current arbitration cases: " + "; ".join(summaries) + "."
     )
 
@@ -323,12 +272,12 @@ def generate_charts(df: pd.DataFrame, output_dir: str | Path) -> dict[str, str]:
     """Generate paper-oriented PNGs plus plain-English interpretations."""
     out=Path(output_dir); out.mkdir(parents=True,exist_ok=True)
     jobs=[
-        ("01_action_rate_with_ci.png", _action_rate_ci, "PRIMARY"),
+        ("01_arbitration_rate_with_ci.png", _arbitration_rate_ci, "PRIMARY"),
         ("02_effect_size_forest.png", _effect_size_forest, "PRIMARY"),
         ("03_strategy_composition.png", _strategy_100pct, "PRIMARY"),
         ("04_cumulative_first_action.png", _cumulative_action, "SECONDARY"),
         ("05_recall_distribution.png", _recall_distribution, "SECONDARY"),
-        ("06_counterbalance_robustness.png", _counterbalance_ci, "ROBUSTNESS"),
+        ("06_counterbalance_arbitration_robustness.png", _counterbalance_ci, "ROBUSTNESS"),
         ("07_seed_final_states.png", _seed_states, "SECONDARY"),
         ("08_arbitration_direction.png", _arbitration_direction, "SECONDARY"),
     ]
@@ -350,9 +299,9 @@ def generate_charts(df: pd.DataFrame, output_dir: str | Path) -> dict[str, str]:
         "",
         "## Recommended paper order",
         "",
-        "1. `01_action_rate_with_ci.png` — headline outcome by condition.",
-        "2. `02_effect_size_forest.png` — lead with the effect size and uncertainty for B − A.",
-        "3. `03_strategy_composition.png` — shows how behavioral strategies differ even when action rates are similar.",
+        "1. `01_arbitration_rate_with_ci.png` — current confirmatory DV by condition.",
+        "2. `02_effect_size_forest.png` — lead with the effect size and uncertainty for A − B.",
+        "3. `03_strategy_composition.png` — shows the full taxonomy behind arbitration vs. non_arbitration.",
         "4. Put the remaining figures in secondary/supplementary results unless they become substantively important.",
         "",
     ]
@@ -361,10 +310,10 @@ def generate_charts(df: pd.DataFrame, output_dir: str | Path) -> dict[str, str]:
     lines += [
         "## Interpretation guardrails",
         "",
-        "- The confirmatory test is A vs. B on `took_action/no_action`; do not promote the C comparisons or taxonomy figures into additional confirmatory significance claims.",
+        "- The current confirmatory test is A vs. B on `arbitration/non_arbitration`; do not promote the C comparisons or taxonomy figures into additional confirmatory significance claims.",
         "- Counterbalance is a robustness check. If the arms differ, report it as an observation for future work rather than as a powered order-effect finding.",
-        "- Near-100% action rates create a ceiling effect: strategy composition, timing, and recall behavior can still differ substantially even when the binary outcome barely differs.",
-        "- Do not read arbitration as synonymous with action. A lineage can edit/delete a seeded entry and therefore `take_action` without ending in the arbitration strategy.",
+        "- `took_action/no_action` is retained only as a retired descriptive diagnostic; it must not be reported as the confirmatory DV.",
+        "- Arbitration and action remain distinct: a lineage can edit/delete a seeded entry and therefore `take_action` without ending in the arbitration strategy.",
         "",
     ]
     (out/"README.md").write_text("\n".join(lines),encoding="utf-8")

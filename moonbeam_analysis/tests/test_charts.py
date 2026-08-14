@@ -22,13 +22,13 @@ def test_generate_paper_charts(tmp_path: Path):
     df=pd.DataFrame(rows)
     status=generate_charts(df,tmp_path)
     assert (tmp_path/"README.md").exists()
-    assert (tmp_path/"01_action_rate_with_ci.png").exists()
+    assert (tmp_path/"01_arbitration_rate_with_ci.png").exists()
     assert (tmp_path/"02_effect_size_forest.png").exists()
     assert (tmp_path/"03_strategy_composition.png").exists()
     assert (tmp_path/"04_cumulative_first_action.png").exists()
     assert (tmp_path/"05_recall_distribution.png").exists()
-    assert (tmp_path/"06_counterbalance_robustness.png").exists()
+    assert (tmp_path/"06_counterbalance_arbitration_robustness.png").exists()
     text=(tmp_path/"README.md").read_text()
     assert "what each figure is telling you" in text
-    assert "B − A" in text
+    assert "A − B" in text
     assert all(v=="generated" for v in status.values())

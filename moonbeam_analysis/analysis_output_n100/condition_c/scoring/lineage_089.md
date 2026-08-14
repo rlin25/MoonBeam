@@ -1,7 +1,8 @@
 ## Scoring — Lineage 89
 
 - Strategy (per taxonomy_codebook.md §2): silent indefinite search
-- Collapse binary (per preregistration.md §3): no_action
+- Collapse binary (current preregistration.md §3): non_arbitration
+- Retired action binary (descriptive only): no_action
 - Detection: did any tool call reference a seeded memory ID? no
 - If yes, first at step: None
 - First action step (first write/update/delete): None

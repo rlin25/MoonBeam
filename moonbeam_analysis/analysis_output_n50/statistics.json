@@ -1,19 +1,103 @@
 {
   "source_format": "markdown",
+  "confirmatory_dv": "arbitration_vs_non_arbitration",
+  "confirmatory_direction": "A_minus_B",
   "comparisons": {
     "A_vs_B": {
-      "comparison": "B-A",
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "A-B",
       "condition_1": "A",
       "condition_2": "B",
+      "n1": 50,
+      "arbitrations1": 43,
+      "rate1": 0.86,
+      "n2": 50,
+      "arbitrations2": 11,
+      "rate2": 0.22,
+      "difference": 0.64,
+      "ci95_low": 0.4600439074483128,
+      "ci95_high": 0.7562672865682891,
+      "odds_ratio": 21.77922077922078,
+      "fisher_p_two_sided": 1.0615681310191011e-10,
+      "table": [
+        [
+          43,
+          7
+        ],
+        [
+          11,
+          39
+        ]
+      ]
+    },
+    "A_vs_C": {
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "A-C",
+      "condition_1": "A",
+      "condition_2": "C",
+      "n1": 50,
+      "arbitrations1": 43,
+      "rate1": 0.86,
+      "n2": 50,
+      "arbitrations2": 48,
+      "rate2": 0.96,
+      "difference": -0.09999999999999998,
+      "ci95_low": -0.2252560494993374,
+      "ci95_high": 0.01797629642836225,
+      "odds_ratio": 0.25595238095238093,
+      "fisher_p_two_sided": 0.15950501461502106,
+      "table": [
+        [
+          43,
+          7
+        ],
+        [
+          48,
+          2
+        ]
+      ]
+    },
+    "B_vs_C": {
+      "dv": "arbitration_vs_non_arbitration",
+      "comparison": "B-C",
+      "condition_1": "B",
+      "condition_2": "C",
+      "n1": 50,
+      "arbitrations1": 11,
+      "rate1": 0.22,
+      "n2": 50,
+      "arbitrations2": 48,
+      "rate2": 0.96,
+      "difference": -0.74,
+      "ci95_low": -0.8368904185643482,
+      "ci95_high": -0.5772634180251237,
+      "odds_ratio": 0.011752136752136752,
+      "fisher_p_two_sided": 4.600659846511477e-15,
+      "table": [
+        [
+          11,
+          39
+        ],
+        [
+          48,
+          2
+        ]
+      ]
+    }
+  },
+  "retired_action_binary_descriptive_only": {
+    "A_vs_B": {
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "A-B",
       "n1": 50,
       "actions1": 49,
       "rate1": 0.98,
       "n2": 50,
       "actions2": 50,
       "rate2": 1.0,
-      "difference": 0.020000000000000018,
-      "ci95_low": -0.0532218265780125,
-      "ci95_high": 0.1049544358963782,
+      "difference": -0.020000000000000018,
+      "ci95_low": -0.1049544358963782,
+      "ci95_high": 0.0532218265780125,
       "odds_ratio": 0.0,
       "fisher_p_two_sided": 1.0,
       "table": [
@@ -28,18 +112,17 @@
       ]
     },
     "A_vs_C": {
-      "comparison": "C-A",
-      "condition_1": "A",
-      "condition_2": "C",
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "A-C",
       "n1": 50,
       "actions1": 49,
       "rate1": 0.98,
       "n2": 50,
       "actions2": 50,
       "rate2": 1.0,
-      "difference": 0.020000000000000018,
-      "ci95_low": -0.0532218265780125,
-      "ci95_high": 0.1049544358963782,
+      "difference": -0.020000000000000018,
+      "ci95_low": -0.1049544358963782,
+      "ci95_high": 0.0532218265780125,
       "odds_ratio": 0.0,
       "fisher_p_two_sided": 1.0,
       "table": [
@@ -54,9 +137,8 @@
       ]
     },
     "B_vs_C": {
-      "comparison": "C-B",
-      "condition_1": "B",
-      "condition_2": "C",
+      "dv": "retired_took_action_vs_no_action",
+      "comparison": "B-C",
       "n1": 50,
       "actions1": 50,
       "rate1": 1.0,
@@ -113,20 +195,374 @@
     "trials": 10000
   },
   "achieved_power_mde": {
-    "baseline": 0.98,
-    "n": 50,
+    "baseline": 0.86,
+    "n_per_condition": 50,
     "target_power": 0.8,
-    "mde": null,
-    "power_at_mde": null,
+    "mde": 0.26,
+    "direction": "lower",
+    "comparison_rate": 0.6,
+    "power_at_mde": 0.8076666666666666,
     "grid": [
-      [
-        0.01,
-        0.0006666666666666666
-      ],
-      [
-        0.02,
-        0.0003333333333333333
-      ]
-    ]
+      {
+        "effect": 0.01,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.85,
+            "power": 0.026
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.87,
+            "power": 0.023666666666666666
+          }
+        ],
+        "max_power": 0.026
+      },
+      {
+        "effect": 0.02,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.84,
+            "power": 0.027666666666666666
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.88,
+            "power": 0.025333333333333333
+          }
+        ],
+        "max_power": 0.027666666666666666
+      },
+      {
+        "effect": 0.03,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.83,
+            "power": 0.034333333333333334
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.89,
+            "power": 0.034666666666666665
+          }
+        ],
+        "max_power": 0.034666666666666665
+      },
+      {
+        "effect": 0.04,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.82,
+            "power": 0.044
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.9,
+            "power": 0.045
+          }
+        ],
+        "max_power": 0.045
+      },
+      {
+        "effect": 0.05,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.8099999999999999,
+            "power": 0.059666666666666666
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.91,
+            "power": 0.05733333333333333
+          }
+        ],
+        "max_power": 0.059666666666666666
+      },
+      {
+        "effect": 0.060000000000000005,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.7999999999999999,
+            "power": 0.08
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.92,
+            "power": 0.08966666666666667
+          }
+        ],
+        "max_power": 0.08966666666666667
+      },
+      {
+        "effect": 0.06999999999999999,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.79,
+            "power": 0.09466666666666666
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.9299999999999999,
+            "power": 0.10633333333333334
+          }
+        ],
+        "max_power": 0.10633333333333334
+      },
+      {
+        "effect": 0.08,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.78,
+            "power": 0.118
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.94,
+            "power": 0.14333333333333334
+          }
+        ],
+        "max_power": 0.14333333333333334
+      },
+      {
+        "effect": 0.09,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.77,
+            "power": 0.14666666666666667
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.95,
+            "power": 0.21166666666666667
+          }
+        ],
+        "max_power": 0.21166666666666667
+      },
+      {
+        "effect": 0.09999999999999999,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.76,
+            "power": 0.183
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.96,
+            "power": 0.256
+          }
+        ],
+        "max_power": 0.256
+      },
+      {
+        "effect": 0.11,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.75,
+            "power": 0.215
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.97,
+            "power": 0.346
+          }
+        ],
+        "max_power": 0.346
+      },
+      {
+        "effect": 0.12,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.74,
+            "power": 0.23633333333333334
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.98,
+            "power": 0.45466666666666666
+          }
+        ],
+        "max_power": 0.45466666666666666
+      },
+      {
+        "effect": 0.13,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.73,
+            "power": 0.2886666666666667
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 0.99,
+            "power": 0.5486666666666666
+          }
+        ],
+        "max_power": 0.5486666666666666
+      },
+      {
+        "effect": 0.14,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.72,
+            "power": 0.325
+          },
+          {
+            "direction": "higher",
+            "comparison_rate": 1.0,
+            "power": 0.7296666666666667
+          }
+        ],
+        "max_power": 0.7296666666666667
+      },
+      {
+        "effect": 0.15000000000000002,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.71,
+            "power": 0.3596666666666667
+          }
+        ],
+        "max_power": 0.3596666666666667
+      },
+      {
+        "effect": 0.16,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.7,
+            "power": 0.391
+          }
+        ],
+        "max_power": 0.391
+      },
+      {
+        "effect": 0.17,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.69,
+            "power": 0.45866666666666667
+          }
+        ],
+        "max_power": 0.45866666666666667
+      },
+      {
+        "effect": 0.18000000000000002,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.6799999999999999,
+            "power": 0.49466666666666664
+          }
+        ],
+        "max_power": 0.49466666666666664
+      },
+      {
+        "effect": 0.19,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.6699999999999999,
+            "power": 0.54
+          }
+        ],
+        "max_power": 0.54
+      },
+      {
+        "effect": 0.2,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.6599999999999999,
+            "power": 0.5833333333333334
+          }
+        ],
+        "max_power": 0.5833333333333334
+      },
+      {
+        "effect": 0.21000000000000002,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.6499999999999999,
+            "power": 0.604
+          }
+        ],
+        "max_power": 0.604
+      },
+      {
+        "effect": 0.22,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.64,
+            "power": 0.654
+          }
+        ],
+        "max_power": 0.654
+      },
+      {
+        "effect": 0.23,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.63,
+            "power": 0.6996666666666667
+          }
+        ],
+        "max_power": 0.6996666666666667
+      },
+      {
+        "effect": 0.24000000000000002,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.62,
+            "power": 0.7346666666666667
+          }
+        ],
+        "max_power": 0.7346666666666667
+      },
+      {
+        "effect": 0.25,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.61,
+            "power": 0.758
+          }
+        ],
+        "max_power": 0.758
+      },
+      {
+        "effect": 0.26,
+        "directions": [
+          {
+            "direction": "lower",
+            "comparison_rate": 0.6,
+            "power": 0.8076666666666666
+          }
+        ],
+        "max_power": 0.8076666666666666
+      }
+    ],
+    "observed_A_rate": 0.86,
+    "observed_B_rate": 0.22,
+    "observed_difference_A_minus_B": 0.64,
+    "simulated_power_at_observed_rates": 1.0
   }
 }
