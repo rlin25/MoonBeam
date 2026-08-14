@@ -57,7 +57,7 @@ Implemented in `harness/scoring/outcomes.py` as disclosed heuristics, not LLM ju
 structurally different similarity measure (word-set Jaccard rather than overlap-over-claim-length), so
 that a bug specific to one implementation would surface as a classifier/audit disagreement rather than
 being silently replicated in both. Across the full run, the audit found **0 discrepancies in 15 lineages
-(10% of 150)** — see `runs/validation/classifier_audit.md`. This is reassuring but not proof of zero
+(10% of 150)** — see `runs_pilot_n50/validation/classifier_audit.md`. This is reassuring but not proof of zero
 disagreement at large N; a larger audit fraction would narrow that uncertainty further.
 
 **A real tension in the codebook, observed in actual data, not merely hypothetical.** Several lineages
@@ -69,7 +69,7 @@ survives — it does not carry step 3's "does the survivor state an operative cl
 conflict without selecting" distinction into the one-survives case. Implemented exactly as written,
 per `implementation.md` constraint 13 ("`taxonomy_codebook.md` is not revised in response to Condition A's
 results"). Flagged here rather than silently smoothed over; this is precisely the kind of disagreement the
-held-out human coding (`runs/validation/held_out_coding.md`) is designed to surface, and any resulting
+held-out human coding (`runs_pilot_n50/validation/held_out_coding.md`) is designed to surface, and any resulting
 codebook amendment belongs to that process (`preregistration.md` §9), not to an implementation-time fix.
 
 **Step 4(ii)'s arbitration-direction ambiguity** (both seeded entries technically survive as rows, one
@@ -113,7 +113,7 @@ a decision point — it does not license changing N, the test, or the collapse")
 
 **Consequence for interpreting the confirmatory test.** The actual Fisher's exact result on the
 pre-specified collapsed binary was **p = 1.0, observed difference −2pp, 95% Wilson CI [−10.5pp, +5.3pp]**
-(`runs/statistics.json`). Checked against `preregistration.md` §7's decision rules literally: p ≥ 0.05 ✓,
+(`runs_pilot_n50/statistics.json`). Checked against `preregistration.md` §7's decision rules literally: p ≥ 0.05 ✓,
 |diff| < 10pp ✓, but the third interpretable-null criterion ("the 95% CI excludes effects larger than the
 MDE for the achieved N") **cannot be mechanically evaluated**, because the achieved-N MDE is undefined at
 this baseline. This is reported here as a genuine limitation of the pre-registered decision framework
@@ -124,8 +124,8 @@ unanticipated situation like this belongs.
 
 **What the ceiling effect does not erase.** The collapsed binary saturating near 100% in all three
 conditions does not mean the three conditions produced indistinguishable behavior — the *taxonomy*
-distribution differs sharply between them (`runs/condition_a/observations.md`,
-`runs/condition_b/observations.md`, `runs/condition_c/observations.md`):
+distribution differs sharply between them (`runs_pilot_n50/condition_a/observations.md`,
+`runs_pilot_n50/condition_b/observations.md`, `runs_pilot_n50/condition_c/observations.md`):
 
 | Condition | arbitration | clear-without-replacement | other strategies |
 |---|---|---|---|
@@ -141,7 +141,7 @@ context because it is a large, visually obvious pattern in the actual collected 
 overwhelmingly clears both entries without replacement; A and C overwhelmingly arbitrate), and because it
 bears directly on how a write-up would need to characterize what happened: the *rate of acting at all* did
 not differentiate the conditions (ceiling in all three), but *what acting looked like* did, sharply. Full
-figures, per-arm splits, and per-lineage scoring are in `runs/*/observations.md` and `runs/*/scoring/`.
+figures, per-arm splits, and per-lineage scoring are in `runs_pilot_n50/*/observations.md` and `runs_pilot_n50/*/scoring/`.
 
 ## 5. Summary of deliverable status
 
@@ -153,6 +153,6 @@ one shared `harness/core.py` code path); all seed/prompt/tool strings are consta
 `experimental_parameters.md` (`harness/seeding.py`, `harness/core.py`); counterbalance arms asserted
 exactly 25/25 per condition (not merely assumed — see the run log); mechanical scoring implemented with no
 LLM client imported anywhere in `harness/scoring/` or `harness/validation/` (grep-verified); both
-validation artifacts prepared (`runs/validation/held_out_coding.md`, `runs/validation/classifier_audit.md`);
+validation artifacts prepared (`runs_pilot_n50/validation/held_out_coding.md`, `runs_pilot_n50/validation/classifier_audit.md`);
 every `observations.md` includes explicit zero-counts where they occur; achieved power recomputed with the
 ceiling-effect limitation disclosed above rather than papered over.

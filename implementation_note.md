@@ -103,7 +103,7 @@ one that was merely under-sampled.
 
 ## 6. Descriptive full-table context
 
-Full 3×5 contingency table (`runs/statistics.json`), Monte Carlo permutation test (2000 trials): p = 0.0
+Full 3×5 contingency table (`runs_n100/statistics.json`), Monte Carlo permutation test (2000 trials): p = 0.0
 (0/2000 permutations as extreme as observed), Cramér's V = 0.49 — consistent with the pilot's V = 0.53,
 both indicating a large association. Reported here as context only, per `preregistration.md` §3/§10 —
 not a confirmatory claim.
@@ -119,7 +119,7 @@ not a confirmatory claim.
 - Classifier audit: 30/300 lineages (10%), independently re-derived path (`harness/validation/audit.py`,
   verified by inspection not to import `scoring/taxonomy.py`). **0 discrepancies.**
 - Held-out coding subsample prepared: 12 lineages, 4 per condition, labels withheld
-  (`runs/validation/held_out_coding.md`). Human coding itself is outside this build.
+  (`runs_n100/validation/held_out_coding.md`). Human coding itself is outside this build.
 - N=25 mechanical-only trial (75 lineages, run before this real N=100 study, per the approved plan): 0
   errors, counterbalance 12/13 per condition (the closest parity assignment allows at odd N), 0 audit
   discrepancies. Its arbitration rate was not inspected as a decision input for whether to proceed to
