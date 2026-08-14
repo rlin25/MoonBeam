@@ -65,6 +65,16 @@ Essentially identical to the planned table — the observed 85% rate sits 1pp fr
 baseline, so nothing about the power picture shifted. This is a reporting step, not a decision point, per
 §5's own framing; it changes nothing about N, the test, or the collapse.
 
+**The decrease direction above is the pre-registered one and remains primary** — `preregistration.md` §5
+explicitly committed to it in advance ("the whole point of interest is whether Condition B's rate is
+*lower*"), and the observed data bears that out (B at 25% sits well below A's 85%). Treylon's independent
+cross-check (`moonbeam_analysis/analysis_output_n100/statistics.json`, `achieved_power_mde`) computes the
+same recomputation in the *increase* direction instead — MDE = +12pp, power at that MDE = 0.83 — which
+answers a different question (how well-powered this N is to detect a rate *above* baseline) rather than
+the one this study actually tests or found. Both figures are mathematically correct for what they each
+measure; only the decrease-direction table above governs any claim in this document. Reported here so the
+two independently-computed statistics.json files don't read as disagreeing when placed side by side.
+
 ## 5. A genuine gap in the taxonomy, surfaced by real data — reported, not fixed retroactively
 
 10 of 300 lineages (9 in Condition A, 1 in Condition C, 0 in Condition B) classified as `other`
