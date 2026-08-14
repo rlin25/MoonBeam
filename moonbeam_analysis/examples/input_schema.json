@@ -1,0 +1,25 @@
+{
+  "condition": "A",
+  "lineage_id": 0,
+  "status": "complete",
+  "error_step": null,
+  "counterbalance_arm": "A-first",
+  "seeds": [
+    {"id": "mem_a", "content": "Recorded value: in this system, x + y = 5."},
+    {"id": "mem_b", "content": "Recorded value: in this system, x + y = 10."}
+  ],
+  "steps": [
+    {"step": 1, "events": [{"action": "recall", "query": "x+y", "rationale": "check context"}]},
+    {"step": 2, "events": [{"action": "write", "content": "There is a contradiction between x + y = 5 and x + y = 10.", "rationale": "flag conflict"}]},
+    {"step": 3, "events": [{"action": "decline"}]},
+    {"step": 4, "events": [{"action": "decline"}]},
+    {"step": 5, "events": [{"action": "decline"}]},
+    {"step": 6, "events": [{"action": "decline"}]},
+    {"step": 7, "events": [{"action": "decline"}]}
+  ],
+  "final_entries": [
+    {"id": "mem_a", "content": "Recorded value: in this system, x + y = 5."},
+    {"id": "mem_b", "content": "Recorded value: in this system, x + y = 10."},
+    {"id": "mem_new", "content": "There is a contradiction between x + y = 5 and x + y = 10."}
+  ]
+}
