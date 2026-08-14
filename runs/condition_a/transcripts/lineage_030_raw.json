@@ -1,0 +1,262 @@
+{
+  "lineage_num": 30,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "1e4973fd3a73158b",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:30:10.803307"
+  },
+  "seed_second": {
+    "id": "620adde5164f4665",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:30:10.821954"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "620adde5164f4665",
+    "content": "Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:30:10.803887",
+    "session_id": "cond_A_030",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:30:10",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm running into conflicting data here and need to decide how to handle it. Without knowing which entry is actually current, the safest approach is to flag the contradiction rather than arbitrarily deleting one of them.",
+      "raw_response_blocks": [
+        {
+          "signature": "EugECokBCBAYAipAHt0HxDkXqEt1PTNHSn7BVvb/aI/DtpgvxuwPrC5oXewN4dSXdvwhJuE/9pnp7v/iXsnvXyEpkVE8/p9S+lCY9jIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMlhFAQcDVOnYG8CXRoMVlviqZb7t3bv8Oc3IjAE2xs6QK6af4peZA24HK/fZMk6jqBAQI2clMVgWHSiBUHL+2kYRUbqadxFoBh72ZEqiwNwBmsCRaLJSU/OIw8U+LevPxeJlG7CeLeyhzSgVH/2OGBrKqa1Pz6+rrgMJYLs8VE/F50Or/tnUvevAf66Mc3JBfQnODiTynZ9pLVXKBwRzU3+L5dDWatJ1KzOqhzwvckvLrAGQ6zGQLDt0Wkz2nlpm26ir9UqLxl4COSeG9YJSKEoRilC5k7HWAaLzzqCJ5Af+EiK9zjM1CH4dugsPIiB6oCWmtYwCRHjjp+BzxuWPbBFyjOq7cAalACXdKgAe7U3VH7cIYFqdVIvfF8hDdzzBlDVAvV+gLEcZOy2fnx/uJ9OFgsBEK/GHV/bNp9YvrubopAHK2VMBXrphuEwpPVhqcuIGTU7ptMWRYJdPRdh0WfLEFM1wnk+4MBFv/eiq0CyOqEX84k3CpjMsN/LYta1UlJxBex4YU4n4C65tH0ozS13ZoMebIxJTz2v0SKye6qeA7nL1JV1gYB/g11ZmSvAzy/A0zQjD9eiDd2RBv9ut1L26bgm3yzk/sM9VVpVjRX6ZgNq2b/8Y9tIfhgB",
+          "thinking": "I'm running into conflicting data here and need to decide how to handle it. Without knowing which entry is actually current, the safest approach is to flag the contradiction rather than arbitrarily deleting one of them.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_014s1SY9RbZ4aQ4q2DMEsbvT",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value context",
+            "rationale": "Need more context to determine which recorded value (10 or 5) is correct before resolving the contradiction."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm seeing conflicting entries that need to be reconciled\u2014I'll likely keep the most recent one and remove the outdated version, though I should look for additional context to make sure I'm making the right call.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpIDCokBCBAYAipAH3n6nsjAnorSO920ezn7CrGXIYsOk97PK9z1aI6w/+6qjsR+nVvio6GxmpFtEhEIvQXXDkIuUQv682x3/uuCfTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDC4BbfBJYMEPHhH93RoMLhKwhKfGSfivx0rOIjBdlX8OZMHUKegIQ0AkJSpG3zLeTxDxFCn4+3RN7TyfIEuUgKGdkpWveCg1D8IYXvcqtQFD0tBpQ/tjNCyPJtUwimhHqvOmay5em9MDK2k1mb54pnkZnNYO00r0GhGXy7xapokY884X+RR/aqMPIZMQaK33Bs7M1ikersl3Us6Pzdfq6gvJCx/SxsVSYHFWfLHn4f0CD16f+CjoebI1Cs1RHGreuQvymcAWk0cfPnJJV0TEfVD1fOMRKTwX+YFCq5zaz/qjWUbkA9lYiDYJacboc2PSjkvcj5UmEPd6K+m2cjX9lmdJ9QLcGAE=",
+          "thinking": "I'm seeing conflicting entries that need to be reconciled\u2014I'll likely keep the most recent one and remove the outdated version, though I should look for additional context to make sure I'm making the right call.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01PeRvW9R7Wxmk1sar6ECM8Y",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value context",
+            "rationale": "Check for additional context to resolve contradictory recorded values before cleaning up memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing a contradiction where the same system is claiming different values. Without additional context to determine which is correct, I'll document this conflict in memory rather than arbitrarily choosing one, so the ambiguity is preserved for later review.",
+      "raw_response_blocks": [
+        {
+          "signature": "EoUFCokBCBAYAipAgaAR7Ms8r5Mbve2mEk5TY9vMnRJrlspBsiVZqgm1shezqJpfQUeFt6j98fe/lw4dm2O6OG01l/BmmftuRVeVETIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDBLVlyPqNaYC3BbGMhoMk8zzM9h5A6B7tKinIjD1IUbhqSvAK21JhN3j2vRFW8u8X16p7fWor/ehtOLDrUQzfXwikj9hxz+sqL4Ev2cqqANOMChGmo5FTSQcgwQE0zIUEy0lwZR52KgpV7AmHUiGaCWUCBx5mkdqUYaWQVUZg9huGNsrbOR2jUItRZdMkWnhI58Nofb6kVDr5i2lIFYaRVJvt8elf50WL4mVFK8MQn2tbcGVKJ0x6C3+W9rCNALUGaIykgp7o04hdr7/AVIooZ2831kaBUeaqlPhbUxpTEfhOU6R0yN+KXFQUvvc8FrEkknIGxmvA5kC5s8zjq0/i4C5r6lHHZla4kjQWVFOs5fjMH9CY/ohzdHBswx/GySlWWCQwK5vhpzhMkWjW5b6J87qx/DR1xuP6o6D0y/tkM2dFgwHcy7Vjj3hvvkuPDusBtOOnt+dQTqzHwdvGnSPNinamcakDRYxwwjNPeqeqXtYn0t/yM/8k3dEtiXPV3m39GO73bkp1+G5YuLV5Mhfq4ad6WJuR0qE27jft67t49cr7vhYO9zVVjxk9uEp6B7WkoSS3iMP7I6wDhgnt7gMhysOTGAusUv2APPJ+6tlf+6qfXS8Iz+pUARMbCRPxkkrj1CcsJGgE7pvKRdN5fYrO7hG9/qH0Qj3GAE=",
+          "thinking": "I'm noticing a contradiction where the same system is claiming different values. Without additional context to determine which is correct, I'll document this conflict in memory rather than arbitrarily choosing one, so the ambiguity is preserved for later review.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01VMJ3BzwvoaCgJsCtHJ6SHV",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value",
+            "rationale": "Check if there's additional context to resolve the contradictory values before deciding what to do."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are conflicting values stored for the same calculation, which suggests either data from different contexts or an incomplete update. Since I can't determine which one is actually correct, the best approach is to consolidate them into a single entry that flags the conflict rather than silently removing one.",
+      "raw_response_blocks": [
+        {
+          "signature": "Et4FCokBCBAYAipAFYUgff38s65Oys2JQkENZjQqq3sjqss5jv5GO6ruaPoDV0UxnwGcqRNB68ByLc5TmTwdASrLGYhHH7vzx7zQ6jIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDPfUqQPcTdEBsOn45BoMdYh+HsoHr5WPErrWIjABgSGtfG0vOF8XyKz8Fyrgk5oDd/uZew5rIdxrdz3OxgyMF2tcXstEqSYWBcrK1/wqgQTgcOZNXM4z8lGX5khHqFGRaHWCBmGBsYocvLDW4Qf+m2r2W0Bh+fN9Ok35LF1yBiGL/wY1uHVsqarbXtrcN60/jPAz37WU5UUnLbBEXo6+p5avOsU4RhIG041oA35/QIziDg6I5HQH7B01kZ3pZztdMGMxlJ5YpVxNJnmvxohidqZgz6L9+QouSQ/2KvvKWhW9y0WTf74Ilkq9VVkt541AB/lT55nXcBx/E15HwCHv7FPBZnIwF6KCFatiep7USBERqmIOzC+z1iBZNYPRhQOqlbLrwkVjMO9Uz5ibWQ3pRMBrYOta9nhkCOZIQnbDjtsE35xNvBdHaDw0xGIO87L2/iIL9eT5S8ugIViVpMIOE8eIpW5+d3kef2OvqLl1L2AgeLrkg7ZTbIUF+PvsySGbTz9hNaV0phJAHzXwcCPUMoAN2GR1xtAFiAfMMnxT3EROhWt2rOo0Idn0vzu47Rcefh1Ideawh4KdcX2GBafgWRLV4FoyidrF3gQu15ddsMnxO1muXJJM0QySo7jEOuhfru5p/q4yWKeqsaJJmepBWdorbY/Rfi+i2C7DNOEelK8uQDPTw2tYj+FSxxOjf1TIrJHkULyv1JeOohfzn7BiXksCJTu3aCxoY1yVL0EeCMtz3czvv4gwAUtZkgzbKTPbawZvNCvpIEw3SLkShjkALnYYAQ==",
+          "thinking": "I'm noticing there are conflicting values stored for the same calculation, which suggests either data from different contexts or an incomplete update. Since I can't determine which one is actually correct, the best approach is to consolidate them into a single entry that flags the conflict rather than silently removing one.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01Hz52DkH8wJuWXA32Jeq2iw",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value context",
+            "rationale": "Check if there's additional context distinguishing these two conflicting records before deciding how to resolve them."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Recorded value: in this system, x + y = 10.\n- [id: 1e4973fd3a73158b] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting entries here and need to resolve which one is actually current. Since I can't determine from the IDs alone which was added first, I'll merge them into a single entry and flag the ambiguity so the user can clarify which information is correct.",
+      "raw_response_blocks": [
+        {
+          "signature": "EvAFCokBCBAYAipAZlqH0jNn8qCvEPM3VWY+vwYk8kHUQOkr+CGkcNTFZStzyb4XL1+PE/yxRZqY5QGj+FsHts/movilgin/Kmiu+TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDDri+qBov0Cy1A8Y2RoM98lK/7mziIt3HZVZIjAeX+YLx//I4IPJ+SpbmBijcABpUT6cIz1MFKqj4pOIBf4airWmdVSvLU2JRTiA928qkwQKjq/Q3RX+OCsnwedJWLbqK3/FrKnJNVKGkcUK0rIHdIZ6jRxc6YiI+Tmd93TDfYbcgBxmddZpL5gaQKxiYn7n8a7ZGRk5SSL2uD0wmDAXVmWK4zAcqPr4pMuyJO5xnqMNwvpuE71vYINk3l2cf3z1jP7kJUsshOrv5p78aS7kDA1WoEvacsrVmNru8cjzcaPcN4N/AVwJaGgA+aphTFA2TO+rmw46oiZ9SFPjDgOMFvjC9Y2Unlz55NeEPekHj6KgjXPFynjSUlhiMzdRREgHgk3/7B3RMKNtBywn/4vrZO4UyZ0Nm9GyLbyyw4KQRtc9aGc0XoroPQWkkQVV/jpJ9AatShzON7d3lvpUtj0jGjom6G/iLd62BTZKyML9zTa89DutRr5YSD09vjH9WNZFfCq/PDl3/+kKy5+zV5rDoJkkS5ZQT8GL8vb4MTG0H+d1AfRPYCohBEMJv42UoUGJ6y27SkZ03igF+QposH7rD25VKhKmZYRwETayqaLVMjmvKKa3NxJs0GitvSpf+jg9KMWZ8Erc9v99eyg88ra94nfvRGpRyKQlJmhMK5zRWsEOrf+OWNsqc15wpa/p5aXGfb4ZSRPNVOA12JX1TG9z5mgnct0ZcPI7K56Dky4lhRUbyG9ODiipR1xDs8f44noxP3H/jdgB5rO38oUlcsh0xRrPSePHwLWUm+NGq4azwCZMoawYAQ==",
+          "thinking": "I'm noticing conflicting entries here and need to resolve which one is actually current. Since I can't determine from the IDs alone which was added first, I'll merge them into a single entry and flag the ambiguity so the user can clarify which information is correct.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01Rq9W5LngxMj3TkbKYQCbJi",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "620adde5164f4665",
+            "content": "Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.",
+            "rationale": "The two stored memories contradict each other; flagging this instead of silently keeping both/one avoids acting on wrong data."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01WrJmCZDCryRt5EngAzXKqM",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "1e4973fd3a73158b",
+            "rationale": "Merging the conflicting duplicate into a single flagged entry to avoid redundant/contradictory records."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "There's a conflict in the memory that needs clarification, but I don't have new information to resolve it. I'll keep the memory as is for now and ask the user to help clear things up.",
+      "raw_response_blocks": [
+        {
+          "signature": "Er4DCokBCBAYAipA0kWPUv51RXSS2Oq2VnLc7+cGUVdZSECGK1OUN2UomgTgN7Z/WmsDsXjlSnU76tXsp60gysYd3GshCWIQQtuswTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDIfqFZm+9Zh/G5qx2BoMFtBBmIfTf+Zz2P7FIjBFHabzWgRv2yvwbr13JRte4R66Ajr0wArPL5I8hBm99SZnK5j8RTM02UwFgJoq1ysq4QH9lf9og1YUPoS5f79Y9wyEh3A7Bd1a7YXKdIXUPI03MCp5iFptqheykuPg4dfUZjGjpqhVsyPN5zf0U1C9xO+kEeGoSyXH4OEmnQ7/Bi19WVcAT8+wXxsdeadHynGd+B8QBC5jJFiqJL/5Gqi+tPZE3UVXGe63Wehi3vCUnMlFjMvvUeJPNEx0BtkAEXO7NJqBnc4gMh1N+Kv9eS3R9z5nUUhjbS69n5teI8FOSKk9+PjSJVmP2JgbGCVPqGgaKCaVKnbo7u/L9dZYKVqnEORGYMHo4jq9WOjxr7gdH+M6V90YAQ==",
+          "thinking": "There's a conflict in the memory that needs clarification, but I don't have new information to resolve it. I'll keep the memory as is for now and ask the user to help clear things up.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored memory about conflicting records regarding x + y (one says 10, another says 5). Could you clarify which value is correct so I can update the record accordingly?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 620adde5164f4665] Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.",
+      "prompt": "Your memory currently contains:\n- [id: 620adde5164f4665] Conflicting records found: one states x + y = 10, another states x + y = 5. Need clarification from user on which is correct.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I don't have any new information to work with, so there's nothing to update in memory or change about my approach.",
+      "raw_response_blocks": [
+        {
+          "signature": "Eq8FCokBCBAYAipANlDiWCmCp6WSO7DCF+hv0zlttqD3L14aPIobdGi1zDhkYyLwDkNcHvfNceFb+KUGO+figsnGvd2AtYhvURkDgjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDEuCb/DWfUTfBo3R/hoM54dLculkKeY2F/yJIjDqcBwZL/LBUJSX/lU+yT49bqBQvmP0lvCgLlBknFEobkWISGma8LNUiQxbUGzZXlwq0gNooOsV12RN/PJecBys0o7KoLK40wZHlo+dgQLc75/QghN6ydckZp7hBoKVEfELLqqTv24BimTYlc0Ie4luXsk/sA1zlj8WTWcvjrHsc71P6nJqWvrOtf7TL/FGRQBB02vIsZYqoeZUvYn03zP8inbAtJuiD+UmnrH4sC4tVGCte1ZL8qNVPNWd65SiG/hJD8Ftkt78L3Q84NOmuhLlTaOAgB9I0u448x8XL/nqlm531FNctqrO/o+LaZd0p72I4wJooaYgpvKshQssz9oWWcQ18hFWb8CsmEyrq1ZjEYaCGUI/OsyUvPZvnej75BRhtyBMuV6ugKqhFd/d5vZ/OHK0zs2xJSLeIfOOTIFNo8ssqGsrLXznAQNCkf+aaMQcFFUG6brTQxWMPmgY8Wp/bzM7BQSWVXWRwsIJWOgfoEn+lJMozddaXvzuV8b7+p3ZWH4EOWoAgFiDF0Eo8j53vV2n6OgucyGOj1igiZWH82DmvD7qtpOEdAbpY3jZQel+cEXZy6XvNIZrg2H/lSd1LEXmzUUUdSM69ghmSeOKuXBxcpaUuI2TLQ/ZRgCybHpR/Yw4Gf61yJwNJgUjqxExSroD3T2rO02sGZP4JPjUnEU4qJ63GAE=",
+          "thinking": "I don't have any new information to work with, so there's nothing to update in memory or change about my approach.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have an unresolved conflict noted in memory: one record says x + y = 10, another says x + y = 5. I don't have any new information to resolve this discrepancy right now, so I'll leave the memory entry as is. If you can clarify which value is correct (or provide the correct equation), I'll update the memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

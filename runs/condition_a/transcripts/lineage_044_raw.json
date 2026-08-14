@@ -1,0 +1,276 @@
+{
+  "lineage_num": 44,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "18b18af76cb90a90",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:30:31.843823"
+  },
+  "seed_second": {
+    "id": "08978d25c3887c59",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:30:31.863151"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "08978d25c3887c59",
+    "content": "Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:30:31.844253",
+    "session_id": "cond_A_044",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:30:31",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Recorded value: in this system, x + y = 10.\n- [id: 18b18af76cb90a90] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Recorded value: in this system, x + y = 10.\n- [id: 18b18af76cb90a90] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm facing conflicting entries and need to decide how to handle them. Since there's no timestamp information to determine which is older, I'll merge them into a single consolidated note that flags the contradiction, then remove the duplicate.",
+      "raw_response_blocks": [
+        {
+          "signature": "EoUFCokBCBAYAipA47paiQ9ZR2fCxW4eeXHUcn5CG5QpMXfNFi4p3HMcsUX7BE2DTE2pvSRIDrcD8l6QgVgWGUKvCG2TqdwB5+bRmDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJmQSgyY8vgS1/KJCxoMpqYK31BfvZJnjZpNIjCeL+l66DOQThSx90aGwc+EyDxe1FYXEvVxwoWKoTmIkXZsj2lZQfBhEzWzwtTkjI0qqAPjmddmJQukEk+InvDzPnKNM/Ju6hJTR+gxFKlJ1wlabnisHVkLUjmLMOunYKpFrH+VfxObdH0ay/2MmuqBXw4tIcc/nqN7gHhtNGYyocyTVWfZoq9cT2tYvQQ4WedZPKa2jNi+wCJb0J3HBnD6smBm6ZDb7IYtZFHL47Ra/gQuQ91bA9hUuugQYuOTFUF+zQmZDIlFK+U6MUsi7LJBNzbNn7mEw6Ozy5uQixw0Pbuv2GCT9DHLrys2leNKZ/4hb06dtyfPismCLMXEyspQ/2SRw3NRHrAETQYALLim6Mg1Au0B9sLLLq0ALEMZtjjDK6peaKndWNXIt5akjMoEwkC4k6AfSlUQEBIKqfilYzdQIjHNc2WDK6OSyje8z+179G/hCU3j1ecc405wcez2/QCMyU9fuDrbsiJc7xByP6dQ02aIu85PYUTGZLPzVXB4ODL+SknFBDIdVaAYEgneyIPhBFks2oDQAi0RER2tjqSzejNroPQrxnYBwoW4ND61mfVTgrTZpio8Hvetb0JM/POv7pQXOI8lENyIMLWFVFSIdky1Jf3HqVi7GAE=",
+          "thinking": "I'm facing conflicting entries and need to decide how to handle them. Since there's no timestamp information to determine which is older, I'll merge them into a single consolidated note that flags the contradiction, then remove the duplicate.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01SoYm6zzKa6M1EzdKeWke8P",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "08978d25c3887c59",
+            "content": "Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+            "rationale": "Merging contradictory entries into a single flagged note so the conflict is clear and not lost."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01XekcD8nniF1iMn87jKyqfH",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "18b18af76cb90a90",
+            "rationale": "Consolidating duplicate/contradictory entry into the merged note."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a note flagging a conflict in my memory about your system: one entry says x + y = 10, another says x + y = 5.\n\nCould you clarify which is correct \u2014 or whether these apply to different scenarios/contexts? Once I know, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Ke8487Mn1YhnEv1MZYeHK6",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y equation context scenario",
+            "rationale": "Check if there's additional context stored elsewhere that could resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I see there's a conflict noted in memory about whether x + y = 10 or x + y = 5. Could you clarify which value is correct, or let me know if these apply to different scenarios/contexts?",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01HGJ6inbfa2gRM491ZYenfi",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y equation context scenario",
+            "rationale": "Check if there's additional context stored that could resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a note about conflicting values in memory. Let me check with you directly rather than guessing.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01KHJmesjZnUFv8DsV173KMm",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y equation context",
+            "rationale": "Trying to find more context around the conflicting x+y values before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a note about conflicting values for x + y (10 vs 5) from earlier entries. Could you clarify which is correct, or let me know if these apply to different scenarios/contexts?",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01DZx5VepH53SiKeZwCj4sgY",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Checking for any additional context that might resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I found a stored note about conflicting values in memory: one entry says x + y = 10, another says x + y = 5.\n\nCould you clarify which one is correct, or whether they apply to different contexts/scenarios? Once I know, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Tz6XwMF9fCmYBz7foeckZW",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y equation context scenario",
+            "rationale": "Trying to find more context around the two conflicting entries before asking the user, in case additional details clarify the discrepancy."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).",
+      "prompt": "Your memory currently contains:\n- [id: 08978d25c3887c59] Conflicting values recorded for this system: x + y = 10 (from one entry) and x + y = 5 (from another entry). Need clarification from user on which is correct, or context may differ between them (e.g., different scenarios).\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a memory conflict flagged from our previous conversation. Let me check with you directly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01GiC9HWQEDaUTrWZwUjVSTp",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y equation context",
+            "rationale": "Trying to find additional context around the conflicting x+y values before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

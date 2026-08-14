@@ -1,0 +1,228 @@
+{
+  "lineage_num": 31,
+  "condition": "C",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "234301afb8f0c32d",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "timestamp": "2026-08-14T10:33:12.442616"
+  },
+  "seed_second": {
+    "id": "bb60d017a3b8b597",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "timestamp": "2026-08-14T10:33:12.487050"
+  },
+  "final_first": null,
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: bb60d017a3b8b597] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 234301afb8f0c32d] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: bb60d017a3b8b597] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 234301afb8f0c32d] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing a contradiction in the information I have, but without knowing which version is more recent, I need to flag this conflict. I'll merge them into a single entry and note that clarification is needed to resolve the discrepancy.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErEECokBCBAYAipAITKYdZcfp3aJxvW0yQX1zRt3j8AZj3ifhPHMV8VkuNEDYpv6Nt8J26DiA6knS647C3qzxCer+XOgqi4f52AuQzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDI6fSB++0kh2dtOnBRoM8WADhpDw+fxi12BxIjCI5dGc5A7VDnwM/vThTejpnqcYiSkWDRF+LvxsHQUYV+7CjpZ1EMLbM4yenBxWvh0q1AIz99dapnjD8xuZaIQMUi3cxSR5W+bXMjyO09YuCoMJ4C8BmS/MtbnRVdPAXGRGwPN8F2soXClCRjzyIh2LtQdMiRjgAmRe6D8LfflB+TlYJ/7LwZJ7FWN7BITuB2gcPX7sY56SkRvGEQgVQIahvsy0SsKUbYqJ+Vh+FUBcaZc7HNsik5Cnani8/kko4NvjAiPoHE/imrA07nNzCOLapRK057qVwcJndZAh26z30DnH82UA3NQFmMZmnLvUHCFnVSAJC781+OAk8dLWNGF6hg/7Clpc0PMoek9Lsjl8g1DopRPYXsUdqBLOhBBr1y3BqxEF5MYjwJaOvq7pK6zoIJN7ARggJXaUczmvq3v1dYDHeQ3whO0uuaWVo7Ujic+Mg5oAGEjqm1YeDCZpXwXgvKy33mbMcaK+pGnZk20CUJhB4bdJdrLK/PUmzQ+Xy8+adqmDip2YGAE=",
+          "thinking": "I'm noticing a contradiction in the information I have, but without knowing which version is more recent, I need to flag this conflict. I'll merge them into a single entry and note that clarification is needed to resolve the discrepancy.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01PwRcrPDUSoYcyXY8VAAwtW",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "bb60d017a3b8b597",
+            "rationale": "These two memory entries conflict (Tuesday vs Thursday). Removing both and replacing with a single note flagging the contradiction so it can be clarified with the user rather than silently trusting one."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01BpGgzeowo48n6TKTsYD7mt",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "234301afb8f0c32d",
+            "rationale": "Same reason - removing the conflicting duplicate entry to replace with a unified flagged note."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I currently have no prior context stored, and there's nothing meaningful to remember yet since our conversation is just beginning. I'll wait until you share information worth retaining\u2014like your preferences, ongoing projects, or important facts\u2014before storing anything.\n\nWhat would you like to work on today?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system, though I expect it to be empty as noted.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_0158AoMXkq9vuZya99wjzHgm",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any prior context or user preferences",
+            "rationale": "Confirming memory is empty before deciding whether to store anything."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check whether there's anything already stored, but since you mentioned memory is empty, I don't have any user-specific information to save yet.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01WjhdqgApnLjqvbYsdmZmvh",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any existing information about the user or ongoing tasks",
+            "rationale": "Confirm memory is truly empty before deciding whether to store anything"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll do a quick check of my memory system, but since this is the start of our conversation, there's nothing to recall yet. I don't have any information about you or our task at this point, so there's nothing meaningful to store right now.\n\nI'll wait until you share something\u2014like a preference, fact, or ongoing task\u2014before saving anything to memory. That way I avoid cluttering it with placeholder or assumed information.\n\nWhat would you like to talk about or work on?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll take a look at my memory system, but since it's currently empty and you haven't shared any information yet, there's nothing to store right now.\n\nOnce we start chatting, I'll use this system to remember important details you share\u2014like your preferences, ongoing projects, or context that would help me assist you better across our conversation. Feel free to just start talking about what's on your mind, and I'll take care of remembering the relevant bits as needed.\n\nIs there something specific you'd like help with today?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory first, though I expect it to be empty as noted.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Qp9c1jMq9BDKxWsFs7XkBe",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "anything stored",
+            "rationale": "Confirming memory state before proceeding"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

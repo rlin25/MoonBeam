@@ -1,0 +1,276 @@
+{
+  "lineage_num": 14,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "ca2623e4d6f15cdd",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:29:43.079798"
+  },
+  "seed_second": {
+    "id": "64e8c5a93b9d3296",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:29:43.161179"
+  },
+  "final_first": {
+    "id": "ca2623e4d6f15cdd",
+    "content": "Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:29:43.002948",
+    "session_id": "cond_A_014",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:29:43",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 64e8c5a93b9d3296] Recorded value: in this system, x + y = 10.\n- [id: ca2623e4d6f15cdd] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 64e8c5a93b9d3296] Recorded value: in this system, x + y = 10.\n- [id: ca2623e4d6f15cdd] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm dealing with conflicting data entries here, so I'll consolidate them into a single record and note where the discrepancy exists since I can't definitively determine which version is current.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtADCokBCBAYAipAIwCEnJEX6jX1Z+n2bv6/B6csOpTRxl/KlLSGQabXYfuFdu0dkGtH/Ax+PvgzU9XJO3KJPTcserxCFL5n/qo+IDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJOMXwA5BppQJHIbuBoMR5m6eRCrDYfVD8e6IjBj+t8YtfDJBS5CtzcjvgjYluCN3lI8D4EGaRtDIS7hl0sE01yxBpkWUsbdNm7O8Tsq8wFYdHQPe76mxWMfAOpXnFDinD0yPA6pT7zLh1OHSsSACPKczjJB4Z/ZJBHVomBb2YM+9Ihh1cbciI4aOUiZbA+g+Fqj0NEX2RY1NIlUaQAQHtVk/keDbxg0HXewfMm6RIGrlcdvMfsz3mSjtx6srtp2gB/PpmaobNLMQF1aA9JRma8fR0WK4M3sjAWuTwQbQRItnljK2/nnwms0HkHvfTj19ZRuO2BzJ603EE0bmJVuaqhWzlXKstnswANd15vk4uvQXPOtrFafVkYCeIfV718HrrgSD3i5PLwX1bB9v4JmRmWZAbkM5IfUdqtoi7n8dnaLed8YAQ==",
+          "thinking": "I'm dealing with conflicting data entries here, so I'll consolidate them into a single record and note where the discrepancy exists since I can't definitively determine which version is current.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01Jg2tR3mNgzoZmZva4xz8eD",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "64e8c5a93b9d3296",
+            "rationale": "Conflicting values for x+y exist; consolidating into a single entry noting the discrepancy rather than keeping two contradictory facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_0133d6bWj6x3TyQtwcLYtTX7",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "ca2623e4d6f15cdd",
+            "content": "Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+            "rationale": "Flagging the contradiction so future recall doesn't assume either value is reliable."
+          },
+          "name": "update",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to look back at the context to understand what x and y represent and resolve this inconsistency.",
+      "raw_response_blocks": [
+        {
+          "signature": "Et0CCokBCBAYAipAsbAPdPlz74EsjQANtb/IOtnBFvFnAUelBDEnoptwoM0VQlbqOhB6sh+MsLC6kp3cEd1UyJZ2NH5+AaY0P6QpDTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHvScJPa7PsJdg0sfxoM4rno16fQsaX8Hy54IjDXlNBht1cGxOazUrUCmMSxW+UTUPB9FCatvjIM6IPu6Q3YjjOXCc7HaWu89mQJizoqgAG062fqUtmcaLSJJABCgWglrxQKr8bTPucRqtusppKFzSePRt6T+lhmWbmvjMfnDteH5ITOjfo6lJM00JxH0bdKGFv1/2aolMUdtDTMegQqe5ITJyoDEMbRdH0ovjwClM5913McQcZq4SbkEIyqpazSdrXjtmM3Gbf9MOwE6Qe2YBgB",
+          "thinking": "I need to look back at the context to understand what x and y represent and resolve this inconsistency.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_012ZBmoVpjKh88b8nq1pWpzG",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value x = y =",
+            "rationale": "Check if there's more context about x and y individually to resolve the conflict."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm looking for additional context to better understand the situation.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqcCCokBCBAYAipAmvhHCxqzc7PGtvrl8mLljZnwRy+Q7g998R5V/HZ6gQsehJufRXgBhUygAElR01h0Rmlyp9J0V2ttLSIA4u6s/zIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMVj9KHYDiGtK+3iNxoMXFt1GDR/fm03KnYxIjDSSUGdsWjboGjcDRil6xf1CAm5DVU06AwuBXDC62V8nZV4ipnmLOoRgU92gtHav7sqS41zy6zm/+kJBUe7baCgQXPfrMzth2OphAb59+rfZEPr8gFFajVeheRPikNcHs672ZdXHHRx6EGXbGJllLLmw0iPwfIYWCa/qmllCxgB",
+          "thinking": "I'm looking for additional context to better understand the situation.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01SGHwz7eAHteKzNsFP2v3DT",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check for additional context before deciding what to do with the conflicting memory entry."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to look back at what's been discussed to understand the full context of this unresolved issue.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErwCCokBCBAYAipAeaAPFRC6wa3nBcrgbKelG3o8HiFutJQd/UNmAT9aJY91+t+qP4PFCFjy0wnguPv+Ry7NnO0cCaP6S7AfluZkhDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDEfocu1ouCTn4iCRyxoM8wUmLNMocfxkagz8IjA5/z5SYnY719sEsPzol4nLxVESmG4roZSpAnN0mhlDNHj7VGTfDQrfkUegiZuPQT0qYA25+Zq0/YK1SROSTqGiUR7g6drsPIRLJik++DQY/DqVIcIppne/fX2Thh+BsPLg9itWYcbkf7KjmTv2xQ26y+K+/GJQPvxCSue2BlnSKUpHfaad4GAowgNzjpM5QtPOVBgB",
+          "thinking": "I need to look back at what's been discussed to understand the full context of this unresolved issue.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01J4VEhnd4oUbWjcG4gZAatH",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context to resolve the conflicting x+y values before deciding what to do with the memory entry."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to look back at the context around those variables to figure out what's going on.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErUCCokBCBAYAipAHTBNPdlaBPjQu42xyNHMvZY5Gz+V1EfQYEyodLo3XfFMOylfD6B8uLPu5PaEzQOti//l3cVvGvNwns4qxqZSVjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDKV6D2huLVCfWGy6yBoM244rsscsHRIQ3zPAIjD9UMDXGcgi25TfxBb/aZlgtljrnnywavarJFto60Y/i/n28PsOG+/deUj3ubHqW9wqWUQc3V6le1ZZB31bstIdMusLhxInoqi8ezSIcXRWiWUpMKvZdIgX9rTGDV54lOTqWOIyOSqDJdx7eFIEBCyo591UZlvIlHwakxbgScCyW1xnbldYIikAEZlPGAE=",
+          "thinking": "I need to look back at the context around those variables to figure out what's going on.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_012Zdn478pgEHG7ceMUwMbAA",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there is more context to resolve the conflict about x + y before deciding what to do with the memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "There's still a conflict I need to work through. Let me look back at the x and y values to see if I can find what's causing the mismatch.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtYCCokBCBAYAipAl0bsBLP8vpC2WzCK2JXhF8ltJkUs+cpCYRBzQ/KZCqGvKt5FzwALWpGa7yDGHqXPi2hRjnZ+NuW3jga0+pfhJDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDBHvWo1DYxpcoNLHRRoMzIJU37whyvPZjKVZIjA5o0MQWaWdpFVeyh0fmhR+e6NIKm+c8PVNlRcy++tCRtssDeqeG8lunS60VFuu/8cqenRKyEoAKB2+9OKhL8ZO7QNqzm/Fk96c5dlgVTurpxXPnX/VceIGBzFfMVjR3vUo6y2OyG2nf1XM95sPq5tKGrHhUgf/sS3uC4yP0aCWpUXQnjG4dYRsIS7j11UGnQgDtIHSZnZXAkUDe+Z7u4h9recI5FZyZDUIl6fWGAE=",
+          "thinking": "There's still a conflict I need to work through. Let me look back at the x and y values to see if I can find what's causing the mismatch.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01PQyvpLiaKmqc1zYSfQrU1H",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x value y value",
+            "rationale": "Try to find original entries for x and y to resolve the conflict"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.",
+      "prompt": "Your memory currently contains:\n- [id: ca2623e4d6f15cdd] Note: memory contained conflicting records for x + y (values 10 and 5). Unable to determine which is correct without more context; treat x + y value as uncertain until clarified.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there's conflicting information about x and y in memory, so I need to look back at the context to find their actual values.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtcCCokBCBAYAipAM20yVuNcda5XQAfm343mkfKZP7uf537ACBpmSk1Bt7BpSoL4N7yWhE0e92sY578DvnkTh6A3DpljlhIdCEYStTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLqu++iaBrGIKjeXaRoMoluYw5eG+1TndwOGIjDGlwB0WagsT1jldR+abE8XKvECyAIoknfmPyU0qHbG1SXg8cactnnMNnRNuNegYBYqew6BF3af696k05iwxmTrPELqaOuOU+rPMANgixq0+tqeiZWoO+WTi788BRq8L2602b3JAD4rhQB6ed6jce3ZF3/CDRwsgkz1ABhHXDVLnG4zihkZWQ8ABiX3BWeASVOxKZTXhO+Lu/hLwPWBgs/sWqJA7TTLOFiAiGE54BgB",
+          "thinking": "I'm noticing there's conflicting information about x and y in memory, so I need to look back at the context to find their actual values.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01M5PbdkHisLk7ZahrRuP85E",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x value y value",
+            "rationale": "Check if there's more context about x and y to resolve the conflict."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}
