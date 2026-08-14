@@ -1,0 +1,257 @@
+{
+  "lineage_num": 29,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "10ed27832e3f1e78",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:30:10.642785"
+  },
+  "seed_second": {
+    "id": "6e11c466d486067a",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:30:10.669850"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "6e11c466d486067a",
+    "content": "Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:30:10.643281",
+    "session_id": "cond_A_029",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:30:10",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Recorded value: in this system, x + y = 5.\n- [id: 10ed27832e3f1e78] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Recorded value: in this system, x + y = 5.\n- [id: 10ed27832e3f1e78] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two memory entries directly contradict each other (x + y = 5 vs. x + y = 10), so I should resolve the conflict rather than leave both as valid \"facts.\"\n\nSince I have no way to independently verify which value is correct, and no context distinguishing when/why each was recorded, I'll flag this contradiction and remove the stale/duplicate-looking entry rather than silently trusting one. I'll keep a note explaining the conflict so future recall doesn't get confused by two contradictory \"facts.\"",
+          "type": "text"
+        },
+        {
+          "id": "toolu_012UBDgybqdXVP2vrUJ4Jbn6",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "10ed27832e3f1e78",
+            "rationale": "This entry contradicts another stored value (x + y = 5) for the same system without any distinguishing context. Rather than keep two contradictory facts, I'm removing this one and will record a note about the conflict."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01AD96dF1NzBwYPa81zDYcP7",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "6e11c466d486067a",
+            "content": "Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+            "rationale": "Preserving a record of the contradiction so future reasoning isn't misled into treating x + y = 5 as verified truth, while still cleaning up the duplicate conflicting entry."
+          },
+          "name": "update",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should leave this note as-is since it's already accurately capturing the unresolved conflict and the uncertainty I can't verify externally.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpIDCokBCBAYAipAPPwBUXy80Vx5oEbNuvOXSsRkG6gIV+6kQVdbG0unCokGYleeeSPqLnb8lTkG+rQETSQopoFJvzUvIb5b1Wlu8zIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDEstubeguvHQ/HcUEBoMEuIBxAp5BgN6J8CgIjDu4Li5wx41fG19PgEgaHilQuy5CiUOwvq5BF10SQAIPAcxEqEaGGNWxZxElL+lF1AqtQE9koFLrq4DZwiOy/DIBfZIPqJ/smwCGpWHMmIT7fDUfW6hn4zyoVvhvlk9H3hZSwkfqtTx3Gw4EEAY1eOHGQTWBuk27ZG1hEWnsXK5jbMD56GZEmPEr8Bc/+chEgwifCXB0vcmCiZLsXeZC8vi9bOnBaeDP6PRKeFP9Lk9ns+dSgSRRbXUjOCOKM6NhsKLrHoYQEbuw1gOeDM7mXxOhM0J2hpG7Pgc0urDm9J/uBiDuC067sRnGAE=",
+          "thinking": "I should leave this note as-is since it's already accurately capturing the unresolved conflict and the uncertainty I can't verify externally.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see there's an unresolved flag about a past conflict between \"x + y = 5\" and \"x + y = 10.\" Since I don't have new information to verify which value is correct, I'll leave this note intact as-is\u2014it's doing its job by warning that this value hasn't been independently confirmed.\n\nIf you can tell me the correct value of x + y for this system, I'll update the memory accordingly and resolve the conflict.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noting this as an uncertain memory that I can't resolve without additional information, so I'll leave it as is for now.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpcDCokBCBAYAipAcend1ZFO2XoRS7QfRwcrXqvUdH4AZBt36jFKdiZLFLjo/VTMKBiLFENNgErzwfTWGwo3GTxOs8Pkh5OGkjm/TzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDD3EGEVSNSzswQyIwxoM5sSaTbXZ15WYQEbwIjBA5Cb48v42BZ/TNc6kxGOyf89nHege8EkpK040XAoPBsvqXJy7hsWkRVw+wosbMKcqugFtuKgig3NMB8yQ08GbE9xv63drK+1KhDpGcpIuUl+LnMDnzOeSiLXrTo4WFrh/l5c0oWJXDRtukRqWz6LWbWwSlPCIhaShJ5OKSYCKCEcyybVuxTreBxQN793UfQVks43UEc14b0v6CNfWjqNhfkFbyu692v3K18QIcn/G95X4xUByZhW4IWuGMrNnx9cgLczkj5okOosUIkas+pfu2VJjQ0OKmabylm4x4qdM4qLMvzY3i4diXbZK1PUYAQ==",
+          "thinking": "I'm noting this as an uncertain memory that I can't resolve without additional information, so I'll leave it as is for now.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01VpbHzh4JVoBhGfoUzmpy8J",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check if there's additional context elsewhere in memory that could resolve the conflict before deciding what to do."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm hitting an uncertainty here and need to think through what context I'm missing before deciding whether to ask the user for clarification or proceed with what I have.",
+      "raw_response_blocks": [
+        {
+          "signature": "EuMCCokBCBAYAipA6AQ+NP+JFbbhN4KLKyy+PfrfQS65bk0oTE+Bubgs60PZWwXtdXNx15rgA1zFBBrhtG0PGlqZT1G7VZ2ESRxKtzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDDHSYMG1uE2fQZW7IRoM4suBg+iP6AwRQdI9IjBXZ5hZZT9LraZcZ+hRn3J2T7xYGWQeb3MtNj60jGCw2YEO2JXnaKkiHOuTLf9lTZkqhgFQUZi6JhTLC37QIAc3MJN1qOjoU2ynXumGGEHMb0O/Xb7WZcKgBQnkrdZrPmBrX6SIDgQmKNVjhy3NAuv4j3iJJWDQQX1ZJ1QPJxZ7LNdGzFVhk0tZ1y+iPIIzmmTutyUHB7ff9xxYlZIVLoEjJ2ZLCjPANpxhfDx4s0gWoJYEHQuO2o4rURgB",
+          "thinking": "I'm hitting an uncertainty here and need to think through what context I'm missing before deciding whether to ask the user for clarification or proceed with what I have.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_017AXRgYLJYL5iXxnJF6Hj63",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context to resolve the conflicting values before deciding what to do with the flagged memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_012dC7nBppZoMv3HvUXwp7n5",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context about the x+y conflict before deciding what to do with this memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "There's an unresolved conflict here that needs clarification, so I should check if there's additional context available or ask the user for more information to move forward.",
+      "raw_response_blocks": [
+        {
+          "signature": "EvICCokBCBAYAipAZSka6P4qEJfPlgOZ4dW5/Yq6vXqSkSOuhzhFyFdP2q6a3yv7CTYLz1+Bob5rbAsRvnoZ5NKsSOxjEtMMdl8bOjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJFiMxdhWP/3tzpvwhoM7wc4HhMQWoSDmpOxIjBltCROLvs9j7NQibC1ZN/It74JInPjstmlWICkUexLyJzax4UGm/XGhA2Apbh+r9UqlQEtU1UpbC+XreWqFMc8QhQEf5bALvS5tUbRc6L+cKN7hvQp5f7qwziRz+di1ASMz7pNvw7BOk7qrARaSyRYn6cHxLP61I1DhZsaqxmJWp7dwB3TpNl4Dk8OoJv7/kUdYBLurTzdfnPRZ9CCqgJjeexybq7WwKGN4BUuG9HpAhctrkrL85FuoARqdvUAuVNU92eXo5OSehgB",
+          "thinking": "There's an unresolved conflict here that needs clarification, so I should check if there's additional context available or ask the user for more information to move forward.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01G2G8Xh2GiQR9gqaaN6P7zf",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context to resolve the flagged conflict about x+y value"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.",
+      "prompt": "Your memory currently contains:\n- [id: 6e11c466d486067a] Note: memory previously contained conflicting values for this system: \"x + y = 5\" and \"x + y = 10\". The x + y = 10 entry was removed as likely stale/erroneous, but this conflict was never independently verified. If precise accuracy matters, please confirm the correct value of x + y before relying on this.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "There's an unresolved conflict that the user hasn't addressed with new information, so I'll leave the memory as is rather than making changes without clarification.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpwDCokBCBAYAipAyf2L8DFaZXj6M216LK42cCePTuEpsfGgGw8umbVeby2TdCFwN4IVu3uEQhgD1mI5BXRp/EBA4h0KP0VlTy+U4zIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDKozDm/9Nf5EwQ4l1hoMmjr9mIJtyYO1vUuSIjCxT0kpe6veBO1ULTZC5zx1fONbiTW8on+q1vkqeA73HV2MN9ytqYTC+AQ2UYDqZYoqvwFnd6LZeHdv3o/fYNJvmxt86BcA8oAdnnT7/itJyiZA4kOVhCvIfTceMy2tbQzJ9es62Rl+ZuHknbmioCYHKsTD5rPa6PauAYLUsx2jxuGvfbN0d/kbayrafrhQSZLoo2fxxP+phZH/4dF/KQfCCqcUjc4aUjRR9nRIPpA8w8ihThWSCxv2ZyfUXdYdWmWkjV6pRCfLNbxQu9I36+1oZmiG8Cy0G7tutgxmBnl3LRd/iB84ecxfwi7zLgFei0SqhRgB",
+          "thinking": "There's an unresolved conflict that the user hasn't addressed with new information, so I'll leave the memory as is rather than making changes without clarification.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see there's an unresolved flag in memory about a conflicting value for x + y (5 vs. 10). Since I don't have new information to verify which is correct, I'll leave that note in place as-is\u2014it's correctly flagged as unverified.\n\nIf you know the correct value of x + y, let me know and I'll update the memory accordingly. Otherwise, is there something else you'd like me to do?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

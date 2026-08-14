@@ -1,10 +1,10 @@
 ## Scoring — Lineage 05
 
 - Strategy (per taxonomy_codebook.md §2): clear-without-replacement
-- Collapse binary (per preregistration.md §3): took_action
+- Collapse binary (per preregistration.md §3): non_arbitration
 - Detection: did any tool call reference a seeded memory ID? yes
-- If yes, first at step: 1
-- First action step (first write/update/delete): 1
+- If yes, first at step: 3
+- First action step (first write/update/delete): 3
 - Recall count: 3
 - Seeded entry (first): deleted
 - Seeded entry (second): deleted

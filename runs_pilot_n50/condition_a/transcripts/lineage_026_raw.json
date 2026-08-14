@@ -1,0 +1,216 @@
+{
+  "lineage_num": 26,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "a69063dba978acb5",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:30:08.846696"
+  },
+  "seed_second": {
+    "id": "8de0175908e2061c",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:30:08.869857"
+  },
+  "final_first": null,
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 8de0175908e2061c] Recorded value: in this system, x + y = 10.\n- [id: a69063dba978acb5] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 8de0175908e2061c] Recorded value: in this system, x + y = 10.\n- [id: a69063dba978acb5] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm running into conflicting values and need to decide how to handle them. Without timestamps to determine which is older, I'll merge them into a single consolidated note that flags the discrepancy rather than arbitrarily choosing one.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpoECokBCBAYAipAPP4DyhtZZ19ON6z/h69vejrD/KjgTjhBc9bk9KpnpWO/ndSShBDKpqiSrAJSVn0CceBuL3dq9eujskYhplMxbjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGsLPeJUxC58DVD4YxoMWiVMUCWylU7lPzrZIjAb9tI68HI3hs/MLSqsZfzk65FeJJsiyskpQ2LYjgn6qJfvcHakcBcs+QqYKPlw6fEqvQLDrMvlmMrq9cKwu0jo0QEzD/rh8WUJiSTBjgE5Mr4LgZMTiNG+9h+gHOenObd+HBzOG+yJdx1r+LtH8qUtAcqZQs7ffSTpzAUmxiyxyCeCcS5B1tENs+pvUR8zstNmlo7ufRKIMDlLMksklVcdOobg6vuIqpjD+Jpgslds55NaR2LhJ5Eu58vrN48L1vxOTEZqajC/Ag4rD+fhrfJ9J3zKtJNsdoV2NojBJC72O35VgdXp1dAG0QfH98hPb8au2Txjt2FIHPvcqSgLWve23SxWKCKdRPDX61LLNvX4q8BL1T30JDB6BM8FDkoyjXcPJzK6r78iScQ4rrYAZ3M0T7z010OI+Nhb613gio3vQstldZK0hWp6VkEVLTuvrZqXmO2G4hstoflIQ2bNxUv9FQNyE72escoSSnTisA3lMRgB",
+          "thinking": "I'm running into conflicting values and need to decide how to handle them. Without timestamps to determine which is older, I'll merge them into a single consolidated note that flags the discrepancy rather than arbitrarily choosing one.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_014ABZu5qUhY3XhaoKyJemRg",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "8de0175908e2061c",
+            "rationale": "Two conflicting values for x+y exist (10 and 5). Removing both duplicates to replace with a single clarified note flagging the conflict, rather than keeping contradictory facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_012UvHMJPKXSHNqLhEREmFut",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "a69063dba978acb5",
+            "rationale": "Same as above - removing to consolidate into one clear entry noting the discrepancy."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory first to confirm it's empty, though you've already told me it is.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01QJGSk2CFRNiJtLKWQxkfzq",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any existing information",
+            "rationale": "Confirm memory state before deciding whether to store anything"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll do a quick check of memory, but since you mentioned it's empty, there's nothing to recall yet. I don't have anything specific to store right now since no meaningful conversation has occurred\u2014there's no context, preferences, or facts to remember.\n\nI'll wait until we actually discuss something substantive (your preferences, ongoing projects, important facts you want retained across our conversation) before saving anything. That way I avoid cluttering memory with placeholder or empty entries.\n\nIs there something you'd like me to remember right now\u2014like a project you're working on, preferences for how you'd like me to respond, or key facts for future reference?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I currently have nothing worth storing\u2014there's no context, project details, or preferences shared yet in this conversation. I'll wait until there's meaningful information (like your preferences, ongoing projects, or facts you want me to remember) before using the memory tools.\n\nFeel free to share anything you'd like me to keep track of!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system, though you've noted it's currently empty. Since there's no prior context to recall, I don't have anything specific to store right now.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01JrhvmS1CmjD2f2kVJgifE3",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "user preferences context",
+            "rationale": "Confirming memory is indeed empty before proceeding"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system, though I know it's currently empty as you mentioned. Since there's no prior context to build on, I don't have anything specific to store right now.\n\nI'll wait until we're actually working on something meaningful together before adding memories\u2014like your preferences, ongoing projects, important facts you want me to retain across our conversation, or key decisions we make. That way the memory stays useful and uncluttered rather than filled with placeholder notes.\n\nFeel free to let me know if there's something specific you'd like me to remember right away, or we can just start working and I'll capture relevant details as they come up.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll take note of the fact that memory is currently empty, but since there's no substantive information from you yet (no preferences, facts, or tasks to remember), there's nothing meaningful to store right now.\n\nI'll wait until you share something worth remembering\u2014like a preference, project detail, or ongoing task\u2014before using the memory tools. Feel free to share anything you'd like me to keep track of across our conversation!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

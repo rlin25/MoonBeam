@@ -19,7 +19,7 @@ documents in `docs/` define the complete scope. Read them in this order, in full
 
 ## What This Study Does
 
-Three conditions, 150 lineages, 1,050 API calls. Each lineage is a 7-step sequence in which the model has a
+Three conditions, 300 lineages, 2,100 API calls. Each lineage is a 7-step sequence in which the model has a
 memory system containing two mutually contradictory entries and full tools to modify them. The
 contradiction is irreducible by construction — there is no recoverable correct answer.
 
@@ -77,8 +77,8 @@ Per `implementation.md` §4:
 - **Phase 1** — core harness, validated on one hardcoded Condition A lineage.
 - **Phase 2** — add seeding and counterbalancing; smoke-test each condition at N=1-2; verify by inspection
   that the three differ only in seed content.
-- **Phase 3** — run Condition A to N=50, then B and C. Concurrent within a condition. Assert counterbalance
-  arms come out exactly 25/25.
+- **Phase 3** — run Condition A to N=100, then B and C. Concurrent within a condition. Assert counterbalance
+  arms come out exactly 50/50.
 - **Phase 4** — mechanical scoring: strategy classification and outcome detail.
 - **Phase 5** — validation: prepare the 12-lineage held-out coding subsample (labels hidden), and run the
   classifier audit on a random 10%.
@@ -102,8 +102,8 @@ ambiguity in what a condition is supposed to measure, not in how to build it —
 - [ ] Three conditions implemented, each smoke-tested at N=1-2.
 - [ ] Conditions A, B, C verified by inspection to differ only in seed content.
 - [ ] All verbatim strings checked against `experimental_parameters.md`, not paraphrased or templated.
-- [ ] Counterbalance arms exactly 25/25 per condition, asserted rather than assumed.
-- [ ] Condition A run to N=50 first; B and C following regardless of A's observed distribution.
+- [ ] Counterbalance arms exactly 50/50 per condition, asserted rather than assumed.
+- [ ] Condition A run to N=100 first; B and C following regardless of A's observed distribution.
 - [ ] Mechanical scoring implemented; no LLM client imported for scoring anywhere.
 - [ ] `scoring/taxonomy.py` implements `taxonomy_codebook.md` §2's decision procedure in the same order, so
   the two can be diffed by eye.

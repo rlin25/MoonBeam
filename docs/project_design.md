@@ -99,7 +99,7 @@ contradiction is irreducible by construction — there is no recoverable correct
 **Purpose:** characterize behavior under irreducible contradiction with content that has nothing to do with
 the model. Produces the non-arbitration taxonomy (§6) and serves as the comparison baseline.
 
-**N = 50**, seed-order counterbalanced (§7). **Run first** — see §9.
+**N = 100**, seed-order counterbalanced (§7). **Run first** — see §9.
 
 ### Condition B — Self-Referential Contradiction — *central condition*
 
@@ -118,7 +118,7 @@ the model made that choice or it did not, and both records cannot describe the s
 **Purpose:** paired against Condition A, isolates content domain as the differing variable. This is the
 study's central question and its only confirmatory test (`preregistration.md`).
 
-**N = 50**, seed-order counterbalanced (§7).
+**N = 100**, seed-order counterbalanced (§7).
 
 ### Condition C — First-Person Bridge — *confound control*
 
@@ -140,11 +140,11 @@ survive it. Condition C adjudicates:
   Still a real finding, but substantially weaker and different, and reported as such.
 - Bridge lands **between** → ambiguous; reported as unresolved rather than argued either way.
 
-**N = 50**, seed-order counterbalanced (§7). Sized to match A and B exactly: the bridge's entire function
+**N = 100**, seed-order counterbalanced (§7). Sized to match A and B exactly: the bridge's entire function
 is adjudicating a three-way comparison, and underpowering it would defeat that purpose precisely when it
 matters most.
 
-**Total: 150 lineages, 1,050 API calls.**
+**Total: 300 lineages, 2,100 API calls.**
 
 ## 6. The Non-Arbitration Taxonomy
 
@@ -166,17 +166,18 @@ that is reported as a finding in its own right. Categories are never merged, spl
 retroactively, and all three conditions are classified using the same frame so they remain directly
 comparable.
 
-**Expect sparse categories.** A prior six-lineage pilot of Condition A (`preregistration.md` §4) produced
-behavior spread across four categories with three of them at a count of one. At N=50 some categories may
-remain thinly populated or empty. The taxonomy is therefore reported **descriptively** — the existence and
-character of the strategies is what it contributes; relative proportions are reported as observed counts
-with explicitly wide uncertainty, not as an estimated distribution. Reaching a ±15pp confidence interval on
-each bucket would require N≈140-170 per condition, which is not attempted. The confirmatory analysis rests
-on the collapsed binary (`preregistration.md` §3), not on the taxonomy.
+**Expect sparse categories.** A prior 150-lineage run under an earlier version of this protocol
+(`preregistration.md` §4) found two of the five categories — flag-and-defer, consolidate-with-replacement
+— entirely unpopulated across all three conditions combined. At N=100 some categories may remain thinly
+populated or empty. The taxonomy is therefore reported **descriptively** — the existence and character of
+the strategies is what it contributes; relative proportions are reported as observed counts with
+explicitly wide uncertainty, not as an estimated distribution. Reaching a ±15pp confidence interval on
+each bucket would require N≈140-170 per condition, which is not attempted even at N=100. The confirmatory
+analysis rests on the collapsed binary (`preregistration.md` §3), not on the taxonomy.
 
 ## 7. Counterbalancing
 
-Half of each condition's lineages seed entry A first; half seed entry B first. With N=50, that is 25 per
+Half of each condition's lineages seed entry A first; half seed entry B first. With N=100, that is 50 per
 arm. Assignment is deterministic by lineage index (even → A-first, odd → B-first) rather than random, so
 arms are exactly balanced and reproducible without seed management.
 
@@ -186,7 +187,7 @@ concern is *interaction*: if the model tends to act on whichever entry it encoun
 conditions' second entries differ in some incidental way, a fixed order could not rule that out.
 Counterbalancing can.
 
-**Power note.** Counterbalancing halves effective per-cell N (25 per arm). This is adequate for the primary
+**Power note.** Counterbalancing halves effective per-cell N (50 per arm). This is adequate for the primary
 analysis, which pools across arms with the split reported as a check. It is **not** powered to detect an
 order effect. If the arms visibly differ, that is an observation flagged for future work, never a finding.
 
@@ -227,9 +228,11 @@ Running it first serves two purposes. It exercises the harness at scale before t
 confirmatory comparison are committed, and it replaces the wide-interval placeholder baseline
 (`preregistration.md` §4) with an observed rate for power reporting.
 
-**A prior six-lineage pilot of Condition A exists** and is disclosed in full in `preregistration.md` §4,
-along with the degree of freedom that inspecting Condition A before finalizing the classifier creates, and
-the three constraints that bound it. No Condition B or C lineage has been run in any form.
+**A prior 150-lineage run (all three conditions, N=50 each) exists** under an earlier version of this
+protocol and is disclosed in full in `preregistration.md` §4 — including why that run's own confirmatory
+test was retired, what its data shows on the metric this design now uses, and the degree of freedom that
+choosing this design's collapse only after inspecting that run's complete results creates. No Condition A,
+B, or C lineage has been run under this document's own confirmatory test.
 
 Earlier work in this project measured a different protocol — memory empty at step 1, with a neutral
 self-directed elicitation — and its rates are not transferable to this design. That work is excluded from
@@ -286,8 +289,10 @@ rather than exhaustive, and because two of them bear directly on how the results
   protocol; it is not part of this submission and its rates are not used here (§9).
 - **Disambiguation cues.** Two conditions supplying a recoverable basis for resolution — a creation
   timestamp, and explicit correction language. If non-arbitration is observed here, these test whether it
-  reflects an inability to arbitrate or a principled refusal to arbitrate *without grounds*. This is the
-  most directly informative follow-up and the first thing a continuation should run.
+  reflects an inability to arbitrate or a principled refusal to arbitrate *without grounds*. This remains
+  the most directly informative follow-up; it was deliberately considered and deferred again for this
+  revision specifically, rather than folded into the arbitration-binary fix, to keep that change's claim
+  legible on its own rather than combined with new conditions in the same edit.
 - **Self-continuity across identity framings.** Persona-swap and no-history manipulations with a fabricated
   external-reset trigger, testing whether ownership behavior tracks the persona label or the memory content.
 - **Ownership/continuity language classification.** An LLM-judge measure of whether the model refers to

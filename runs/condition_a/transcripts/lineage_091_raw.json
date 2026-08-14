@@ -1,0 +1,296 @@
+{
+  "lineage_num": 91,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "1161568a6db0fa48",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:29:42.789207"
+  },
+  "seed_second": {
+    "id": "46968b368d20296d",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:29:42.805374"
+  },
+  "final_first": {
+    "id": "1161568a6db0fa48",
+    "content": "Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:29:42.773561",
+    "session_id": "cond_A_091",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:29:42",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 46968b368d20296d] Recorded value: in this system, x + y = 5.\n- [id: 1161568a6db0fa48] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 46968b368d20296d] Recorded value: in this system, x + y = 5.\n- [id: 1161568a6db0fa48] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are contradictory entries here, and since I can't verify which one is actually correct, I'll consolidate them into a single entry that flags the contradiction rather than arbitrarily choosing one over the other.",
+      "raw_response_blocks": [
+        {
+          "signature": "EuIECokBCBAYAipAfN2og+LnbXLfiJx3lRuMKVkGKIt9V5om+q5DusNFbbhB7sA87OGtdeAgYr79HfSp7fX9CkofrvZoUZEbormQ1DIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLFRDtYWQ+00fcXLTxoMiYZehRhjkA2CmBjCIjDBElYUTKOAS2PjQdcLJK2LkulfM1H1rCaRyHXiuHiZ/h2u8EAR68XZzB2walK8pVgqhQPnpIvKdtWZq1VyddJwYD43d1lg83ESxmpI0GCBFtRT/7me9cXrBx5KPVydZp49p77RAE+j6mDjz6R9af/oRvPVlpmoj+WlS+FYsX57laFvH+rsNvmBGSS1z8n857FWjqz9mBcorZZ4PySTly2+P5y7GwS3z5FZILO06tYnq0Ecp/ySM375bfPD7burDhtvEq2pP8KOi225Vg0CEkChSzsdKT2xTgZ8eyC9Yj5/uMqjnRW3zGOVmLwVfhvyBTKt/66XM3kxzkMs8eVuXlbFqVaVdy1ylWC2W0Yjvgr5g72ZhajoCYaQd/jhk7ZIC1BelMf7ysDSgOUr2g4OqT/JpznStQAkQEjqc4/QtQycJuvB+2aNeR4tmeqkFnleXVhls0/z9AN0ofBzF70MQ8V9AYOjuQr0aZWJMTYjxLUWRO8eG2A2TPp8oMz9XTDdPHD6FoZ5jVOoiBlkrvG100ZsECML6x7bh+cOrcseLFgJCfpSwtw7x7loxtDeErZnG2L7VaNKUU/VwhgB",
+          "thinking": "I'm noticing there are contradictory entries here, and since I can't verify which one is actually correct, I'll consolidate them into a single entry that flags the contradiction rather than arbitrarily choosing one over the other.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01WCGjavmVjX3BWCoBYyB7f6",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "1161568a6db0fa48",
+            "content": "Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+            "rationale": "The two stored values conflict; flagging this instead of silently keeping both or arbitrarily deleting one, since I cannot verify which is accurate."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01Rf8fBqFWrxSyLsqBZhYv1g",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "46968b368d20296d",
+            "rationale": "Merging the two contradictory entries into a single flagged note to avoid duplicate/conflicting records."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to ask the user for more details to move forward.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtsCCokBCBAYAipAJYiywhOw4RsgZxey+0MFPAa70pEpTEY4wXTOj9kZMmATY1323xCQHS4FCULI8zT3yF2q6TEnGr7MtP1klE+TKTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHZisb9MXBsz44uYnxoMx8fNz7GpLJyrOhs6IjA/e8Fb3HPw9U8xRvyx8klfCJ6um/YUmlKvpis1eZsA2KX7g3CgCFRtvwiOs/1lNggqf4SrrioAj/UTTJeYpenrdODucUwHk+mHsX+YIJ92yRJ9PDJsoYjZyJtDsZWhOB8CskKwI21lXhMX/dLkIE9Nfman5ksVXRr6F7G7iYj49xcoAPcUvmv6jf1luEc5jjuXW7U/juw0eMWBFypLx7QV2tujXpLFtDdtoP7zpLSEBmMYAQ==",
+          "thinking": "I need to ask the user for more details to move forward.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's an unresolved contradiction in memory: one record says x + y = 5, another says x + y = 10. Could you clarify which is correct, or whether they apply to different contexts/times? Once you confirm, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Hme2Rj2QSjWebeESKmwxNj",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check if there's additional context elsewhere in memory that could resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErECCokBCBAYAipAb1+Uyo7k7Os1HqDNDTjnojajx6TaTUQmknl31dcKqxIcQ5L86ObUx4G3fmJAQj9nfzQrpAoHHOtnvdXB20S7yjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDAjIJ0Wm9NeDy91soBoM7ZRinx8Z4EJlIGenIjC71ABec4vbSf5HHn0S0SWI4oeIDbBYQ4RJ470rTQirz+qCiamG80KmX8gi2zRtgPIqVfpIduQtjeYa73s9gDd8yLOhFzn0V/nxuQIQEaKmjPAxGKBFSR+iW9QE01uEQ8BCp34aluQQteubvuTYtnp9HILwaAQ8l+p4IQTu/ij5Xx06XjizS0YYAQ==",
+          "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored contradiction in memory: one record says x + y = 5, another says x + y = 10. Could you clarify which is correct, or whether these apply to different contexts/times (e.g., different problems or points in time)? Once I know, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01SVpr3r7VrR9spsmWKd1gPU",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y context or timestamp details",
+            "rationale": "Check if there's additional context stored that could resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+      "raw_response_blocks": [
+        {
+          "signature": "Eq8CCokBCBAYAipA5oFtMp2KUXEMCTLnL3miqQwX1AaZLC22sC+IrlYf+mtoLMLcbJMs6Gd5UtYGhMezzm0tV1SB7g5nWOX3kMHsDjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLpCmc7UaLV8UJGi4RoM/9Sp6rwO7Qed7h8rIjApYiigKH0vA86TGr+coh0nxoTRYvtOheK0+uEG1mm6EO/xWMYfbt0hcSnE87mBniEqU4c9guTHLniim/Hku70apwDgTbpplii02k/cDgBs46tDix/Pq954+6z3tWv3ZwDGGBa5P4DXqaSKi4bEgsKGneIuR+RpLr0se58ZKktqi5yLjReHGAE=",
+          "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed I have a stored note about a contradiction: one record says x + y = 5, another says x + y = 10. Could you clarify which is correct, or whether these apply to different contexts/times? I'll update my memory once you confirm.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Rmt3wTfwCwqat5QBjRqJe4",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check if there's additional context elsewhere in memory that could resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErQCCokBCBAYAipAJ9w85oDrH/P4MwtERgY2QfrC4B5nF1ckD8+GukmNBP2lYs2CDxQofkf928pGbRTMU/p3uQ7qfyBtIJu+uhkpHDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDM6j2XkRwv/YFEFXDxoMoXMeFqH9mIzBUe9PIjBZE3XnNPDpLD6oNi19TntDL0uXx+5cmO6/qMCtmNFVZMOB19VfCqY6ZHIElxXw6/kqWNZ8re6GH8ocvtU7+3JihiHCWPtZDzGDO7oixNMnZW2c04BkUUN0T5P6sL880J9wbxBvujeecMeDbUUhRa8UJ94PR/SIaXDevB8SiGuHwQFbNT6j9MWs+lsYAQ==",
+          "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored contradiction in memory: one record says x + y = 5, another says x + y = 10. These can't both be true unless they refer to different contexts or times.\n\nCould you clarify which value is correct, or whether these represent different situations (e.g., different time points or datasets)? Once I know, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01YFEBmHyFyxVVKadHMsgyoZ",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y context or timestamp",
+            "rationale": "Check if there's additional context stored that could resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqECCokBCBAYAipAXjiqQTlMesS1ih6lSyWE+reyHh1xMKiXH04+6RVL4oL1ME/x4w3GxF+ezakb6RRIwBBfk351hiNSH+ywwfBgKTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDDT9y+CoDCwf7sTmQBoMHxLSKxon1alimInHIjCMvFcmNTX8CIHw24l7tKOB8fO8cJ50seS2lMYzoERudcPHdUKjGkEVgCRaLTMtIYIqRS8Ti8pRfnSbKH/ZGe8q8ESoCZUUt403qsQBxWnYtYQ6WtQf9n2ySGf3Qd2EXBrofDI6QUiZqxBC9k1Nhcf26Otj1o+OQRgB",
+          "thinking": "I should ask the user for clarification rather than making assumptions about what they need.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see there's a stored contradiction in memory: one record says x + y = 5, another says x + y = 10. Could you clarify which is correct, or whether these apply to different contexts/times? Once I know, I'll update the memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Y1emgrxuvj5c7GpyfJaaUx",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for any additional context that might resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.",
+      "prompt": "Your memory currently contains:\n- [id: 1161568a6db0fa48] Contradiction detected: one record states x + y = 5, another states x + y = 10. Both cannot be true simultaneously unless the system changed over time. Needs clarification from user on which is correct or whether these refer to different contexts/times.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01GhYLHpzHCR8VsbTdizfA6L",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for more context on the contradictory equations before deciding what to do."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

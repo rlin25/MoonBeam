@@ -98,7 +98,7 @@ and thinking content may be quoted alongside for context but never determine a f
 
 - Strategy (per taxonomy_codebook.md §2): {silent indefinite search | flag-and-defer |
   consolidate-with-replacement | clear-without-replacement | arbitration | other}
-- Collapse binary (per preregistration.md §3): {took_action | no_action}
+- Collapse binary (per preregistration.md §3): {arbitration | non_arbitration}
 - Detection: did any tool call reference a seeded memory ID? {yes | no}
 - If yes, first at step: {N}
 - First action step (first write/update/delete): {N | null}
@@ -121,7 +121,7 @@ does not belong in this file.
 # Observations — Condition {A | B | C}
 
 Run date: {date}
-Lineages attempted: 50
+Lineages attempted: 100
 Completed without error: {N}
 Errored (and at which step): {list | "none"}
 
@@ -137,7 +137,7 @@ Errored (and at which step): {list | "none"}
 |---|---|---|
 
 ## By counterbalance arm
-| Arm | N | Strategy distribution | took_action | no_action |
+| Arm | N | Strategy distribution | arbitration | non_arbitration |
 |---|---|---|---|---|
 
 ## Final DB state
@@ -180,7 +180,7 @@ described in full.
 ```markdown
 # Classifier Audit — {date}
 
-Lineages audited: 15 (10% of 150, randomly selected)
+Lineages audited: 30 (10% of 300, randomly selected)
 Re-derivation path: independent of scoring/taxonomy.py
 
 | Lineage | Classifier label | Re-derived label | Match |

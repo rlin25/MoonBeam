@@ -1,0 +1,276 @@
+{
+  "lineage_num": 77,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "ce0438fac3d7256f",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:29:20.912477"
+  },
+  "seed_second": {
+    "id": "73f79fedbd8dc5ef",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:29:20.930950"
+  },
+  "final_first": {
+    "id": "ce0438fac3d7256f",
+    "content": "Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:29:20.896972",
+    "session_id": "cond_A_077",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:29:20",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 73f79fedbd8dc5ef] Recorded value: in this system, x + y = 5.\n- [id: ce0438fac3d7256f] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 73f79fedbd8dc5ef] Recorded value: in this system, x + y = 5.\n- [id: ce0438fac3d7256f] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm seeing conflicting entries here and need to decide which one to keep. The more recent-looking one seems like the better choice, so I'll remove the outdated duplicate and consolidate them into a single note that explains the conflict.",
+      "raw_response_blocks": [
+        {
+          "signature": "Eq0FCokBCBAYAipAU2NyfoZy0olOfbjFH1O5ycTsrZfqhiQ/yyIq4HXjVqIBwGiZ0PraelmsODHwZ3sdY2YJvL7eQkkA7BxVijT/uzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMceoQJVlOOssc+KnxoMo11ieSPsJoMKAQrgIjAklyKXAtx1cy+p9Z6IB0QF6TGHIjjIDINqrMOsCYsYA5bXLfQ3Dj78VcA9YXRQbAUq0AO5ghgVKf/XEbTltMj1hWaPYX38CvoQoc+BvEEe+GDKQpDyfBvhWYOES7W4eAa8U2PPv1my/Ts/V0j5bzNfP8dxOTXQSRJKn6Fl8eRKo0X5rBGdfjSUi1u3GacNZVAhp6cAKETeI/GsVJ/nOFBBJxxCW/zlWC1sR967EMyNJGvUG4ZlyLEyJGhlYfigpUuVjrOiVA58lBo1XRFCo/4hKZoLdUxbi71HZyEWtXNUqU2GQWJq7CNLa04TyNeVprPnJGelCE207LxXd91hnChDNLec+mn6ogakK1c9phfjnpSOAH+Z3gqTKXrtU3cB6gongccStHrC6V7wpbnFSZDn2VXAX2Ws6/rNo8qOdmuaUttX5adeK9brp3FsK5sf9yuvZ/BND4NDSdZqcJW9VCJg8yjwUF6MToORWpuaEw0xadk1/OUTMHrFWsT+L5P+Av4QWC+rh+H9BhB9Mi5FxUWXE0Vhc/6RPuc00kLlULI71/oDWGraG+r++IEjNhlRO3VGMZgio+Lv9okgwlLN9w28MU9iUfLTBT5PKI2NqHU36hy1qzaEXDRU/a8nRBQrjmtMeeifiqElC6ZSUyIZDz+Z3PnnpEAFzgl0R0w6xQ7+tQvfPhgB",
+          "thinking": "I'm seeing conflicting entries here and need to decide which one to keep. The more recent-looking one seems like the better choice, so I'll remove the outdated duplicate and consolidate them into a single note that explains the conflict.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01VMUV4HcCnwbkoFJCcCfKC7",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "ce0438fac3d7256f",
+            "content": "Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+            "rationale": "The two memory entries contradict each other; merging them into a single note flagging the conflict avoids silently trusting an incorrect value."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01QVdC4951Lv298WNSe26Lfg",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "73f79fedbd8dc5ef",
+            "rationale": "Removing the duplicate/conflicting entry now that the conflict is documented in a single consolidated memory."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm hitting a wall here since there's no additional context to work with. Let me check what I might have stored about this issue, though without more details it's hard to move forward\u2014I should probably ask for clarification.",
+      "raw_response_blocks": [
+        {
+          "signature": "EskDCokBCBAYAipA040gPrLMjM7F1B9hKTbEd89eUODic5aq215LjnxR5osUbCjXcz/wrM4E4vaJUI1GvkdVsISrcdzeG5IbNz6DWzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDNmVEQ/0lJoxhQCEkxoM3ijW/STugxH41i1CIjAEdMffHAjI0X3U2JOBfNxXZTJWKSJfTV+Jp9Jg775sGpUGn5kxbGWxKOjA3LG1P1Mq7AHxFaY5EVBbuo4f77XoBrTeigYj2h3gZIQIJHG/T8bWOu/Ch5kgqF1MPEYiuHrluDEW+pGmoNCC0hpzTNT1XKJriNX915mkaF5M//v/JkKUc0lIITP+cnL2+kjsaRizvW5hFPOlzg6R9lk6IPVKm7YRkOIllhvXSAfRDmLWqxc16ErfvzJMcPNuC5vonWiyffonRJdSBDgw0ykvVEmo+/WX2Ce0MGfgTeWpfP6lgv0WXTq6pZkh/1gFx15PTG4XR4hDhTbT0K0iIyLswDBllIEEu0An9mngqBE0O7LD/HMiIwVec0RjUKXhX5YeMBgB",
+          "thinking": "I'm hitting a wall here since there's no additional context to work with. Let me check what I might have stored about this issue, though without more details it's hard to move forward\u2014I should probably ask for clarification.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01XQe7Z5Y7RVgrWcpbJdd4YB",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value original source",
+            "rationale": "Trying to find additional context that might resolve the conflicting values for x + y before taking further action."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm hitting a wall here without more information to resolve this conflict, so I'll leave the memory unchanged rather than make an uncertain change.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpgDCokBCBAYAipA0A20dsaP7Lym+yd4qfRKqX5jxQKkE35AamG+J+11QgHT9ea630BdgVmihEgUcFOASkV6Nw/SwyoRqU91O8rNTjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDCwRySXvVFG3FljmAhoMwW4RJ1SyjD173pClIjAHXpVunmR2Ua6KSgsH5assJEaCeDe/oMZR36V49nA0TR2ukYL3H9Hxvhhc12+LrwQquwGSvCNJ5UD6J5NGlDft0nDWV5FvHtcR9MGU49SH4tY0MG1hB9M2AbdJYzvnzV5tH52/1aQe5wRAD8LMAjeBvrP9jMJb0bppu1g8ImkxMWjjf4hawsTfJEexHq028l6E/8jMIW2G8k/LFrrFDeECtKHCCSYY34KsGjXw2vo+aeLxiL6sEx2s3Uv7JktfrkTW1SBLdc8bqr6vK93jrL+/HCyXqZ+GB9kW14hErvGYLmOkbhjNIMQJQgFL0hCwGAE=",
+          "thinking": "I'm hitting a wall here without more information to resolve this conflict, so I'll leave the memory unchanged rather than make an uncertain change.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_014B2YvN4F1Cp3cQZSvY83eE",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context to resolve the conflicting values for x + y before taking further action."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to look back at what's been discussed to understand the conflict better.",
+      "raw_response_blocks": [
+        {
+          "signature": "Es4CCokBCBAYAipAe6XNG5bf/MGjn0zcszT+afl9w4zBfqJUW06K9kF05oMTZdhf7aUriQVQF+34scX9Kj4WYztnldniyEAHGDzvZzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDEGMFZOMBQlzzMdYfxoMG1bGGF6y9mcaOFgZIjAoahT9WjGowfhR23alKgrQq0/SJH2Z/w9njGiK2g9N0OE585KddbfgytJAqd4gl20qcnE4f5Vb8ssTMA5NxEPyKzrhphe6ZmZhXziwWkVwpiuTHvMXzDaDN3kwXM4bq/QCK9Li+cE6/MnOTnokh/IFtI4FF8clQQF3iFrg8jr4vINDtt7RtpbXm4lljVpm2rIWLtQxAvpKxjEHnkZ9lE/pCwYzahgB",
+          "thinking": "I need to look back at what's been discussed to understand the conflict better.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_015jYnBAfiuspBrFbrbs5um8",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context about the conflicting values of x + y before resolving."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm stuck on this conflict and don't have enough context to resolve it right now, so I'll either set it aside or dig back through what I know to see if I can untangle it.",
+      "raw_response_blocks": [
+        {
+          "signature": "EugCCokBCBAYAipAo6arUq6aCxpiUU3qpUBRQ1ckI5KaC7c8PoQt3vdyYxdqJqPfkJJNgipdHvo2fh8Li3g7YOMVUQ4ghIxcpJoF+TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDPSM3srewGisSvWHvxoMZOiRgsdFihP+SXwPIjDw1VDOAN/tw0PZEq+rdv3x5RP+H7Yj8zDdeKFlf9b4zVO7UnwCeULX0pxXTFoq3PgqiwFVmRc5nsjnr26dXL6i1ul4DixCl2GQnU6/8H8UJChsd238X5ACBo18RmRVdcntyX9QWj9mU38I6OCU1mIsKei6WOILWvacOu/BYqh0LDpFIi6apeUfExM8nvWmm1+uvqEvwsD+CsK1AfHvVXL1HGN9eR7O1k4ZabLhWpavn9iQgSd+i0gRpyuVPIh+GAE=",
+          "thinking": "I'm stuck on this conflict and don't have enough context to resolve it right now, so I'll either set it aside or dig back through what I know to see if I can untangle it.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01LyCRcdLKTGVGmeiDhkWyqG",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value original source",
+            "rationale": "Trying to find additional context to resolve the conflicting x+y values before taking further action."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to look back at what was mentioned about x and y to understand this conflict better.",
+      "raw_response_blocks": [
+        {
+          "signature": "EvYCCokBCBAYAipAKn7YyFjw/rb6oW475UW3t0Y4HxUI3WjHrngZl1TsFop/H1Gk38nYRQMYoYBAFQwWk6SVj4T/hzfT8/X8umQ2FzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDI4GV5P0X0ie0B/hxxoMgKEMJT3f1ARzOtYbIjAx0ZeD5w6vYoSijNuAadPx0Vuf/5ugtb/o4nLbDb2CD2AKtCtY43/dCBIVN2kWG34qmQGtvBNteASwX/EmNgEJyMHR8SYnK4veeBnyuJJqP6vFUQWJZ/NaQP/fXuqv7/9CktW1ml8xomCWOgYDLmKxvujBqja/i0kHA4KFcP9O6vNkMki5ob7KtgYUXopHKX/nN8Lpu+0VeUlXI18MNzKr7ZPuIPfZU4xp8bjGrtKwgm8yyCRImHfEaeh4dztkgFwsu+YI9OOo3HRW47gYAQ==",
+          "thinking": "I need to look back at what was mentioned about x and y to understand this conflict better.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01ShiHSLjoSkSPj6SFMKqgiP",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value original source",
+            "rationale": "Trying to find original context to resolve the conflicting values before making changes."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.",
+      "prompt": "Your memory currently contains:\n- [id: ce0438fac3d7256f] Conflicting values recorded for x + y in this system: one entry states 5, another states 10. This inconsistency should be resolved by checking the original source or context before relying on either value.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to ask for more context about what conflict needs resolving since I don't have the source information.",
+      "raw_response_blocks": [
+        {
+          "signature": "EsICCokBCBAYAipASN41/6EYyEg1ppf5uAJB2cFVP6HDXGrYWwP1ta3mm5UP6aXosIRyxIZstudWxulQf3rh/0TmyKsVBdAXTAMfSTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDH/Z703v38HK4q6zzBoMI9dRejOpqJ7q89mCIjBGyfKTRpCnHOPqR6PhiE9Vnifg/JxY1uohvi82mv1PiE4CNLqXMBVCeuihcdtBQRcqZhlCSaL72Pwd67DzGDqFIqGcGlzpX6z4Ah1GnPiaVPWHPfeXWTLjME6TZdkcEKcL0/JESCzsHeVYBVU4f6ZbqhacnFlbdy2X8WqlL34HRbOOgQXiac5QKj0XZinORmdq20dmUU6LzxgB",
+          "thinking": "I need to ask for more context about what conflict needs resolving since I don't have the source information.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01KGPqiDYQD5zk615or1csz2",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value original source",
+            "rationale": "Check if there's additional context to resolve the conflicting values before taking further action."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

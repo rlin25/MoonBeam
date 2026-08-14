@@ -1,0 +1,247 @@
+{
+  "lineage_num": 4,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "510de49c0aec11b6",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:29:43.370708"
+  },
+  "seed_second": {
+    "id": "7d3bcadb685add37",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:29:43.443375"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "7d3bcadb685add37",
+    "content": "Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:29:43.377799",
+    "session_id": "cond_A_004",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:29:43",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Recorded value: in this system, x + y = 10.\n- [id: 510de49c0aec11b6] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Recorded value: in this system, x + y = 10.\n- [id: 510de49c0aec11b6] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "There's a conflict in my memory\u2014two contradictory recorded values for x + y. Let me clean this up by removing the outdated/incorrect entry. Since I don't have context on which is correct, I'll flag this rather than arbitrarily pick one.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01YSRUVXMiUYWY8jQcuvA5Wx",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value context",
+            "rationale": "Checking if there's additional context that clarifies which value (10 or 5) is correct, or if they apply to different scenarios."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Recorded value: in this system, x + y = 10.\n- [id: 510de49c0aec11b6] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Recorded value: in this system, x + y = 10.\n- [id: 510de49c0aec11b6] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting duplicate entries and need to decide how to handle them. Rather than deleting one without being certain which is correct, I'll keep both but annotate them to flag the conflict and mark the uncertainty.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqoFCokBCBAYAipAw2KjLmv20cgHz4r+lqPIm8L6jj8BGRl2Ko/KY6B+cWZAbB6shQLThG/+yso0jh/3fYBviAsQq1p0Qb8qKaJ/2DIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHfQKOqvg5uJOdom6RoMunB4hqBUVB6kHHqyIjC/Y2Gd2zxaGmY2ItV7GY24xr2Uj9wpJGcV2GX6YonL4iSyaSJNs9z+eucM626FmYQqzQMYpCzpcxKZA/vv2YV+D14ox5ZDGzkWOR+3l9ugMxWxxKweKpfUkcCDn/5unXnesZ/hOlqLyUudn/S6YXJhrJJ8nqm60UlVRf+5o/I88f6d0xWqNZX2mQjn6aUY+aW6VGOyxuWPRBNAL8kZxuq/LkfgnZ5QCNLJlbTenrhRgvgHZdERRJwPKy/W3xdkP/HceIb/j01QplnzQ60RUVEy4vMCQtYHyMUga6id69ohD0pO8NH7zHDMhYXJq/19rrBTM8255JF76+sdx0kbG6u98M9Hh+RISeyrg7zIJG/x484UBtw+r2/Sf3QBllaR1d0UQtySUlLH7yWmKygWgbVxkjJlbjPC1s/wpR6TOPnVyYhEIgTujcNAjZUuBC8h5LUUcc+DcU8MVRYyDwyskgiTNZUUKuiXaPoxz0LKAdyC24h/4tGIMaNKuM79E5HHunQc/U4AyWp5mziPOCUgDl4Bf1H60pfU4HrLBhJ0WacS6MEm+V9o/X1pzywAgbUmnJLxt03qRM7UjGlF0R6Vu/b7aVPo/IVmfu4MFNweCf3rkpeHxgUVSHji2RV3FIzFOJSAgsLc7KXJbKc95pN+zSyXhX7Oc/2JE3cW7glK5IXuNhgB",
+          "thinking": "I'm noticing conflicting duplicate entries and need to decide how to handle them. Rather than deleting one without being certain which is correct, I'll keep both but annotate them to flag the conflict and mark the uncertainty.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01MDymCGu6K1gtFsufEiMMgq",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "7d3bcadb685add37",
+            "content": "Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+            "rationale": "Flagging the contradiction between the two stored values so it's clear this needs resolution rather than silently keeping conflicting facts."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01BpXCEQS1FZMhYbdhPST4yf",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "510de49c0aec11b6",
+            "rationale": "Avoid duplicate/conflicting storage; the conflict is now noted in the other entry, so this one is redundant."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01EQ4qs5gp8FuP3amcNaJQiC",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context around the conflicting records before deciding what to do with this memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_0138F12rHDyqzZJEe92yTSca",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context before resolving the conflicting records noted in memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should check with the user about what they're looking for since my memory indicates there's an unresolved conflict I need to understand better.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErYCCokBCBAYAipApps29565MT0FY/OcdwVrAfZKr0ntl65Kpwx2WUL496dzOZvtiwAH/IHQ/RMt5h6kqgVPwVsDhudphp8GIbfRrDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDISiJT7z6HQ5rYq0vRoMe4CnUonYk55FZPAAIjC9euFWcXRZXo0KmFoViJTxxZl4dEBdBM38UQRRSuK9RTU0AcWt4U90be01fgdcDngqWm/Hln9QLRqyJ+7CQ4yN1fkoiGPhy7X/GH9tD9dIbgSWlFDIdaYj53QatVlX1/QSVkQDtkInZuQyQYdp93YO0LrSUBHud4asjtKSYCrwhy86FiyOey8Fws7zmRgB",
+          "thinking": "I should check with the user about what they're looking for since my memory indicates there's an unresolved conflict I need to understand better.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored memory about conflicting values (x + y = 10 vs. x + y = 5) that was flagged as needing clarification. Before we go further, could you help me resolve this?\n\n- Are these two equations meant to apply to **different scenarios or time points**, or was one of them an error?\n- If they're both valid, is there additional context (like different variables actually being represented, or a change in conditions) that explains the difference?\n\nOnce I know which is correct\u2014or how they relate\u2014I'll update my memory accordingly. Just let me know!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_015EPQYaUpaBm67PfNa6F3gQ",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context around the conflicting records before deciding what to do with this memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.",
+      "prompt": "Your memory currently contains:\n- [id: 7d3bcadb685add37] Conflicting records found: one entry states x + y = 10, another states x + y = 5. Both cannot be true simultaneously unless context differs (e.g., different time points or scenarios). Needs clarification from user to resolve which value is correct, or whether both apply to different situations.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user to clarify which version of events is accurate since there's conflicting information in what they've told me.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqsCCokBCBAYAipAsLH4fdbwK1KeGYWZCRt63Y1lUaiSjiBTYVJZvVMp5ZC+sQuZJxswxjvbNdDrBYT82qCGnFA5bPZtcOnu62GcqjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGQHzIzOip6LHCwZChoMS5HweOvkL3bn9PkXIjABUscolG3f8CWsQPfrEkiSxsicVXrABE/Kj3bxFCL17xGGyAzyoQwltqgFIQqXbesqTyvFuh8Qf8wWN0mkprFIiYYtQUS+jByR+q86O0vO3qNMTDObSYg4eEspfy+VEh/Z4sSl9AaMMiiEaq02ZnWH0VI1e1aY5on/xtY94lhZEs8YAQ==",
+          "thinking": "I should ask the user to clarify which version of events is accurate since there's conflicting information in what they've told me.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored conflict in memory: one record says x + y = 10, another says x + y = 5. These can't both be true unless they apply to different contexts (e.g., different time points, scenarios, or variable definitions).\n\nCould you clarify:\n1. Which value is correct (10 or 5), or\n2. Whether both are valid but apply to different situations (and if so, what distinguishes them)?\n\nOnce you clarify, I'll update the memory to resolve the conflict.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "lineage_num": 12,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "3563208e9eae31bb",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:23:55.855870"
+  },
+  "seed_second": {
+    "id": "136e364167ab360b",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:23:55.926612"
+  },
+  "final_first": null,
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 136e364167ab360b] Recorded value: in this system, x + y = 10.\n- [id: 3563208e9eae31bb] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 136e364167ab360b] Recorded value: in this system, x + y = 10.\n- [id: 3563208e9eae31bb] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are conflicting entries here that need to be resolved. Since I don't have enough context to determine which one is correct, I should flag the ambiguity rather than silently removing something\u2014I'll update the entry to reflect that there's a conflict that needs clarification.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtcFCokBCBAYAipAqzZvvb7kgge+4dMm/rz8t1Tpo6IbPir9Uxboimgji50WduCbzAwe4EtJ9jSBp61U1ct0EtRHcqnaJyEKIcQxWjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHMF0SrzN3FiELOLERoMKbBddhbopRsNfugGIjBHAmJdRb86XA7RFJDSTNkpXB/q11Vnl6MPlW8OTJ6QV9Rbbk07yi3yKqx5P54ncS4q+gP0uPNIkDLT1jlM1UMhhDly7rPMVmWO7ae5JjD+xAVYersjSoX8+OJmNGzXlNP0YnnOu8km/nVmuNDPDYRqoc+tmFmrnnjLJ2mCAtssOE1ia5TCruBrz2KbKqQIkKfx3oUlrIC8F80KfHk8r1OMOhYhU/v/nGrapDw4dA57tjTKFPGvK84qEHaLVvQVjoPL80O54NVg05wXuOoLLMCTwncrIVF1BNVtdDOnpDGIppjJD1FHNUdTKOTatZGfvLPbpXq45pAbDm7Em5VYA6bVvH6MJprBUSEPoDQV2wgJu5rclybIcXRl65Y7zpz5RUQXoS91xl/2r1gb03qvk2hI9R9o1iR3XAhH6WvtKJGSUk4p+NCdPzM9MUwYOazuskLL8zokkcCZ+4fjhUhpC8azF0B23X6c2ylnd0AioE1+NmsPH5Ahud+/uRXRK+AwS78+JMTctCijrHHYK2G6EjwiyVDgnejWCUI9bSoZtlemEXqybchdxkEbgyocmhAdJGWxauzeAK+kwnISWPwzo8qWXxdjczGF/h55IbPMyh/aCTKrtyPJsdl/vvoZHyFUSf/dlVV8u7qEmTI8rT1FUMbL51E7MUWtc10+GWW2/JtvIN3vGA9+WdHuumGPo2UVLl6/wkcLyssswidSyF9KSnOIey7X1YAaJIT5cJfZdhgB",
+          "thinking": "I'm noticing there are conflicting entries here that need to be resolved. Since I don't have enough context to determine which one is correct, I should flag the ambiguity rather than silently removing something\u2014I'll update the entry to reflect that there's a conflict that needs clarification.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01A1zF3cdX2YK9pLVJfDzwHi",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Checking for additional context to resolve the conflicting values before deciding how to reconcile memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 136e364167ab360b] Recorded value: in this system, x + y = 10.\n- [id: 3563208e9eae31bb] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 136e364167ab360b] Recorded value: in this system, x + y = 10.\n- [id: 3563208e9eae31bb] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting values for x+y in my memory, so I need to consolidate these contradictory entries into a single record that acknowledges the ambiguity rather than keeping both versions.",
+      "raw_response_blocks": [
+        {
+          "signature": "EoQGCokBCBAYAipA4lXBJ0o8RrmoWRpiV7HXIATcmZaPQLfzmOBPdR4UWxYNKloKHynr4X0rdJxXTRGbVfcd6jni6bsFLY6pcRSlzTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDFpCjjWvRFuJpf3rRRoMMkANdV7gKvDf4K7ZIjDTcgPfhU0l9LAHkFQbc9Yz1N5AJs7Kc+Ow+/W+rTMmipaPLMtP5ldY8zJy4vHlAhAqpwTgPEVtAbznYcZe3hL8Dw3YxnWZmPrNLrwHkUUwA2oxO5qk+PjFlSh9CW8A2L/KFezeW41rVdntWrSRXZZrjRFE99Bo68ZW0Vr9xMUVL/oQVxocbJ+VP0DDvkeD9PVSsZpC5FAzT2J5Xe5uNmBtbFZTGUUerOoR6/tBXKH5pSsYL/RctK9ESYVqq8EP1SRxUIpOYU4ykhlESB8gx4hcCo7reg7Xg7wwl8XImHcaDlq2TqlTDWitbnhG8cn/S7J8QjCUyS+bVcCxf4MisQ6rmmSFF3z1Aui8KJz5zHYDe8Qh5fgc7T3g9TXyGp60Fc54ojEWnNwGs2z9jDKwk0PK9tyOc0Y9hMxdDc8vH4N/r/SYxJ/nzIqUIVC9r5oDSUIEvN/MkePp91wjEF6JwubeSzUXf/DkgUhPOwcNk1QwhmDDERBSk6ZGKPg6S9XBojNuNFxkYA6od1ISlFw2h0R1blWx5+DTfc8hMkdTZF/3QTqo7pPaQOY/XTPDWMKpzNNMgzdXUZoZSWyhNJCrEhSfIXc7U9zy2eeUBE6jgPRY6XXwmFb3rMZzGtEdPxh7pN1CMzaM9kNiffPFodTPWh6tI7ZHOnNJMJz1vixUuvK7IYHoUMSpwZFnAFs25zZbCt5plzOcZPhWGbfyGEGyTrob2fBKjRjsc4ATSo7SVjgqAn/SN58ObcBRDlvsiM5AN/q2sQ9NdrJnSb6E59yYyf4thFFpNsUzED+tvhgB",
+          "thinking": "I'm noticing conflicting values for x+y in my memory, so I need to consolidate these contradictory entries into a single record that acknowledges the ambiguity rather than keeping both versions.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_013DPYNgzksrXW6NbnC1Cnf7",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "136e364167ab360b",
+            "rationale": "Conflicting duplicate value for x+y; consolidating into a single clear entry."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_017KnrRasaKM3mgWJPzKukiA",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "3563208e9eae31bb",
+            "rationale": "Conflicting duplicate value for x+y; consolidating into a single clear entry."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check the current state of my memory, though you've mentioned it's empty. Since there's no prior context or specific task given yet, I don't have any information to store right now.\n\nI'll wait until you share something meaningful\u2014facts, preferences, ongoing projects, or context you'd like me to remember for later in our conversation\u2014before creating memory entries. Storing empty or placeholder content wouldn't be useful.\n\nWhat would you like to work on, or is there information about yourself/your project you'd like me to keep track of?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system, though I understand it's currently empty.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01P9akkU1jehW7UFWH5ovwPH",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any existing information",
+            "rationale": "Verifying that memory is indeed empty before proceeding"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I don't have any prior context or specific information to store right now. Since this is the start of our conversation and my memory system is empty, I'll wait until there's something meaningful to remember\u2014like your preferences, ongoing projects, or important facts you'd like me to retain across our conversation.\n\nFeel free to share anything you'd like me to keep track of, and I'll use the memory system accordingly!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check if there's anything worth noting so far, but since this is the start of our conversation with no prior context, there's nothing specific to store yet.\n\nI'll wait until we actually discuss something meaningful\u2014facts about you, your preferences, ongoing projects, or details you'd want me to remember for later\u2014before using the memory system. Feel free to share anything you'd like me to keep track of!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll start with an empty memory system, so there's nothing to recall right now. Since you haven't shared any specific information, preferences, or context yet, I don't have anything meaningful to store at this point.\n\nFeel free to share details like your name, ongoing projects, preferences, or anything you'd like me to remember for our conversation, and I'll save it for future reference!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

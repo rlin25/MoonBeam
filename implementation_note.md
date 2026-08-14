@@ -1,158 +1,139 @@
 # Implementation Note
 
-Written after the full run (150 lineages: Condition A → B → C, N=50 each, 0 errors, 0 malformed tool
-calls, counterbalance arms exactly 25/25 in every condition). Per `setup.md`: discrepancies between the
-installed environment and the design docs, reasonable-but-unverified interpretations made during
-implementation, and the achieved-power recomputation against Condition A's observed rate.
+Written after the full run under the arbitration-binary preregistration (300 lineages: Condition A → B →
+C, N=100 each, 0 errors, 0 malformed tool calls, counterbalance arms exactly 50/50 in every condition).
+Companion to `implementation_note_pilot_n50.md`, which covers the earlier N=50 pilot run under the
+retired took_action/no_action collapse. Per `setup.md`: discrepancies between the installed environment
+and the design docs, reasonable-but-unverified interpretations, and the achieved-power recomputation
+against Condition A's observed rate.
 
-## 1. Environment discrepancies
+## 1. Environment
 
-**Extended thinking API shape.** `experimental_parameters.md` §1 specifies
-`thinking: {"type": "enabled", "budget_tokens": 2048}`. The installed API rejects this for
-`claude-sonnet-5`:
+No new discrepancies. This run reuses the same harness (`harness/core.py`) validated during the pilot's
+Phase 0 — the adaptive-thinking API shape, the `display: "summarized"` requirement, and `recall()`'s
+500-character truncation are all already disclosed in `implementation_note_pilot_n50.md` §1 and were not
+revisited. Across the N=25 trial (75 lineages) plus this real run (300 lineages) — 375 lineages total
+under the revised harness — there were 0 malformed tool calls and 0 harness crashes.
 
-> "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and
-> "output_config.effort" to control thinking behavior.
+## 2. The confirmatory test resolved cleanly this time
 
-Adapted to `thinking={"type": "adaptive", "display": "summarized"}` plus `output_config={"effort": "low"}`
-(`harness/core.py`). Two things worth flagging separately:
+**Condition A's observed arbitration rate: 85/100 (85%)** — close to the prior pilot's 86%, as expected
+since nothing about Condition A changed between runs. Condition B: 25/100 (25%), close to the pilot's 22%.
+Condition C: 85/100 (85%), somewhat below the pilot's 96% but still far from B.
 
-- **The effort mapping is a reasonable-but-unverified interpretation, not a verified equivalence.** There
-  is no token-budget analogue in the adaptive-thinking API. 2048 tokens sat barely above the old API's
-  1024-token minimum, so it was mapped to `"low"`, the lowest of five effort tiers (`low`/`medium`/`high`/
-  `xhigh`/`max`). A different, equally defensible mapping (e.g. `"medium"`) would very likely have produced
-  somewhat different — almost certainly not qualitatively different — behavior. This is an implementation
-  detail, not a research judgment call: it affects how much the model reasons before acting, not what is
-  measured or how it is scored.
-- **`display: "summarized"` is not actually optional**, despite the SDK's docstring stating it defaults to
-  `"summarized"`. Omitting it empirically returned an empty `thinking` string with only a signature
-  present — which would have silently broken `interface_contract.md` §4's verbatim thinking-capture
-  requirement across all 150 lineages had it gone unnoticed. Caught in Phase 0 before any real lineage ran
-  (see `docs/setup.md`'s Phase 0 checklist item on thinking-block retrievability).
+**Confirmatory test (`preregistration.md` §3), Condition A vs. B on the arbitration/non_arbitration
+collapse:**
 
-**`recall()`'s 500-character truncation** (`experimental_parameters.md` §3) was confirmed directly in the
-installed package source (`mnemosyne/core/beam.py`, `row["content"][:500]` at every `recall()` call site)
-rather than assumed from the design's prose.
+| Metric | Value |
+|---|---|
+| Fisher's exact p | 3.9 × 10⁻¹⁸ |
+| Observed difference (A − B) | +60pp |
+| 95% Wilson CI | [47.5pp, 69.4pp] |
 
-**Everything else in Phase 0 matched the design as written**: `remember`/`update`/`forget`/`recall`/
-`get_context`/`get` signatures, `get_context()` returning fully untruncated content, and fresh-`db_path`
-isolation (`get_context()` returns `[]` on a brand-new store, verified empirically, and asserted as a
-standing check at the start of every real lineage in `harness/core.py`'s `run_lineage`).
+Checked against `preregistration.md` §7's decision rules literally: p < 0.05 ✓, and the observed
+difference (60pp) clears the ≥25pp threshold with a CI that excludes zero by a wide margin ✓. **Both
+conditions for a positive finding hold. H1 is supported: whether the model arbitrates an irreducible
+contradiction differs sharply between a self-referential and an arbitrary-fact framing**, and unlike the
+pilot run, this resolves without hitting a ceiling-saturation problem — no condition's rate sits within a
+few points of 0% or 100%, so `preregistration.md` §7's fourth ("ceiling or floor saturation") outcome does
+not apply.
 
-## 2. Reasonable-but-unverified interpretations
+## 3. Condition C: the strongest possible self-authorship reading
 
-Two of `taxonomy_codebook.md`'s decision-procedure tests are inherently about natural-language content
-("does an entry reference the contradiction," "does an update resolve the contradiction") and the codebook
-does not specify a mechanical procedure for either — only that they apply "to the literal content string."
-Implemented in `harness/scoring/outcomes.py` as disclosed heuristics, not LLM judgments
-(`implementation.md` constraint 8 forbids an LLM anywhere in scoring):
+Per `preregistration.md` §6, with d(A,B) = +60pp and d(A,C) = 0pp (A and C both landed at 85%):
+|d(A,C)| = 0 < ⅓ × |d(A,B)| = 20pp. **Self-authorship reading applies** — the bridge condition (first-person,
+received rather than chosen) lands exactly on Condition A, not partway toward B. This is a stronger
+result than the pilot's own descriptive figure (|d(A,C)| ≈ 10pp, ratio ≈ 0.16), which already sat well
+inside the self-authorship zone; here the ratio is 0. The effect is attributable to self-authorship, not
+merely to first-person phrasing.
 
-- `references_contradiction`: a fixed conflict-keyword list, falling back to significant word-overlap with
-  both original claims.
-- `is_operative_claim`: text-similarity (`difflib.SequenceMatcher` ratio ≥ 0.5) against each original claim.
-- `resolves_contradiction` (decision-procedure step 4's "edited so no contradiction remains" branch):
-  near-identity (ratio ≥ 0.85) between the two current entries' content.
+Condition C's own comparisons (descriptive only, no significance claim per §3/§8): vs. A, p = 1.0,
+diff = 0pp; vs. B, p = 3.9 × 10⁻¹⁸, diff = −60pp (i.e., C differs from B exactly as much as A does).
 
-`validation/audit.py` re-implements these three independently, with different thresholds and a
-structurally different similarity measure (word-set Jaccard rather than overlap-over-claim-length), so
-that a bug specific to one implementation would surface as a classifier/audit disagreement rather than
-being silently replicated in both. Across the full run, the audit found **0 discrepancies in 15 lineages
-(10% of 150)** — see `runs/validation/classifier_audit.md`. This is reassuring but not proof of zero
-disagreement at large N; a larger audit fraction would narrow that uncertainty further.
+## 4. Achieved-power recomputation
 
-**A real tension in the codebook, observed in actual data, not merely hypothetical.** Several lineages
-(e.g. Condition A, held-out sample lineage 02; Condition A `lineage_002` proper) show the model deleting
-one seeded entry and editing the other into content that *describes the conflict* ("Note: conflicting
-records found... needs clarification before relying on either") rather than asserting a single operative
-value. Decision-procedure step 4 assigns **arbitration** here purely because exactly one seeded ID
-survives — it does not carry step 3's "does the survivor state an operative claim, or describe the
-conflict without selecting" distinction into the one-survives case. Implemented exactly as written,
-per `implementation.md` constraint 13 ("`taxonomy_codebook.md` is not revised in response to Condition A's
-results"). Flagged here rather than silently smoothed over; this is precisely the kind of disagreement the
-held-out human coding (`runs/validation/held_out_coding.md`) is designed to surface, and any resulting
-codebook amendment belongs to that process (`preregistration.md` §9), not to an implementation-time fix.
+`preregistration.md` §5 committed to recomputing achieved power once this document's own Condition A
+superseded the 86%-from-prior-pilot planning baseline.
 
-**Step 4(ii)'s arbitration-direction ambiguity** (both seeded entries technically survive as rows, one
-edited to resolve the contradiction, but *both* differ from their original content) has no clean answer
-under the mechanical test used; `taxonomy.py` reports `arbitration_direction = "n/a"` with an explicit
-`other_description` in that case rather than guessing. This branch was not observed in the actual 150-lineage
-run — all `arbitration` classifications resolved to a clear `kept_first`/`kept_second` — so it remains a
-documented-but-unexercised edge case.
-
-## 3. Constraints: none required deviation
-
-Every non-negotiable constraint in `implementation.md` §2 was satisfiable as written once the thinking-API
-adaptation above was made. No constraint was relaxed, and no deviation from `preregistration.md` (test,
-collapse, N, exclusions) occurred.
-
-## 4. Achieved-power recomputation against Condition A's observed rate
-
-`preregistration.md` §5 committed to recomputing achieved power once Condition A's rate superseded the
-33% planning placeholder (itself drawn from a 6-lineage pilot with a [9%, 70%] Wilson interval).
-
-**Condition A's observed take-action rate came in at 98% (49/50)** — Condition B and C both came in at
-100% (50/50). This is far above the 33% placeholder, and it changes the power picture in a way the
-pre-registration's simulation table did not anticipate:
-
-| Metric | Planned (33% baseline) | Recomputed (98% baseline) |
+| Metric | Planned (86% baseline) | Recomputed (85% observed baseline) |
 |---|---|---|
-| Power to detect +22pp | 0.31 (at N=30) – 0.54 (at N=50) | **0.001** |
-| Power to detect +32pp | 0.62 (at N=30) – 0.88 (at N=50) | **0.001** |
-| MDE at 80% power | +28pp (at N=50) | **undefined (NaN)** |
+| Power to detect −25pp | 0.97 | 0.97 |
+| Power to detect −32pp | 1.00 | 1.00 |
+| MDE at 80% power | −18pp | −18pp |
 
-**Why this happened, mechanically, not as a data artifact.** At a 98% baseline there is almost no room
-left for a same-direction increase — Condition B's own 100% rate is only +2pp away, nowhere near
-detectable at any N — and the simulation (`harness/stats.py::simulate_power`, `minimum_detectable_effect`)
-correctly reports near-zero power and an undefined MDE because it searches only for increases
-(`p_a + delta`, `preregistration.md` §5's own framing) when the parameter of genuine interest here would
-be a *decrease*. **This is not a bug in the recomputation; it is what a two-sided test does when a
-baseline sits at ceiling** — the pre-registered achieved-power methodology, built around a plausible
-33% baseline, does not have a clean answer for a baseline this close to 100%, and no in-flight fix was
-applied (`preregistration.md` §5 states explicitly: "Recomputing achieved power is a reporting step, not
-a decision point — it does not license changing N, the test, or the collapse").
+Essentially identical to the planned table — the observed 85% rate sits 1pp from the 86% planning
+baseline, so nothing about the power picture shifted. This is a reporting step, not a decision point, per
+§5's own framing; it changes nothing about N, the test, or the collapse.
 
-**Consequence for interpreting the confirmatory test.** The actual Fisher's exact result on the
-pre-specified collapsed binary was **p = 1.0, observed difference −2pp, 95% Wilson CI [−10.5pp, +5.3pp]**
-(`runs/statistics.json`). Checked against `preregistration.md` §7's decision rules literally: p ≥ 0.05 ✓,
-|diff| < 10pp ✓, but the third interpretable-null criterion ("the 95% CI excludes effects larger than the
-MDE for the achieved N") **cannot be mechanically evaluated**, because the achieved-N MDE is undefined at
-this baseline. This is reported here as a genuine limitation of the pre-registered decision framework
-surfacing under real data, not resolved by picking whichever bucket looks most favorable. **No positive,
-null, or underpowered verdict is asserted on H1 here** — that classification is left to the write-up stage
-with this limitation stated plainly, exactly where `preregistration.md` §11's deviations policy says an
-unanticipated situation like this belongs.
+## 5. A genuine gap in the taxonomy, surfaced by real data — reported, not fixed retroactively
 
-**What the ceiling effect does not erase.** The collapsed binary saturating near 100% in all three
-conditions does not mean the three conditions produced indistinguishable behavior — the *taxonomy*
-distribution differs sharply between them (`runs/condition_a/observations.md`,
-`runs/condition_b/observations.md`, `runs/condition_c/observations.md`):
+10 of 300 lineages (9 in Condition A, 1 in Condition C, 0 in Condition B) classified as `other`
+(`taxonomy_codebook.md` §4), and all 10 share the identical structure:
 
-| Condition | arbitration | clear-without-replacement | other strategies |
-|---|---|---|---|
-| A (arbitrary) | 43/50 (86%) | 5/50 (10%) | 2/50 |
-| B (self-referential) | 11/50 (22%) | 39/50 (78%) | 0/50 |
-| C (first-person bridge) | 48/50 (96%) | 2/50 (4%) | 0/50 |
+- One seeded entry is `update`d — its content replaced with a note describing the conflict (e.g. "Note:
+  conflicting records found — one states x + y = 5, another states x + y = 10. Both are stored; needs
+  clarification... as they cannot both hold simultaneously") — rather than deleted.
+- The other seeded entry is left completely unchanged.
+- No new entry is created.
 
-The full 3×5 table's Monte Carlo permutation test (2000 trials, `harness/stats.py`) found **0/2000
-permutations as extreme as observed** (p < 0.0005), with Cramér's V = 0.53 (conventionally a large
-association). Per `preregistration.md` §3 and §10, **this is explicitly descriptive, not a confirmatory
-claim** — it is not powered as such and carries no significance verdict on H1. It is reported here as
-context because it is a large, visually obvious pattern in the actual collected data (Condition B
-overwhelmingly clears both entries without replacement; A and C overwhelmingly arbitrate), and because it
-bears directly on how a write-up would need to characterize what happened: the *rate of acting at all* did
-not differentiate the conditions (ceiling in all three), but *what acting looked like* did, sharply. Full
-figures, per-arm splits, and per-lineage scoring are in `runs/*/observations.md` and `runs/*/scoring/`.
+This falls through the decision procedure (`taxonomy_codebook.md` §2) to step 5 because it satisfies
+neither step 2 (both seeded entries unchanged — false, one was edited) nor step 4's
+"edited-so-no-contradiction-remains" branch (`outcomes.resolves_contradiction`'s near-identity check
+correctly returns false, since the edited note and the unchanged original claim do not read as the same
+content). It is functionally a **flag-and-defer executed via `update` instead of `remember`** — the model
+chose to overwrite one entry with an annotation rather than add a third entry — a distinction the codebook's
+five categories don't currently capture, since flag-and-defer (§1.2) is defined only in terms of new
+entries created, not edits to existing ones.
 
-## 5. Summary of deliverable status
+Per `taxonomy_codebook.md` §4 point 3, this is reported here as a candidate new category
+("flag-via-edit"), named because it recurred 10 times with substantively identical behavior — not applied
+retroactively (`taxonomy_codebook.md`'s "categories are never merged, split, or redefined retroactively,"
+`implementation.md` constraint 13). All 10 correctly mechanically collapse to `non_arbitration` under the
+pre-specified §4 point 2 criterion (the surviving content is not a restatement of either seeded claim), so
+this gap does not affect the confirmatory test's validity — only the descriptive taxonomy's completeness.
+Any codebook amendment belongs to the held-out human-coding process (`preregistration.md` §9), not to this
+implementation note.
 
-All items in `setup.md`'s deliverable checklist are complete: environment verified with discrepancies
-disclosed above; core harness validated on one hardcoded lineage before scaling; all three conditions
-smoke-tested and then run to full N=50 (Condition A first, unconditionally followed by B and C); A/B/C
-verified by inspection to differ only in seed content (`harness/conditions.py` routes all three through
-one shared `harness/core.py` code path); all seed/prompt/tool strings are constants quoted directly from
-`experimental_parameters.md` (`harness/seeding.py`, `harness/core.py`); counterbalance arms asserted
-exactly 25/25 per condition (not merely assumed — see the run log); mechanical scoring implemented with no
-LLM client imported anywhere in `harness/scoring/` or `harness/validation/` (grep-verified); both
-validation artifacts prepared (`runs/validation/held_out_coding.md`, `runs/validation/classifier_audit.md`);
-every `observations.md` includes explicit zero-counts where they occur; achieved power recomputed with the
-ceiling-effect limitation disclosed above rather than papered over.
+**`consolidate-with-replacement`, zero across all 150 pilot lineages, appeared at N=100** (3 in Condition
+B, 1 in Condition C) — the larger N surfacing a previously-unobserved category, exactly as
+`taxonomy_codebook.md`'s "expect sparse categories" note anticipated. `flag-and-defer` (in its
+originally-defined, new-entry-only sense) remained at zero across all 300 lineages, even at double the
+pilot's N — worth noting as a category that may simply not occur under this harness's prompt, rather than
+one that was merely under-sampled.
+
+## 6. Descriptive full-table context
+
+Full 3×5 contingency table (`runs/statistics.json`), Monte Carlo permutation test (2000 trials): p = 0.0
+(0/2000 permutations as extreme as observed), Cramér's V = 0.49 — consistent with the pilot's V = 0.53,
+both indicating a large association. Reported here as context only, per `preregistration.md` §3/§10 —
+not a confirmatory claim.
+
+| Condition | arbitration | clear-without-replacement | consolidate-with-replacement | other | silent search |
+|---|---|---|---|---|---|
+| A (arbitrary) | 85/100 (85%) | 6/100 | 0/100 | 9/100 | 0/100 |
+| B (self-referential) | 25/100 (25%) | 72/100 | 3/100 | 0/100 | 0/100 |
+| C (first-person bridge) | 85/100 (85%) | 12/100 | 1/100 | 1/100 | 1/100 |
+
+## 7. Validation
+
+- Classifier audit: 30/300 lineages (10%), independently re-derived path (`harness/validation/audit.py`,
+  verified by inspection not to import `scoring/taxonomy.py`). **0 discrepancies.**
+- Held-out coding subsample prepared: 12 lineages, 4 per condition, labels withheld
+  (`runs/validation/held_out_coding.md`). Human coding itself is outside this build.
+- N=25 mechanical-only trial (75 lineages, run before this real N=100 study, per the approved plan): 0
+  errors, counterbalance 12/13 per condition (the closest parity assignment allows at odd N), 0 audit
+  discrepancies. Its arbitration rate was not inspected as a decision input for whether to proceed to
+  N=100, consistent with `preregistration.md` §9's stopping-rule discipline.
+
+## 8. Summary of deliverable status
+
+All items in `setup.md`'s deliverable checklist are complete: three conditions run to full N=100 (900
+total including the N=25 trial's 75 and the real run's 300, plus the retained pilot's 150); counterbalance
+arms asserted exactly 50/50 per condition in the real run (not merely assumed — see the run log);
+mechanical scoring implemented with no LLM client imported anywhere in `harness/scoring/` or
+`harness/validation/` (grep-verified); both validation artifacts prepared and executed; every
+`observations.md` includes explicit zero-counts where they occur; achieved power recomputed against the
+real observed Condition A rate (§4 above); the confirmatory decision rule resolved cleanly to a positive
+finding with no ceiling/floor ambiguity; the Condition C interpretive rule applied per its pre-specified
+thresholds (§3 above); one genuine taxonomy gap surfaced by real data and reported as a candidate new
+category rather than silently absorbed into `other` or fixed retroactively (§5 above).

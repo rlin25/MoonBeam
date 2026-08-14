@@ -73,17 +73,12 @@ def resolves_contradiction(content_x: str, content_y: str) -> bool:
     return difflib.SequenceMatcher(None, content_x.lower(), content_y.lower()).ratio() >= 0.85
 
 
-def collapse_binary(result: LineageResult) -> str:
+def collapse_binary(strategy: str) -> str:
     """preregistration.md Sec 3's pre-specified collapse: did the lineage
-    issue a delete or update targeting a seeded memory ID, at any point?
-    Fixed and independent of the strategy label (preregistration.md Sec 9)."""
-    seeded_ids = {result.seed_first.memory_id, result.seed_second.memory_id}
-    for step in result.steps:
-        for ev in step.events:
-            if isinstance(ev, ToolEvent) and ev.tool_name in ("update", "forget"):
-                if ev.tool_input.get("memory_id") in seeded_ids:
-                    return "took_action"
-    return "no_action"
+    arbitrate -- select one seeded claim and keep it as the sole record?
+    Derived directly from the strategy label taxonomy.py already computes
+    (taxonomy_codebook.md Sec 4 point 2), not from a fresh mechanical check."""
+    return "arbitration" if strategy == "arbitration" else "non_arbitration"
 
 
 def detection(result: LineageResult) -> tuple[bool, Optional[int]]:

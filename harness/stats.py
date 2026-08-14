@@ -89,11 +89,32 @@ def simulate_power(p_a: float, delta: float, n: int = 50, trials: int = 3000,
 def minimum_detectable_effect(p_a: float, n: int = 50, target_power: float = 0.80,
                                trials: int = 1500, alpha: float = 0.05, seed: int = 20260814) -> float:
     """Smallest delta (percentage points, as a 0-1 fraction) reaching
-    target_power, via coarse-to-fine search over delta in [0, 1 - p_a]."""
+    target_power, via coarse-to-fine search over delta in [0, 1 - p_a] --
+    the increase direction. See minimum_detectable_effect_decrease for a
+    baseline near ceiling, where the effect of interest is a decrease."""
     best = None
     for pct in range(1, 100):
         delta = pct / 100.0
         if p_a + delta > 1.0:
+            break
+        power = simulate_power(p_a, delta, n=n, trials=trials, alpha=alpha, seed=seed)
+        if power >= target_power:
+            best = delta
+            break
+    return best if best is not None else float("nan")
+
+
+def minimum_detectable_effect_decrease(p_a: float, n: int = 50, target_power: float = 0.80,
+                                        trials: int = 1500, alpha: float = 0.05, seed: int = 20260814) -> float:
+    """Smallest decrease (a negative delta, as a 0-1 fraction) reaching
+    target_power, via coarse-to-fine search over delta in [-p_a, 0).
+    Needed when the baseline sits near ceiling and the effect of interest is
+    a decrease (preregistration.md Sec 5) -- minimum_detectable_effect only
+    searches the increase direction and returns no useful result there."""
+    best = None
+    for pct in range(1, 100):
+        delta = -pct / 100.0
+        if p_a + delta < 0.0:
             break
         power = simulate_power(p_a, delta, n=n, trials=trials, alpha=alpha, seed=seed)
         if power >= target_power:

@@ -1,10 +1,15 @@
 """
-Entry point (implementation.md Sec 3). Runs Condition A to N=50 first, then
-B, then C -- concurrent within a condition, sequential between conditions
-per preregistration.md Sec 9's sequencing. Then mechanical scoring, the
+Entry point (implementation.md Sec 3). Runs Condition A first, then B, then
+C -- concurrent within a condition, sequential between conditions per
+preregistration.md Sec 9's sequencing. Then mechanical scoring, the
 validation layer, per-condition observations.md, and the achieved-power
 recomputation. Writes everything under runs/ per interface_contract.md
 Sec 8.
+
+N per condition and the output directory name are overridable via CLI args
+(`python run_all.py [N] [runs_dirname]`) so the same script serves both the
+N=25 mechanical-only trial and the real N=100 run without duplication.
+Defaults: N=100, runs_dirname="runs".
 """
 
 from __future__ import annotations
@@ -24,12 +29,11 @@ from harness.validation.held_out import select_stratified_sample, render_held_ou
 from harness.validation.audit import select_audit_sample, run_audit, render_audit_report
 from harness import stats as st
 
-N_PER_CONDITION = 50
+DEFAULT_N_PER_CONDITION = 100
 MAX_WORKERS = 20
 CONDITIONS_IN_ORDER = ["A", "B", "C"]
 
 ROOT = Path(__file__).resolve().parent
-RUNS_DIR = ROOT / "runs"
 DOCS_DIR = ROOT / "docs"
 
 CONDITION_DIR_NAME = {"A": "condition_a", "B": "condition_b", "C": "condition_c"}
@@ -70,13 +74,20 @@ def run_condition_batch(client: Anthropic, condition: str, n: int, dbs_dir: Path
     return results
 
 
-def assert_counterbalance_balanced(results: list, condition: str):
+def assert_counterbalance_balanced(results: list, condition: str, n: int):
+    """Assignment is by lineage-index parity (experimental_parameters.md
+    Sec 5): even index -> A-first, odd index -> B-first, indices starting
+    at 1. Exactly balanced when n is even (e.g. the real N=100 run). At odd
+    n (e.g. the N=25 trial), B-first is unavoidably larger by exactly one --
+    still the closest balance parity assignment allows, not a defect."""
     a_first = sum(1 for r in results if r.counterbalance_arm == "A-first")
     b_first = sum(1 for r in results if r.counterbalance_arm == "B-first")
-    assert a_first == 25 and b_first == 25, (
-        f"Condition {condition}: counterbalance arms not exactly 25/25 (A-first={a_first}, B-first={b_first})"
+    expected_a, expected_b = n // 2, n - n // 2
+    assert a_first == expected_a and b_first == expected_b, (
+        f"Condition {condition}: counterbalance arms not {expected_a}/{expected_b} as expected for n={n} "
+        f"(A-first={a_first}, B-first={b_first})"
     )
-    log(f"[run_all] Condition {condition}: counterbalance arms confirmed 25/25")
+    log(f"[run_all] Condition {condition}: counterbalance arms confirmed {expected_a}/{expected_b} (n={n})")
 
 
 def render_scoring_block(result: LineageResult, score) -> str:
@@ -135,11 +146,11 @@ def render_observations(condition: str, results: list, scores: dict, run_date: s
                             malformed.append(ev.detail)
 
     strategy_counts = {s: 0 for s in STRATEGIES}
-    strategy_collapse = {s: {"took_action": 0, "no_action": 0} for s in STRATEGIES}
+    strategy_collapse_label = {}
     for r in completed:
         sc = scores[(condition, r.lineage_num)]
         strategy_counts[sc.strategy] += 1
-        strategy_collapse[sc.strategy][sc.collapse_binary] += 1
+        strategy_collapse_label[sc.strategy] = sc.collapse_binary
 
     arm_stats = {}
     for arm in ("A-first", "B-first"):
@@ -148,9 +159,9 @@ def render_observations(condition: str, results: list, scores: dict, run_date: s
         for r in arm_results:
             sc = scores[(condition, r.lineage_num)]
             dist[sc.strategy] = dist.get(sc.strategy, 0) + 1
-        took = sum(1 for r in arm_results if scores[(condition, r.lineage_num)].collapse_binary == "took_action")
-        no_action = len(arm_results) - took
-        arm_stats[arm] = {"n": len(arm_results), "dist": dist, "took_action": took, "no_action": no_action}
+        arbitration = sum(1 for r in arm_results if scores[(condition, r.lineage_num)].collapse_binary == "arbitration")
+        non_arbitration = len(arm_results) - arbitration
+        arm_stats[arm] = {"n": len(arm_results), "dist": dist, "arbitration": arbitration, "non_arbitration": non_arbitration}
 
     both_unchanged = sum(1 for r in completed if scores[(condition, r.lineage_num)].seeded_first_final == "unchanged" and scores[(condition, r.lineage_num)].seeded_second_final == "unchanged")
     one_deleted = sum(1 for r in completed if [scores[(condition, r.lineage_num)].seeded_first_final, scores[(condition, r.lineage_num)].seeded_second_final].count("deleted") == 1)
@@ -183,20 +194,21 @@ def render_observations(condition: str, results: list, scores: dict, run_date: s
         f"| {pooled['write']} | {pooled['edit']} | {pooled['delete']} | {pooled['recall']} | {pooled['decline']} | {pooled['error']} |",
         "",
         "## Strategy distribution",
-        "| Strategy | Count | took_action | no_action |",
-        "|---|---|---|---|",
+        "| Strategy | Count | Collapse binary |",
+        "|---|---|---|",
     ]
     for s in STRATEGIES:
-        lines.append(f"| {s} | {strategy_counts[s]} | {strategy_collapse[s]['took_action']} | {strategy_collapse[s]['no_action']} |")
+        label = strategy_collapse_label.get(s, "arbitration" if s == "arbitration" else "non_arbitration")
+        lines.append(f"| {s} | {strategy_counts[s]} | {label} |")
     lines += [
         "",
         "## By counterbalance arm",
-        "| Arm | N | Strategy distribution | took_action | no_action |",
+        "| Arm | N | Strategy distribution | arbitration | non_arbitration |",
         "|---|---|---|---|---|",
     ]
     for arm, d in arm_stats.items():
         dist_str = ", ".join(f"{k}: {v}" for k, v in d["dist"].items()) or "none"
-        lines.append(f"| {arm} | {d['n']} | {dist_str} | {d['took_action']} | {d['no_action']} |")
+        lines.append(f"| {arm} | {d['n']} | {dist_str} | {d['arbitration']} | {d['non_arbitration']} |")
     lines += [
         "",
         "## Final DB state",
@@ -217,34 +229,38 @@ def render_observations(condition: str, results: list, scores: dict, run_date: s
 
 
 def main():
+    n_per_condition = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_N_PER_CONDITION
+    runs_dirname = sys.argv[2] if len(sys.argv) > 2 else "runs"
+    runs_dir = ROOT / runs_dirname
+
     for cond in CONDITIONS_IN_ORDER:
-        d = RUNS_DIR / CONDITION_DIR_NAME[cond]
+        d = runs_dir / CONDITION_DIR_NAME[cond]
         (d / "dbs").mkdir(parents=True, exist_ok=True)
         (d / "transcripts").mkdir(parents=True, exist_ok=True)
         (d / "scoring").mkdir(parents=True, exist_ok=True)
-    (RUNS_DIR / "validation").mkdir(parents=True, exist_ok=True)
+    (runs_dir / "validation").mkdir(parents=True, exist_ok=True)
 
     client = Anthropic()
     run_date = datetime.now().strftime("%Y-%m-%d")
 
     all_results = {}  # condition -> list[LineageResult]
     for cond in CONDITIONS_IN_ORDER:
-        log(f"[run_all] === Starting Condition {cond} (N={N_PER_CONDITION}) ===")
-        cdir = RUNS_DIR / CONDITION_DIR_NAME[cond]
-        results = run_condition_batch(client, cond, N_PER_CONDITION, cdir / "dbs")
-        assert_counterbalance_balanced(results, cond)
+        log(f"[run_all] === Starting Condition {cond} (N={n_per_condition}) ===")
+        cdir = runs_dir / CONDITION_DIR_NAME[cond]
+        results = run_condition_batch(client, cond, n_per_condition, cdir / "dbs")
+        assert_counterbalance_balanced(results, cond, n_per_condition)
         for r in results:
             (cdir / "transcripts" / f"lineage_{r.lineage_num:03d}.md").write_text(render_transcript(r))
             (cdir / "transcripts" / f"lineage_{r.lineage_num:03d}_raw.json").write_text(render_raw_json(r))
         all_results[cond] = results
         log(f"[run_all] === Condition {cond} complete: "
-            f"{sum(1 for r in results if r.status == 'complete')}/{N_PER_CONDITION} without error ===")
+            f"{sum(1 for r in results if r.status == 'complete')}/{n_per_condition} without error ===")
 
     # --- Phase 4: mechanical scoring ---
     log("[run_all] Scoring all lineages")
     scores = {}
     for cond in CONDITIONS_IN_ORDER:
-        cdir = RUNS_DIR / CONDITION_DIR_NAME[cond]
+        cdir = runs_dir / CONDITION_DIR_NAME[cond]
         for r in all_results[cond]:
             if r.status != "complete":
                 continue
@@ -254,7 +270,7 @@ def main():
 
     # --- Per-condition observations.md ---
     for cond in CONDITIONS_IN_ORDER:
-        cdir = RUNS_DIR / CONDITION_DIR_NAME[cond]
+        cdir = runs_dir / CONDITION_DIR_NAME[cond]
         obs = render_observations(cond, all_results[cond], scores, run_date)
         (cdir / "observations.md").write_text(obs)
     log("[run_all] Per-condition observations.md written")
@@ -266,23 +282,23 @@ def main():
     held_out_md = render_held_out_artifact(
         held_out_sample, DOCS_DIR / "taxonomy_codebook.md", coder="(unassigned)", run_date=run_date,
     )
-    (RUNS_DIR / "validation" / "held_out_coding.md").write_text(held_out_md)
+    (runs_dir / "validation" / "held_out_coding.md").write_text(held_out_md)
 
     flat_results = [r for c in CONDITIONS_IN_ORDER for r in results_by_condition[c]]
     classifier_labels = {(r.condition, r.lineage_num): scores[(r.condition, r.lineage_num)].strategy for r in flat_results}
     audit_result = run_audit(flat_results, classifier_labels, fraction=0.10)
     audit_md = render_audit_report(audit_result, run_date, total_n=len(flat_results))
-    (RUNS_DIR / "validation" / "classifier_audit.md").write_text(audit_md)
+    (runs_dir / "validation" / "classifier_audit.md").write_text(audit_md)
     log(f"[run_all] Validation artifacts written. Audit discrepancies: {len(audit_result['discrepancies'])}")
 
     # --- Statistics: confirmatory test + exploratory + achieved power ---
     log("[run_all] Computing statistics")
 
-    def took_action_count(cond):
-        return sum(1 for r in results_by_condition[cond] if scores[(cond, r.lineage_num)].collapse_binary == "took_action")
+    def arbitration_count(cond):
+        return sum(1 for r in results_by_condition[cond] if scores[(cond, r.lineage_num)].collapse_binary == "arbitration")
 
     n_a, n_b, n_c = len(results_by_condition["A"]), len(results_by_condition["B"]), len(results_by_condition["C"])
-    x_a, x_b, x_c = took_action_count("A"), took_action_count("B"), took_action_count("C")
+    x_a, x_b, x_c = arbitration_count("A"), arbitration_count("B"), arbitration_count("C")
 
     p_ab = st.fisher_exact_two_sided(x_a, n_a - x_a, x_b, n_b - x_b)
     diff_ab, lo_ab, hi_ab = st.wilson_diff_ci(x_a, n_a, x_b, n_b)
@@ -293,10 +309,12 @@ def main():
     p_bc = st.fisher_exact_two_sided(x_b, n_b - x_b, x_c, n_c - x_c)
     diff_bc, lo_bc, hi_bc = st.wilson_diff_ci(x_b, n_b, x_c, n_c)
 
+    # preregistration.md Sec 5: baseline near ceiling, effect of interest is
+    # a decrease -- power at -25pp/-32pp, and decrease-direction MDE@80%.
     p_a_rate = x_a / n_a if n_a else 0.0
-    achieved_power_22 = st.simulate_power(p_a_rate, 0.22, n=n_a, trials=3000)
-    achieved_power_32 = st.simulate_power(p_a_rate, 0.32, n=n_a, trials=3000)
-    mde_80 = st.minimum_detectable_effect(p_a_rate, n=n_a, target_power=0.80, trials=1500)
+    achieved_power_25 = st.simulate_power(p_a_rate, -0.25, n=n_a, trials=3000)
+    achieved_power_32 = st.simulate_power(p_a_rate, -0.32, n=n_a, trials=3000)
+    mde_80 = st.minimum_detectable_effect_decrease(p_a_rate, n=n_a, target_power=0.80, trials=1500)
 
     labels_3x5 = []
     for cond in CONDITIONS_IN_ORDER:
@@ -313,12 +331,12 @@ def main():
 
     stats_report = {
         "n": {"A": n_a, "B": n_b, "C": n_c},
-        "took_action": {"A": x_a, "B": x_b, "C": x_c},
+        "arbitration_count": {"A": x_a, "B": x_b, "C": x_c},
         "rate": {"A": p_a_rate, "B": x_b / n_b if n_b else 0.0, "C": x_c / n_c if n_c else 0.0},
         "confirmatory_A_vs_B": {"p": p_ab, "diff": diff_ab, "ci": (lo_ab, hi_ab)},
         "exploratory_A_vs_C": {"p": p_ac, "diff": diff_ac, "ci": (lo_ac, hi_ac)},
         "exploratory_B_vs_C": {"p": p_bc, "diff": diff_bc, "ci": (lo_bc, hi_bc)},
-        "achieved_power": {"at_22pp": achieved_power_22, "at_32pp": achieved_power_32, "mde_80": mde_80},
+        "achieved_power": {"at_minus_25pp": achieved_power_25, "at_minus_32pp": achieved_power_32, "mde_80_decrease": mde_80},
         "table_3x5": table_3x5,
         "categories": categories,
         "cramers_v": cramers_v,
@@ -326,10 +344,10 @@ def main():
     }
 
     import json
-    (RUNS_DIR / "statistics.json").write_text(json.dumps(stats_report, indent=2, default=str))
-    log(f"[run_all] Statistics written to {RUNS_DIR / 'statistics.json'}")
+    (runs_dir / "statistics.json").write_text(json.dumps(stats_report, indent=2, default=str))
+    log(f"[run_all] Statistics written to {runs_dir / 'statistics.json'}")
     log(f"[run_all] A vs B: p={p_ab:.4f}, diff={diff_ab:+.3f}, 95% CI=[{lo_ab:.3f}, {hi_ab:.3f}]")
-    log(f"[run_all] Achieved power at observed rate {p_a_rate:.1%}: +22pp={achieved_power_22:.2f}, +32pp={achieved_power_32:.2f}, MDE@80%={mde_80}")
+    log(f"[run_all] Achieved power at observed rate {p_a_rate:.1%}: -25pp={achieved_power_25:.2f}, -32pp={achieved_power_32:.2f}, MDE@80%(decrease)={mde_80}")
     log("[run_all] Done.")
 
 

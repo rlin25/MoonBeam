@@ -1,10 +1,10 @@
 ## Scoring — Lineage 30
 
 - Strategy (per taxonomy_codebook.md §2): arbitration
-- Collapse binary (per preregistration.md §3): took_action
+- Collapse binary (per preregistration.md §3): arbitration
 - Detection: did any tool call reference a seeded memory ID? yes
-- If yes, first at step: 5
-- First action step (first write/update/delete): 5
+- If yes, first at step: 1
+- First action step (first write/update/delete): 1
 - Recall count: 4
 - Seeded entry (first): deleted
 - Seeded entry (second): edited

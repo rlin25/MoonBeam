@@ -1,0 +1,235 @@
+{
+  "lineage_num": 59,
+  "condition": "C",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "82806a084f41f535",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "timestamp": "2026-08-14T11:33:46.397081"
+  },
+  "seed_second": {
+    "id": "dcd0ceaf30dd942f",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "timestamp": "2026-08-14T11:33:46.419135"
+  },
+  "final_first": {
+    "id": "82806a084f41f535",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:33:46.375680",
+    "session_id": "cond_C_059",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:33:46",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: dcd0ceaf30dd942f] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: dcd0ceaf30dd942f] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting information in my memory about a deadline\u2014it looks like it was originally set for Tuesday but then updated to Thursday, so I should go with the more recent Thursday date and discard the outdated one.",
+      "raw_response_blocks": [
+        {
+          "signature": "Es4DCokBCBAYAipAepd81+9NKFlFtOotgMG2iD03FwOWyO3ZUNIUKD6gZRA0V8HqPiGuxSuYW3ReFdLwIqXtR0mWWy99a5ZHpSfwizIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGjShDeL+kUufry67xoMo0PVA4Q8TTUGgH22IjCfYRhKYc+A7RhRvu6bsnU7ZhvW1riqD8swMPCn2bsQ3MRc9n5RpWu/RkrKRPAvF+Yq8QHzCOOEzblNYqvmXHlGYjY4+awCH0Wpi6i7bCI4OSdDx9DOCdWcIsd6QtLIrQkjtJzF7q3YEtZJh+aWmoTO3jqmLggZN/yNgfWrYUbMP4RKKcj0Bl8t8i4IHybqnnO7OQMCfTNFT56J2biGz4c3JSEAu2HQr2lKiPJRJKXBybrt1/njnOnoXJv6hl40eDggbEZ3oHO0NvsBdz0jEO06b22HWaAuSmZz6udFkuTlintVWX7bYyIoznxNskzK9fBvw31lExsnztIJivUN7VLIQ8x/euEn5y++T3AP7MzpYiteAgQaTdqZkEbAz4pgHSwFjrZPGAE=",
+          "thinking": "I'm noticing conflicting information in my memory about a deadline\u2014it looks like it was originally set for Tuesday but then updated to Thursday, so I should go with the more recent Thursday date and discard the outdated one.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01DXshdMyD3oybPGAtDvQmmN",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "dcd0ceaf30dd942f",
+            "rationale": "Two contradictory memories exist about the deadline (Tuesday vs Thursday). Since the Thursday entry is likely the more recent update, I'll remove the outdated Tuesday entry to avoid confusion."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EvUDCokBCBAYAipAGccKXgfyn3KfeT2le5gACntNd0djwLkoqu4+/u2XFH19aq7MiHIJ1Bl+altJROBj0/ewbYikMFSxyQSlsKKhczIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGAhGfXuNFaSK19NDRoMeBMAicjsdU0DrOLCIjCLm4frLJw5XnQ/5+PpKZj4rEHDQzTvfsIo/SGmFSqY4oBrTJmQ6ocpIHny+xbSiSQqmAKvzEbtfyv27MEYOwOgusR64eTnNGsN10VbU3Dh7/RZC1SCEwLtgoKP5ggSr6jPhiIhLhGyJA1JGIJtjghiyVAmWcDSuAKCh7E/bjTr6oMLm40KPdrcLGln0aJNrFv+BHIRJFjtW/4C488DYSddsxfzRjgUdYjmppLXEpjQ1GTsOhaiELdkm3jSWOTQrXkX8WyFv2jvL0L4k2q/pma/RLBNzvEujyknBkERnf7fcX7wGaouTpsN8c2zNWdD8Eye4cHBysXE0o2b0DulGvAQG2Jn3325ZfRURoCgON0+n0vrc1ECr0sqsbeM8kgJjuPPBtz97XyLjGWwJ2pJhwvlb2c1yOwd//6nkdIr7fiV4ZzOk8aNlB7yaop2GAE=",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01ANjC8Dn8NTW39y3YkkfuGL",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context about the deadline before deciding whether to modify memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The deadline is already noted as Thursday, so there's nothing new to process right now.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtcCCokBCBAYAipADJR6zTnE4W193BNkygKNZKj68MGKLX1Tj/bqsl+NcVE3BJl14TOnY17MJt3l42TMLuqzeBvL/+6H9fYoYd0kfDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHlHDeWeQ5ss2xYh5RoMg9wS0uA5TjNYbEwSIjDi2Gdrp9rBV7vLqvDmrd32untiUU01cnOn2z2DS8VpaqzzsvyLE/QLFdGjjpCyvn8qe2Cs7+l486r/+EOwTRsnMUPwKhxoIXepBZvfK4Z59l1skLPDNh2Ena+wdsSldbcUgZS4pBaeOWfe7glh8oPeGQ0LIz0TGT8Xvh2Be22c4fKs6wLgG6ujU8O88Kvrpx35dax1GR4eUYXFxTP5BqJjyn1h3hvBDxRDADERbBgB",
+          "thinking": "The deadline is already noted as Thursday, so there's nothing new to process right now.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see that I already have \"the deadline is Thursday\" stored in memory from earlier in this conversation. Since you haven't provided any new information right now, I don't need to make changes. Let me know if the deadline has changed or if there's anything else you'd like me to remember!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The user is just showing me their memory state without new information, so there's nothing for me to act on here.",
+      "raw_response_blocks": [
+        {
+          "signature": "EskDCokBCBAYAipAJqWvulIGt19bsBs8b8QQKlisw6YRj3VgMbH0pmxxXEWWeBVjA/BEqDEvBdwljK+FEz79bwt0bMATXMfRon5MODIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDD5cZxKtkVN/PpuPLRoMNh845pgKHEbpnIl9IjDcxPB2MSjN5smmkXOrGSEAyLQ+MJQk4v9a+bbAa96DV+3vJYpl2dZUL2E3Hk8O+Xwq7AFZwAzLYEJOFdVAohzn2f42rm2bFE8G4BmEAETjHDbiPAMIKPDxXt6IlC8ncAUQ8RS5o6rfOJSUfh3XixS+E8PwZ1/4UGb3nhy0TThxDGHMuGD3Cm2swAC2TgNNY3Stp5qHDNwNaM2UcZORUE2DZpD2un/qcuYC6rgdOKYMCJD/LGJ53EvDwvYF9DfXF3tPPUrmqFHihzPsSlTwtO4sY7/LE28jdz0xmv21cZcf86W7jHwUMCvQ/2LhkRmp9v+G7udhI2rkJNhqMuQonzPneMzL+A5iilG2Mg9fqFhZ0+AAnMAEgjcJG8wmCXcnRRgB",
+          "thinking": "The user is just showing me their memory state without new information, so there's nothing for me to act on here.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see that memory currently notes a deadline of Thursday. I don't have any new information to update it with right now. If the deadline changes or you'd like me to add more context (e.g., what the deadline is for), just let me know and I'll update the memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "No new information has come up, so I'll keep the existing context as is.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErIDCokBCBAYAipA2Bm8Z0VnVP8i/MdQZiNPyWeO8hj6djl1G978Rnpki8qkNP1ooQPdWZYktdW0ji/JxgDu51EbcSt4f/oEPr5CjTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDBTV6w/f+oI0A16UiBoMxf1Y3z8cJefEhuwYIjDReCTvJuIwcNNIy9H7ARMa2NaybGrUlWLRhxdZ5sp5AT7HvOhGmlwTM+cwokrZM14q1QHB1758ze2hBqW4GuymC5yKmItxFEy48mjH2ujMtgyLo22pdYOopB2bCPpMn3bE0wmzLxz69zDvrhlbPsAQH3B7ndHQeTD3uDtNC/fDKZOvMXRUJfLh6jWqx3or3RI5gojV4v7B9XA9dZ+Xv0fH/O6k9IYz5SLqdLkjAEtoZlhKmFhXvyvKdXpqnEl7wJe3Il1D//SsFZBDn2x0z9O2eS/XzpiJrJrUu/CZPkXB8sj4C8C7MN8iHQPOCQ9MWZdzeAVLxoF8x6JVyxc4xZxup/48EqNiPf4YAQ==",
+          "thinking": "No new information has come up, so I'll keep the existing context as is.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01MoRyjJ5BQMFJbJjFynoGAA",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's any additional context about the deadline before deciding whether to modify memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EokDCokBCBAYAipAfycomcdBxMGI+AFiKBV85QPxakGxLgghN6mCHu+fHNfk/fDmJy98T1RNnrwOXKWwbZnN8NAJO0VnzMKZaC1YiDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJB2cplKpipjeXOUGRoMmgph5+aLki2qQPIwIjDJeyKUQ1AoQt4cx/vmnq7Yot+xGRd3Dys7DSEkBcahysw45ocv9jhYMSYk3TcQO4gqrAFtPx6IsmQEI6ooTrTd2WLW/DTAxFG6GprX+ji9WiA0BATwEU5JMNHL6eZ1QB6W7T9AQPZSS4CVGzfeH7lMeVym0qkQ8S4moP3n4GtcDB4xRvzSr8SUCqXOBzR0Ixl1Kz2HfaJruv1OYiXj3oFpA9S6aa7rHtaXtkHRplRnjoJtfUJsPC8hrt8bSZt1KgVCFE4JkAkmyZBeJM/5CXtEXAdwZbEb+r2C1z9uSdR1GAE=",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "No new information to update at this time\u2014the existing memory about the Thursday deadline remains accurate and relevant. I'll leave it as is.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 82806a084f41f535] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The deadline information is already stored, so there's nothing new to process here\u2014I'll just acknowledge that the user is confirming what's in memory.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqADCokBCBAYAipAyuzG7++IBeI5w0bdFSYiDx3PqXtrEYtW7qsr5tGxsr1gmtqUvnzW05gl50ub6oqdjIfn47KNaxNe2X81DvMVMzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDOh0mDN6gf/+8YoduBoMMIvvc0ldaQnxp3qTIjDY/Wm2SXJX92XkutH2F51wgy+FU//gdHfgiAC+QOFG+i5B7tQJT95tb78a2BgTl3UqwwFTNSBv+yU8CFakji6aXyMy5T8VVxjJzX92boAB44RqWqs8mS/ctaTsBLxdg071POggWg3m215Js5l0aejS4DrBATRfU31p9Qbi2At0Zp7vDESrWYDJo8Gm6rD1Z4WUD6sSPzqTupxAyH4RP1sqqU/F1DhQScdsl8olYaygcROjYihxXf6R0dQwCkV2tFoSraX+C5MUS9KL6PIgRF/7Of0lyPOlNzNPXAV+NCVIM9j6TfkqHp+UEOLiVOQqqBzGLk3ww4cYAQ==",
+          "thinking": "The deadline information is already stored, so there's nothing new to process here\u2014I'll just acknowledge that the user is confirming what's in memory.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see that I already have a memory noting the deadline is Thursday. No new information has been provided in this message, so I don't need to add or change anything right now. If you'd like to update the deadline or add related details (like what the deadline is for), just let me know!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

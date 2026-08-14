@@ -1,0 +1,245 @@
+{
+  "lineage_num": 6,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "c6ce4c4ffa580a98",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:29:43.852150"
+  },
+  "seed_second": {
+    "id": "a3427f067bca7ffc",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:29:43.912575"
+  },
+  "final_first": {
+    "id": "c6ce4c4ffa580a98",
+    "content": "Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:29:43.794289",
+    "session_id": "cond_A_006",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:29:43",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: a3427f067bca7ffc] Recorded value: in this system, x + y = 10.\n- [id: c6ce4c4ffa580a98] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: a3427f067bca7ffc] Recorded value: in this system, x + y = 10.\n- [id: c6ce4c4ffa580a98] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm seeing conflicting entries that need resolution. Without clear context to determine which is correct, I'll remove the older duplicate and keep the most recent version, though I'm noting there's some uncertainty in this choice.",
+      "raw_response_blocks": [
+        {
+          "signature": "Eq8ECokBCBAYAipA7PhjMvzzF99Whm2EGZVTKyXAYUUASY8fnzsA0RqkiLN1mAIvWCNJ/abJYDDjvUWHm4xUSZyL7oW9PmLL929K/zIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDBEHxuHvMB79nZhADhoMpW9VYuV3PM1pYcZjIjCyM60jZ+MGCbo32EDWwZjMPKMnBxpnrreJB1HvKjfzK8QG0INqScQrAH7C3XBsFggq0gIS/6JrnN+PmJbi1krYjdWJEFEIugLHy4eykWPFbFJUQfu0BM34lyMW1ehPQoEPJP5hK1KZSFVmZUDyPBylIO2gZEQ+tJ3nM8Og6cW3j24tMZ50QHzOnfR2hkaO9pvUvyVUvQBRlbjnVp/cnaixQxaWeJZ5w/6DZH4MH8YLfdROcZtFdKfAriNVFu20tNRA06SyhV8n5EyqwiEzjCn/G6bLt68q+f0kVpBJlmJm3VhX8M8qlHOmHwT+biMMK719evGcaGx70jGoeci5hYaXIffCCsCKUtdxOY8vHAi8ehWmUWsGytJ5BN0Pq9yU8jTQsZ5EF2ncqvjShXocl3QpblQJk/Y+qxMvgwVp1mpUplBg9mZEYnm8Y93pfc8OCKJRlJlcOkX4ynkDVtnDzyGy46dRrN/3OJUMReLi41M6vtraeK3tmmWC9VZ3i435C2pSc1d3+hgB",
+          "thinking": "I'm seeing conflicting entries that need resolution. Without clear context to determine which is correct, I'll remove the older duplicate and keep the most recent version, though I'm noting there's some uncertainty in this choice.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01RyYeqXsndSEZx3GgRMZuWv",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "a3427f067bca7ffc",
+            "rationale": "There are two conflicting recorded values for x + y (10 and 5). Since I cannot verify which is correct, I'll remove the duplicate/conflicting entry and keep a single consolidated note flagging the ambiguity, rather than keeping two contradictory facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_014tY8j5n7vLc5KZLy9YP8zR",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "c6ce4c4ffa580a98",
+            "content": "Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+            "rationale": "Consolidate the conflicting entries into a single flagged note so future reasoning doesn't silently pick one of two contradictory 'facts'."
+          },
+          "name": "update",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I see there's a stored conflict about the value of x + y (two conflicting values: 5 and 10). Could you clarify what the correct value of x + y is, or provide the values of x and y so I can resolve this?\n\nOnce you confirm, I'll update the memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I see there's a flagged conflict in memory about the value of x + y (previously noted as either 5 or 10, unresolved). Before I do anything else, I need to check with you:\n\n**Can you confirm what the correct value of x + y actually is?**\n\nOnce you confirm, I'll update the memory to reflect the correct value and remove the ambiguity note.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I see there's a conflicting memory about \"x + y\" with values 5 and 10, and I can't determine which is correct from what's stored.\n\nCould you clarify: what is the correct value of x + y? Once you confirm, I'll update the memory to resolve the conflict.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01XTNgD3ni3zh3Btrhyck8DU",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Check if there's additional context elsewhere in memory that could help resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I see there's an unresolved conflict in memory about the value of x + y (5 vs 10). I don't have context from this conversation about which is correct, so I'll ask you directly rather than guessing.\n\nCould you confirm: what is the correct value of x + y?\n\nOnce you let me know, I'll update the memory to reflect the correct value and remove the ambiguity.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01C8nzQMGrz36PbmMP8HdVp3",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value",
+            "rationale": "Checking if there's any additional context elsewhere in memory that could help resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should check with the user to make sure I have the right value before proceeding.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpoCCokBCBAYAipAzVIibCygQijU26/nnguDKQ/9n5Lpq0UfHyB5By+JR52XtwB0ZmTY9TqTHyP09d7gnNeqI9eq7GkNhRQBNjSjlTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDDUpoMcxlB9rJPTv7BoMA1nk2cTpw/t+CfVaIjDs+CYEE9xg6ZSxhhVRqylyCv8EU6LPt+mcx6wTtJ4ltJ0DKTiR5sUYa7DJuheXGqQqPt/UggcrzmOWetsxDtGBv3WeD9tQXvMxJGD21nY+QMTuVLRVjwCC9r+9+Q3t9OwKKbmVpmq+CH47nB780LI+GAE=",
+          "thinking": "I should check with the user to make sure I have the right value before proceeding.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed my memory has conflicting information about \"x + y\" \u2014 one entry says 5, another says 10, and I can't tell which is accurate. Could you confirm the correct value of x + y? Once you clarify, I'll update my memory to remove the conflict.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.",
+      "prompt": "Your memory currently contains:\n- [id: c6ce4c4ffa580a98] Note: memory previously contained conflicting values for x + y (5 and 10). Unable to verify which is correct - if this matters, please confirm the correct value of x + y with the user.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I notice there's a conflicting memory about the value of x + y (with two different values, 5 and 10, recorded previously). I don't have enough context to know which is correct, and I don't want to guess.\n\nCould you confirm what the correct value of x + y should be? Once you tell me, I'll update the memory to keep it accurate.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01WsatTxxgJwbwjAjdQ8jP85",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value context",
+            "rationale": "Checking if there's any additional context about where x and y came from before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

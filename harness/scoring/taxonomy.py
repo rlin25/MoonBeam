@@ -44,7 +44,7 @@ STRATEGIES = (
 @dataclass
 class ScoringResult:
     strategy: str
-    collapse_binary: str  # took_action | no_action
+    collapse_binary: str  # arbitration | non_arbitration
     detection: bool
     detection_step: Optional[int]
     first_action_step: Optional[int]
@@ -172,7 +172,7 @@ def classify(result: LineageResult) -> ScoringResult:
 
     return ScoringResult(
         strategy=strategy,
-        collapse_binary=_collapse_binary(result),
+        collapse_binary=_collapse_binary(strategy),
         detection=detected,
         detection_step=detection_step,
         first_action_step=_first_action_step(result),

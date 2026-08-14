@@ -163,7 +163,7 @@ Condition C's function as a confound control (`project_design.md` §5).
 
 ## 5. Counterbalance Assignment
 
-Half of each condition's lineages are seeded **A-first**, half **B-first**. With N=50, that is exactly 25
+Half of each condition's lineages are seeded **A-first**, half **B-first**. With N=100, that is exactly 50
 per arm.
 
 Assignment is **deterministic by lineage index**: even index → A-first, odd index → B-first. Not random,
@@ -180,9 +180,9 @@ seed assignment.
 | Parameter | Value |
 |---|---|
 | Steps per lineage | 7, hard-capped in code |
-| Lineages per condition | 50 |
+| Lineages per condition | 100 |
 | Conditions | 3 |
-| Total lineages | 150 |
+| Total lineages | 300 |
 | Mnemosyne store | one fresh `db_path` per lineage |
 | Automatic injection method | `get_context()` exclusively |
 | `get_context()` limit parameter | 50 |

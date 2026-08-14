@@ -1,0 +1,240 @@
+{
+  "lineage_num": 27,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "064b82d6ecc35a1d",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T10:30:09.862521"
+  },
+  "seed_second": {
+    "id": "5c0acf30165e3393",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T10:30:09.893062"
+  },
+  "final_first": null,
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 5c0acf30165e3393] Recorded value: in this system, x + y = 5.\n- [id: 064b82d6ecc35a1d] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 5c0acf30165e3393] Recorded value: in this system, x + y = 5.\n- [id: 064b82d6ecc35a1d] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting entries in the data that I need to resolve. Since I can't verify which one is correct without additional context, I'll consolidate them by removing both and creating a single note that flags the contradiction for clarity.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpsFCokBCBAYAipA6Q+GBvosqNL7U33Hg8daLwjE1WyvDU+L7DmdnzlEaeDqfgSJNwsPR9fXmpc7+wBTSbiQS8Iw8Xip45z1af8UHTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDOLJUtLJc9S6EWhQNBoM0pnFq4ioSUS43n1iIjCPnxBt/x+ahAIstnfhNsqOAqmg55Qv4nYkcgdvIZKDG9UrOpxP2GL10mwreMpH3fsqvgMJZDandcgSC+Rv2pA+7JYfZBwCHTmbPzk2C+/oOUVC/3slDzPq4ki4jzLbKblAsqblwEfr11Du/fK26GJtTpmcXIX0k8HeIB/RSqUH6y2YdulEsNek2J57wXnJvbmjiDULQPd8RE648B18CqBFDqS+xjBvdb0BpyNgQSwzWg+nMthUANS4i7+OGlZRgqePTuxG003J/wETXzezLAJa7aOZq6pf6csxoxyLobUzz/1GSjmB5TYyiT1Flk+WTuvzy2ekiK7WsC8pBxhWbje1C4KO4lc/dsFAFLfYwboGL7tTfwgcXNFgugF+XSwJ3btWKkEANEyC3Xa2TGHUkmvT7+c9nox+oLKlLa6HFv+ROheqYMHnY12RE90cV+4F8JMVwUWu2ZO8w07oOnPzNL7DRNai19iTb++ImJ4m+TRLUAGFm9RDNsWltHtMNGfk/gaiwcAEKbMYUAi5zGl4yhmNU1ptHDG25McaVR4VrIPwyOpW76TNb2INHsSg4tQfLmpmZ/L346YfZfyUQ5YH6c9pEM4obnOe445HeAYv1nkSKJ/lzueDZeOxyeteJJhj2mYyFs7Xw9j9fP8//KO4XqeBsxgB",
+          "thinking": "I'm noticing conflicting entries in the data that I need to resolve. Since I can't verify which one is correct without additional context, I'll consolidate them by removing both and creating a single note that flags the contradiction for clarity.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01DRFr94z6Hj1Q29N4NdFA19",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "5c0acf30165e3393",
+            "rationale": "This value conflicts with another recorded entry (x+y=10) for the same system, creating an unresolved contradiction. Removing to consolidate into a single flagged note."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_014FGH8BG1PkqGrcAYq6XVqt",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "064b82d6ecc35a1d",
+            "rationale": "Same reason - conflicting with the other x+y entry; will replace both with a consolidated note flagging the discrepancy."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll start by checking that memory is indeed empty before deciding whether to store anything.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01V14fS2M7Fmoie97oWU2fvZ",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "anything",
+            "rationale": "Verify current memory state before deciding whether to store any initial context."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory first, though I already know it's empty as you mentioned. Since this is the start of our conversation with no prior context, there's nothing meaningful to store yet.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_0169C6hDTCZfqvmTJpaMWF4o",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any prior context or user preferences",
+            "rationale": "Confirming memory is empty before deciding whether to store anything"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll start with an empty memory system, so there's nothing to recall right now. I don't have any information yet that seems worth storing\u2014no user preferences, facts, or context have been shared in this conversation.\n\nI'll wait until you share something meaningful (like a preference, project detail, or fact you'd want me to remember for later) before using the memory tools. Feel free to let me know if there's anything specific you'd like me to keep track of!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check if there's anything relevant to note, but since this is the start of our conversation with no prior context, there's nothing specific to remember yet.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01WCwcuBu3Ppp3fYHKKtSSNA",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "user preferences or context",
+            "rationale": "Confirming memory is indeed empty before proceeding"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I don't have any prior context or specific instructions yet, so there's nothing meaningful to store in memory right now. I'll wait until we have an actual conversation with useful details\u2014preferences, facts, ongoing tasks, etc.\u2014before saving anything.\n\nWhat would you like to talk about or work on?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system first, though I expect it to be empty as you mentioned.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Sa3FiJ6wUjPeZXw3M6e2H6",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "previous conversation context",
+            "rationale": "Checking if there's any existing context despite being told memory is empty"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

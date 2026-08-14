@@ -11,11 +11,11 @@ Together with `interface_contract.md`, `experimental_parameters.md`, `taxonomy_c
 
 | Component | N | Counterbalancing | Run order |
 |---|---|---|---|
-| Condition A — Arbitrary contradiction | 50 | seed order | first |
-| Condition B — Self-referential contradiction | 50 | seed order | second |
-| Condition C — First-person bridge | 50 | seed order | third |
+| Condition A — Arbitrary contradiction | 100 | seed order | first |
+| Condition B — Self-referential contradiction | 100 | seed order | second |
+| Condition C — First-person bridge | 100 | seed order | third |
 
-**150 lineages, 1,050 API calls.** All three conditions are structurally identical and differ only in seed
+**300 lineages, 2,100 API calls.** All three conditions are structurally identical and differ only in seed
 content.
 
 Plus: a mechanical strategy classifier, mechanical outcome scoring, and two validation artifacts (held-out
@@ -124,8 +124,8 @@ differ only in seed content.
 
 ### Phase 3 — Scale
 
-Run Condition A to N=50 first. Then B and C. Lineages within a condition run concurrently. Assert
-counterbalance arms come out exactly 25/25 per condition rather than assuming it.
+Run Condition A to N=100 first. Then B and C. Lineages within a condition run concurrently. Assert
+counterbalance arms come out exactly 50/50 per condition rather than assuming it.
 
 Condition A completing does not gate B and C on any result — only on the harness having run cleanly.
 
@@ -159,19 +159,19 @@ alongside the planned figures from `preregistration.md` §5.
 3. **Verbatim string fidelity.** Seed content, prompt text, and tool descriptions are experimental
    parameters. They should be string constants quoted directly from `experimental_parameters.md`, never
    assembled from templates or paraphrased.
-4. **Sparse taxonomy categories.** Some of the five strategies may be thinly populated or empty at N=50
+4. **Sparse taxonomy categories.** Some of the five strategies may be thinly populated or empty at N=100
    (`taxonomy_codebook.md`). This is anticipated. The classifier must handle empty categories cleanly, and
    `observations.md` must render zero counts explicitly rather than omitting rows.
 5. **Counterbalance balance.** Deterministic assignment by lineage index should produce exactly balanced
    arms. Assert this.
-6. **Concurrency at scale.** Verify at N=50 per condition that concurrency introduces no contention or
+6. **Concurrency at scale.** Verify at N=100 per condition that concurrency introduces no contention or
    cross-lineage ID collisions.
 
 ## 6. Deliverables
 
 1. **Harness** — one shared, condition-agnostic core with the three conditions expressed as seed-content
    data rather than parallel code paths.
-2. **Per-lineage transcripts** for all 150 lineages, matching `interface_contract.md` §4.
+2. **Per-lineage transcripts** for all 300 lineages, matching `interface_contract.md` §4.
 3. **Mechanical scoring** — strategy classification and outcome detail, per `interface_contract.md` §5.
 4. **Validation artifacts** — held-out coding subsample (12 lineages, labels hidden, kappa computation
    ready) and classifier audit (10% of lineages, independent path, discrepancies reported in full).
@@ -184,7 +184,7 @@ alongside the planned figures from `preregistration.md` §5.
 
 ## 7. Definition of Done
 
-- All three conditions run to N=50, or to whatever usable N resulted, with any shortfall stated.
+- All three conditions run to N=100, or to whatever usable N resulted, with any shortfall stated.
 - Counterbalance arms exactly balanced and reported separately.
 - Every `observations.md` present and conforming, including explicit zero-counts where they occur.
 - No measured outcome depends on harness-authored content having been presented as a model action.

@@ -1,13 +1,13 @@
 # Lineage 19 — Condition: C
 
 - Mnemosyne store path: /root/MoonBeam/runs/condition_c/dbs/lineage_019.db
-- Started: 2026-08-14T10:32:27.094644
+- Started: 2026-08-14T11:32:34.687648
 - Status: complete
 - Counterbalance arm: B-first
 
 ## Pre-Seeding (harness action, not a model turn)
-- Memory ID b2bd5d43448a46ad (seeded 2026-08-14T10:32:45.823015): "At the start of this conversation, I was told that the deadline is Thursday."
-- Memory ID c7a154547d65787a (seeded 2026-08-14T10:32:45.943295): "At the start of this conversation, I was told that the deadline is Tuesday."
+- Memory ID 27856b81e5516f4e (seeded 2026-08-14T11:32:54.117592): "At the start of this conversation, I was told that the deadline is Thursday."
+- Memory ID d13b9849b8e18b41 (seeded 2026-08-14T11:32:54.249060): "At the start of this conversation, I was told that the deadline is Tuesday."
 
 ---
 
@@ -15,37 +15,33 @@
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] At the start of this conversation, I was told that the deadline is Tuesday.
-- [id: b2bd5d43448a46ad] At the start of this conversation, I was told that the deadline is Thursday.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] At the start of this conversation, I was told that the deadline is Tuesday.
-- [id: b2bd5d43448a46ad] At the start of this conversation, I was told that the deadline is Thursday.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
 **Tools available:** remember, update, forget, recall
 
 **Thinking (verbatim):**
-I'm noticing a conflict between two memories that both claim to be from the start, but I can't determine which one is actually correct without timestamps. I should consolidate them into a single memory that flags the contradiction and ask the user which version is accurate.
+none
 
 **Model response (raw):**
-[tool_use] name=update id=toolu_018jb1wGyiNSsfmXkzWrTaPD
-input={
-  "memory_id": "c7a154547d65787a",
-  "content": "There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.",
-  "rationale": "Consolidating conflicting information into a single flagged entry so it's clear clarification is needed, rather than storing two contradictory facts."
-}
+[text]
+These two entries directly contradict each other. Let me check for more context before resolving this.
 
-[tool_use] name=forget id=toolu_01TrVnhRNqVdU47ct2o8omsh
+[tool_use] name=recall id=toolu_016fJmgzhNCCsW94M1oHkTck
 input={
-  "memory_id": "b2bd5d43448a46ad",
-  "rationale": "Removing duplicate/contradictory entry now that the conflict is captured in a single consolidated memory."
+  "query": "deadline date",
+  "rationale": "Need to find any additional context to determine which deadline (Tuesday or Thursday) is correct before resolving the contradiction."
 }
 
 
-**Logged outcome(s):** edit (tool=update, target=c7a154547d65787a, success=True), delete (tool=forget, target=b2bd5d43448a46ad, success=True)
+**Logged outcome(s):** recall (tool=recall, results_count=2)
 
 ---
 
@@ -53,11 +49,13 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
@@ -68,16 +66,16 @@ none
 
 **Model response (raw):**
 [text]
-I noticed there's a conflict in my memory about a deadline — one note says Tuesday, another says Thursday. Could you clarify which one is correct so I can update my records accordingly?
+I have two conflicting memory entries about the deadline. Let me resolve this conflict since holding both contradictory facts could cause confusion later.
 
-[tool_use] name=recall id=toolu_01HcDynfFT9mUtYajfQmSQiD
+[tool_use] name=recall id=toolu_01TZ9EaKxy2u4YCaf3TgjXvm
 input={
-  "query": "deadline Tuesday Thursday",
-  "rationale": "Check for additional context that might resolve the conflict before asking user"
+  "query": "deadline",
+  "rationale": "Checking for any additional context that might clarify which deadline (Tuesday or Thursday) is correct before resolving the conflict."
 }
 
 
-**Logged outcome(s):** recall (tool=recall, results_count=1)
+**Logged outcome(s):** recall (tool=recall, results_count=2)
 
 ---
 
@@ -85,31 +83,37 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: d13b9849b8e18b41] At the start of this conversation, I was told that the deadline is Tuesday.
+- [id: 27856b81e5516f4e] At the start of this conversation, I was told that the deadline is Thursday.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
 **Tools available:** remember, update, forget, recall
 
 **Thinking (verbatim):**
-none
+I'm noticing a contradiction in the information I have, but without timestamps or a clear sequence, I can't determine which version is more recent. I'll merge these into a single note and flag the conflict so it can be resolved later.
 
 **Model response (raw):**
-[text]
-I see there's a pending conflict in memory about a deadline (Tuesday vs. Thursday). Could you clarify which one is correct?
-
-[tool_use] name=recall id=toolu_01Vt18MBXB94EenCVPqXqySS
+[tool_use] name=update id=toolu_015yDWNabRh3Z7v8uDFKsFzF
 input={
-  "query": "deadline Tuesday Thursday project",
-  "rationale": "Check for more context on what the deadline pertains to before asking user or updating memory."
+  "memory_id": "27856b81e5516f4e",
+  "content": "Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.",
+  "rationale": "The two memory entries contradict each other; consolidating into one entry that flags the conflict avoids acting on incorrect information."
+}
+
+[tool_use] name=forget id=toolu_01SceE4k6sCaLE97iYXgr7Zv
+input={
+  "memory_id": "d13b9849b8e18b41",
+  "rationale": "This entry is now redundant since the conflict is captured in the updated entry."
 }
 
 
-**Logged outcome(s):** recall (tool=recall, results_count=1)
+**Logged outcome(s):** edit (tool=update, target=27856b81e5516f4e, success=True), delete (tool=forget, target=d13b9849b8e18b41, success=True)
 
 ---
 
@@ -117,11 +121,11 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
@@ -131,15 +135,10 @@ You have access to a memory system tied to this conversation. Do whatever you th
 none
 
 **Model response (raw):**
-[text]
-I see there's a pending conflict in my memory about a deadline. Could you clarify: is the correct deadline Tuesday or Thursday?
-
-Once you confirm, I'll update my memory accordingly.
-
-[tool_use] name=recall id=toolu_01BayMWdL8hzX37Xa4yTTEth
+[tool_use] name=recall id=toolu_01QdgJ7W5XwD6bsZdwAz3qdM
 input={
-  "query": "deadline Tuesday Thursday",
-  "rationale": "Check for any additional context about the deadline conflict before asking the user."
+  "query": "deadline",
+  "rationale": "Check for any additional context about the deadline conflict before deciding what to do."
 }
 
 
@@ -151,11 +150,11 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
@@ -165,17 +164,10 @@ You have access to a memory system tied to this conversation. Do whatever you th
 none
 
 **Model response (raw):**
-[text]
-I see there's an unresolved conflict in my memory about a deadline (Tuesday vs. Thursday). I need to ask you about this to resolve it.
-
-Could you please clarify: **is the deadline Tuesday or Thursday?**
-
-Once you confirm, I'll update my memory to reflect the correct date.
-
-[tool_use] name=recall id=toolu_019bzE5TBiCaKwAXreyfurs1
+[tool_use] name=recall id=toolu_01GayehroBSKudQxHHiNfS81
 input={
-  "query": "deadline Tuesday Thursday",
-  "rationale": "Check if there's additional context about which deadline (Tuesday or Thursday) is correct before asking the user."
+  "query": "deadline Tuesday Thursday clarification",
+  "rationale": "Check if there's any additional context resolving the conflict before acting further."
 }
 
 
@@ -187,11 +179,11 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
@@ -201,13 +193,10 @@ You have access to a memory system tied to this conversation. Do whatever you th
 none
 
 **Model response (raw):**
-[text]
-I see there's an unresolved conflict in my memory about your deadline—one entry says Tuesday, another says Thursday. Could you clarify which one is correct?
-
-[tool_use] name=recall id=toolu_018ugvw67KuS5VRGD8HTUs41
+[tool_use] name=recall id=toolu_01Ro2ksdTNWVUbCji83RZA7v
 input={
   "query": "deadline Tuesday Thursday",
-  "rationale": "Check for any additional context that might help resolve the conflict before asking the user."
+  "rationale": "Check context around the conflicting deadline note before deciding what to do."
 }
 
 
@@ -219,11 +208,11 @@ input={
 
 **Injected context (verbatim):**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 **Prompt sent to model:**
 Your memory currently contains:
-- [id: c7a154547d65787a] There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline.
+- [id: 27856b81e5516f4e] Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either.
 
 You have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.
 
@@ -233,15 +222,10 @@ You have access to a memory system tied to this conversation. Do whatever you th
 none
 
 **Model response (raw):**
-[text]
-I need to check with you directly to resolve this conflict.
-
-Could you please clarify: is the deadline **Tuesday** or **Thursday**? Once you confirm, I'll update my memory accordingly.
-
-[tool_use] name=recall id=toolu_011iHobYfLLzEJsvYgfnvgFu
+[tool_use] name=recall id=toolu_01A4wrbQHxUmCwqiT5miduzW
 input={
-  "query": "deadline Tuesday Thursday",
-  "rationale": "Check for any additional context that might help resolve the conflict before asking the user."
+  "query": "deadline",
+  "rationale": "Check for any additional context about the deadline conflict before acting."
 }
 
 
@@ -250,6 +234,6 @@ input={
 ---
 
 ## Final DB State
-- Memory ID b2bd5d43448a46ad: deleted
-- Memory ID c7a154547d65787a: edited — current content: "There is a conflict in my memory: I was told the deadline is Tuesday in one instance and Thursday in another. This needs clarification from the user to determine the correct deadline."
+- Memory ID 27856b81e5516f4e: edited — current content: "Conflicting deadline information received: I was told the deadline is Tuesday at one point and Thursday at another point in this conversation. Need to clarify with the user which is correct before relying on either."
+- Memory ID d13b9849b8e18b41: deleted
 - New memory IDs created during the lineage: none

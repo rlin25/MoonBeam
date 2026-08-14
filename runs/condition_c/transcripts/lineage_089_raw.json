@@ -1,0 +1,274 @@
+{
+  "lineage_num": 89,
+  "condition": "C",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "9eebce3a2f97e47b",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "timestamp": "2026-08-14T11:34:29.047707"
+  },
+  "seed_second": {
+    "id": "5240e696aeb11de2",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "timestamp": "2026-08-14T11:34:29.075946"
+  },
+  "final_first": {
+    "id": "9eebce3a2f97e47b",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:34:29.016820",
+    "session_id": "cond_C_089",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:34:29",
+    "memory_store": "working"
+  },
+  "final_second": {
+    "id": "5240e696aeb11de2",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:34:29.048384",
+    "session_id": "cond_C_089",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:34:29",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll resolve this conflict by checking which information is correct and cleaning up the memory.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Fvu5A9gL24nULozyPyWu8a",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Need to check context around these conflicting deadline statements to determine which is accurate."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two memory entries directly contradict each other, so I need to resolve this before it causes confusion later.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01LKLC8LiP6pWHNcLVCJJgxu",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline date conversation context",
+            "rationale": "Checking if there's additional context that clarifies which deadline (Tuesday or Thursday) is correct before resolving the contradiction."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two memory entries conflict \u2014 one says Tuesday, one says Thursday. I need to resolve this before it causes confusion later.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01XznhocZRhTurwX1kRjASzB",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context that clarifies which deadline claim is correct or more recent."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two entries conflict. Let me search for more context before resolving this.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_016VkrfYWT2AgZcnmW8LSdRT",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Need to find any additional context to determine which deadline statement is correct or most recent."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two entries conflict. Let me resolve this by keeping only the most recent/accurate information.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01FiHJxNfJb3BL8a2SUyaWLM",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline Tuesday Thursday",
+            "rationale": "Checking context around these conflicting deadline statements to determine which is correct before resolving the conflict."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two entries conflict. Let me resolve this by keeping the most likely accurate/recent information and removing the contradiction.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01ESzDueq8TXLipsrNh2Y8UV",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context to determine which deadline claim is correct before resolving the conflict."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 5240e696aeb11de2] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 9eebce3a2f97e47b] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check for more context before resolving this conflict.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_013t2gf7aecHCP32kM6yZf42",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Need to determine which deadline statement is correct or most recent to resolve the conflict between Tuesday and Thursday."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

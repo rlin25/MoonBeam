@@ -1,0 +1,266 @@
+{
+  "lineage_num": 20,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "bfcfe884ff74b14e",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:23:55.810023"
+  },
+  "seed_second": {
+    "id": "339f8cb4be0ee336",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:23:55.881825"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "339f8cb4be0ee336",
+    "content": "Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:23:55.813608",
+    "session_id": "cond_A_020",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:23:55",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Recorded value: in this system, x + y = 10.\n- [id: bfcfe884ff74b14e] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Recorded value: in this system, x + y = 10.\n- [id: bfcfe884ff74b14e] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are conflicting entries here that need to be resolved. Since I can't ask for clarification, I'll consolidate them into a single note that acknowledges the contradiction rather than keeping duplicate information.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqEECokBCBAYAipAiEN5MWEmpoidW79JxWwcQFpibaCcc9AMvHD1W++wyi7A9bPyBIbZoSmc2qOCFpxofQfFYNO0twojTT860Sp8zDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLieAFkIhQJ7Dr7achoMgdZyg2Xiu2PodvhYIjCf7qqQazOyTLzdReMBFFHBTwhN9Y5T9/eOLEczyHpdYA9fFcBYfwuB1t5BailTf7UqxALbuo5YODCdBlXyTbbN9aLIvsIfrq01mNMlXsAR1JhrlT5X6F+p0/LySavTUlwIG3b5cicU2Ynam/aQ4NP5mPZJHcp+42Vi3OWaKkBL+xbk6EODQpv+eXp6hibfTHP1cVCha3JcYpE4m/VfJBtsjSnLdUTuRA2GSRo5Xk+GViyqNIrLKfhh0IlwLiunRIoDeR9eJRHRFW2ieEi/bpTBrJ42oRBmA3xywSxRTraILV4VCSksbXik7CjN5EvI3v4VsigKPX76lCsmXJoAoqcp+79ufj6c7whtFw9mzCPMO0igKFHrMAsD7lzNuDwcchBmXFlYycn1348HI3HEAJ5czT85kjM9ZHXOehFIQ9MK9v1oBgnRd0ZKvBlSjSomxiE7+gRD+Dodr25UD2eDhXFjay7j/kCkvaXmXmx6oPnnuT6OeMR02foYAQ==",
+          "thinking": "I'm noticing there are conflicting entries here that need to be resolved. Since I can't ask for clarification, I'll consolidate them into a single note that acknowledges the contradiction rather than keeping duplicate information.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01RC6xsu9QZynwYM9HFsaCSB",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "339f8cb4be0ee336",
+            "content": "Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+            "rationale": "Flagging the contradiction between the two stored values so future recall doesn't silently trust one over the other."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_013cxcbWt6tzA1w4cxR9vEM6",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "bfcfe884ff74b14e",
+            "rationale": "Merging the conflicting duplicate into a single consolidated note about the contradiction rather than keeping two separate unresolved entries."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a note flagging an unresolved contradiction in memory: one record says x + y = 10, another says x + y = 5.\n\nCould you clarify which value is correct (or the context distinguishing them, e.g., different systems/scenarios)? Once you confirm, I'll update memory to resolve the conflict.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01K6uHTnaFtm1EH8Moe5Nf6H",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check if there's additional context around the two conflicting values that could help resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01NFRWmSRCZJjB6E6cZEPbmN",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context on the conflicting x+y records before deciding what to do."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01TL15GCSULzziYLf3mC51VN",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context on the conflicting x+y records before acting."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I noticed I have a flagged contradiction in memory about x + y (either 10 or 5), and I don't have any new information from you to resolve it right now.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01UZRvr7xma142notcK5wfM9",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y original source context",
+            "rationale": "Try to find any additional context that might help resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01WodGPRAPCuDDG6ozceDJdo",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check for additional context about the conflicting x+y values before deciding what to do."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 339f8cb4be0ee336] Note: memory contains conflicting records for this system: one states x + y = 10, another states x + y = 5. This contradiction is unresolved \u2014 need clarification from user on which value (or context) is correct before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to ask the user for clarification about the unresolved conflict in the memory notes.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErUCCokBCBAYAipAInu5d37f1IpjKPLCF52/W5d3JbOdOsgnkzWvg+OJlO81R9Qo3cLvNKur/XfLi9ayEFlvpaAkTbwTelO3OscjtzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDCnKrh5VKBxmXSnRqBoMVmlHMdwMVMtqwP3zIjDw32jGBo9TXZGZDsbQqIrLLbU+ozaiQVWqMmTfO3uLQ2+2eO0RaBloMwdrIH2PSQwqWenfJEl7RQv0tN0s6RMSLl0WINbTrBCyadRHAVlpZYXPZSCmxLsx2BJ0FLd1Wsv+/HtuUIco8N72SiZQxshfQsyqYhbUHV70XlCGdtcc+gfRf7a7tDrKg8/SGAE=",
+          "thinking": "I need to ask the user for clarification about the unresolved conflict in the memory notes.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed my memory has a flagged conflict about your system: one record says x + y = 10, another says x + y = 5. Could you clarify which value is correct (or the context in which each applies, e.g., different scenarios or times)? Once I know, I'll update the memory to resolve the contradiction.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01AavViYkWVNvniMmb1AmL1X",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y context or scenario details",
+            "rationale": "Check if there's additional context stored elsewhere that could help resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

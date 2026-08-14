@@ -1,0 +1,255 @@
+{
+  "lineage_num": 97,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "c6ba644b7c299a5b",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:29:46.560388"
+  },
+  "seed_second": {
+    "id": "61bf5340dd945b1d",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:29:46.576288"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "61bf5340dd945b1d",
+    "content": "Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:29:46.560906",
+    "session_id": "cond_A_097",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:29:46",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Recorded value: in this system, x + y = 5.\n- [id: c6ba644b7c299a5b] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Recorded value: in this system, x + y = 5.\n- [id: c6ba644b7c299a5b] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm facing conflicting information with no way to determine which is correct, so I'll merge them into a single entry that flags the contradiction for later clarification.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErQECokBCBAYAipA1WilwiC3704H1BwiWc5Rlvl61RL0rjTocZOgeduDqwrUIIEuZFGFTdRfuvw+fHuJBd0G4tIJrypTYs8OCmYaCzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLv+uHrAjvHliyTDsRoMdGVDuE512N2o/CiqIjAz+7XC2xPpugfhyK1Yiq3ZcQPGlOtLQFeYzQN48zjQO00nJE9zaK7D9mJf4yMq2h0q1wK1faR/IsXgbA9R38Tl+wAAHR2T4k93vYLRDBHGwftjJmjMZQDZp2y1VTLni18j18L1OosiFEzULvwFkiLsEAIl3zp5FADGhYwKFfcJwdpZU+w6+78KOORTtcziju+uP/43XhnDyBN9mrpeajm0keHxY6T/94r1JEEasv1DT//qljj8w+rLzLvPFadm6cmn/SlhXyIL8Brubb23E52+cjX3Ovf5g8SzWUp4PxV48DoUCSz/qpckcObOKqt6kPZAPANtNFj60hbozMsV0fEHnBWpTk6H5vD58C+z7bVIprbkXp0+DUWxUZA5i6KQMQGsugcrcVk/L9wgkIUwgfSaNmKcq9kk0RFnM9OSFLtk3DH+vAmTZeqkKm+HER1g5/zXeIILuyzTMCLSlNp/V85kohJ3/7SUuuvNqIePhmX36zzXxXcb3wb8hNwcX5A+hSTtjx8tRfxYaN3iGAE=",
+          "thinking": "I'm facing conflicting information with no way to determine which is correct, so I'll merge them into a single entry that flags the contradiction for later clarification.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01Ms4zsibQrApurSNSRGdFX1",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "61bf5340dd945b1d",
+            "content": "Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+            "rationale": "Flagging the contradiction between the two stored values so it's not mistakenly treated as consistent fact."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01MUV6XUuEATGLgZgMH4Xm9K",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "c6ba644b7c299a5b",
+            "rationale": "Consolidating the contradictory entries into a single flagged note rather than keeping two conflicting standalone facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The conflict between the user's needs and the current approach remains unresolved without additional information, so I'll respond naturally and see where the conversation goes from here.",
+      "raw_response_blocks": [
+        {
+          "signature": "Es8DCokBCBAYAipA8PcMjy7q6GzHFYNJ1zFm/NkchgB4LdFQnUNnVbq++gnE4vyYlc4t6TDP1yyNIseAcF+vCOYkQ997FOAwgBKsjDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHMY1ftAa6HFIR7NZhoMSV7wl7UKXqQfIucyIjDkSSHfbIZiCmNVnx/35SI9sovhdnyL/v1xH59BQjvHa8KqGUAdpvfEcIDNo77nFbwq8gF17viKgWPSOO/3u/i5pUOJfb259CXJSkownUfOTEpGveZRv+4Vkp+6RkkYJt8w/1YMqnljfZ4GjYIzyYbluaasrdshpOjLUU7dGCpKLVdID/Mb6nnie5iCshBTDrnwZ/c2HvNDJFS+iFaYIWTLRAks12Lo2V0DZ5PRNI15udnk+w04J7BKk+0ZL2jBDke4SH927DyuDcZdvHGwvaxf4VAPBQh1l3lXqT/TBWjuIQpfO/C5yqbvRyXRsudaXVM9ZBPzIaCn6Cl+G2tnEOrqIo0VAtvwnok5CV+ahrZ/LW6GudeHhnDT32IZWShqx0gY6152DxgB",
+          "thinking": "The conflict between the user's needs and the current approach remains unresolved without additional information, so I'll respond naturally and see where the conversation goes from here.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed there's a stored memory flagging a conflict between two records: one says x + y = 5, and another says x + y = 10. This hasn't been resolved yet.\n\nCould you clarify which value is correct (or provide the actual values of x and y)? Once you confirm, I'll update the memory to remove the ambiguity.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should keep the memory as is for now, though I might need to ask the user for clarification on what they'd like me to do with it.",
+      "raw_response_blocks": [
+        {
+          "signature": "EocDCokBCBAYAipAwsV2bA/wga1gB4ExpKIEcO/QKQAcMBCIIRmpA7XjWondvIHzRGYme2hCdpdkd445yNt0vNzd5QzyR92SZLg8WDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDFjIdIzANWEP/crY/xoMttZsJCmfBERZdeceIjDinCI0QPOh+2Shc6vBvPTWQM8az9klq/Bni0bG2y5Qmad/xR1CflNWeAdLmuCffMIqqgE3nKIOuLWcyZ/g1RU0hIk1BCcz9UggcGbOQ2FntEk6Ce+XM42iwR5L6UtnJ+8hKeXpr/SSfjNp+sY41z+DQYMCVshw69eTWtk5Kh2deVM1KeyY+XY5FtQ78gmGtSs1XVFC8Y73/dE7snl6BGETQ3Yo5rfEvLOW/PlhuiovybRT+jlHmFg9AqzICIFFH2ZXHrBV1nzY/n5VuTrxR70FVJK2ZdQjJdSvhWLnwxgB",
+          "thinking": "I should keep the memory as is for now, though I might need to ask the user for clarification on what they'd like me to do with it.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed a conflict in memory: one record says x + y = 5, another says x + y = 10. Could you clarify which value is correct (or provide the correct equation)? I'll update the memory once you confirm.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I found a conflict in my memory: I have two contradictory records about x + y, one saying it equals 5 and another saying it equals 10.\n\nCould you clarify which value is correct (or if both were meant for different contexts)? Once you confirm, I'll update my memory accordingly.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01DXCvGMT8S6XdwZfF3cLkVy",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Checking if there's additional context about these values before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check what you'd like to resolve this conflict. Could you clarify: is the correct value x + y = 5 or x + y = 10 (or something else entirely)?\n\nI'll keep the flagged conflict in memory until you confirm, so I don't accidentally rely on the wrong value.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_015m6CwxpEvBixiwZoRQdRWx",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value context origin of records",
+            "rationale": "Check if there's additional context that might help resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check with you directly: could you clarify which is correct \u2014 x + y = 5 or x + y = 10 \u2014 or let me know if both apply to different contexts? I'll update my memory once confirmed.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01HtZb9wo8qpAyAnVToE3src",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y value context",
+            "rationale": "Check if there's additional context stored that could help resolve the conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.",
+      "prompt": "Your memory currently contains:\n- [id: 61bf5340dd945b1d] Conflicting records found: one entry states x + y = 5, another states x + y = 10. These are contradictory; the correct value needs clarification from the user before relying on either.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user to clarify what they're looking for rather than making assumptions about what they want.",
+      "raw_response_blocks": [
+        {
+          "signature": "Eq4CCokBCBAYAipAwtgPVCwYTlfJr05NFJvE2iJVirdS83r1rRT3rEDuJgdwwgB+pd9aVQWjlwxRrhH88qnXGD6oGT6dAQbLYXe7kzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDBfvoHGG6nF6HSsESRoMNJT3zWRa7lXaZMBIIjB4oVva9OVA0KbX94SVabMB0EQjo5ikrTHsDFwfgOIzErq1zy/VjDy5X8VyzrGtWQMqUvudWNQyOWdZbD9tkfn9QaGVZIctf4WqWmsejoDYQVHxY64uaSrjQwkf1NzdgWWGXnaHmTdmYB4yFeDfacaRoJ1wUrSWEXKvP3GaFJY2+t7p1GUYAQ==",
+          "thinking": "I should ask the user to clarify what they're looking for rather than making assumptions about what they want.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed a conflict in my memory: one record says x + y = 5, another says x + y = 10. Could you clarify which is correct (or if both apply to different contexts)? I'll keep the note as-is until you confirm.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

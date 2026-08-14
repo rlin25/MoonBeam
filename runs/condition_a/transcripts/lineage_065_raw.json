@@ -1,0 +1,249 @@
+{
+  "lineage_num": 65,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "ac2963c65203c48d",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:29:12.518338"
+  },
+  "seed_second": {
+    "id": "08e374e95824c37d",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:29:12.540535"
+  },
+  "final_first": {
+    "id": "ac2963c65203c48d",
+    "content": "Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:29:12.497163",
+    "session_id": "cond_A_065",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:29:12",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 08e374e95824c37d] Recorded value: in this system, x + y = 5.\n- [id: ac2963c65203c48d] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 08e374e95824c37d] Recorded value: in this system, x + y = 5.\n- [id: ac2963c65203c48d] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I've found conflicting entries and need to resolve them. Since I can't verify which is correct, I'll keep the more recent one and remove the outdated entry to eliminate the contradiction.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtcECokBCBAYAipArBPP+AtwgE/naFuaYVHoT975Q0QjqQNxR6w2Asp2EjIuGD3dlcKTyFzmxnbr2o040ELSz0ecA8wXnDSsPL2ZszIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDLeUAt13/bkiWBA7/xoMH6+ckuR1o4Na54REIjAYlSRBnAbzSdf2TH4qGOcqkpkLZP3lvyi9kIEzpOGIAFXw+DYSLbk6qNgyDYoth5Eq+gL9FkaNY9ff8tVpWoG9+57WfEGP3J2EgOnv1MdPhCg913or+pX5vDeHj6ze7rBR6iGdU5EEDnBRBxtHUjWTG5M/WfxAoA+s4hwk4lXTWwqLGQOpmeiF+MQ4WOXiLh10bQB9eXGhoFlo1oJ2OG506/FdMtSc+aYGEwDkQzl94C0mdaNzrBlqYdytt+M3Wptyhmr0EVr3yGp6FoV+zfUd5PT0zH2WQLHKgRdyhQ8vbsWeEZne2MeU3CgaFsSZ6TraSXUOaT1sSrJjhMSoOKD2AzYzeVefyPjPCKWxdvDHZsKdzOZuDkNmf8lvMcPWKH4STGcrWfRk5zouqw7CJOt3kIklKsDwbk4G+jwg9YCLg+ZmArkns0I/lbGn2het+2KfyvqEowR72NUL1Fw5GvDHQRMQkZohDxuEcwoRkl6uAdnBknLzA5PCmGaCDrHRAjWYLuZ6jiN7ZnBqyqWqmYuipAjhiQmV5Covn39QaLB+bch9x6JoUols+Cei2rIYAQ==",
+          "thinking": "I've found conflicting entries and need to resolve them. Since I can't verify which is correct, I'll keep the more recent one and remove the outdated entry to eliminate the contradiction.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01ACJY6zHw94NKC4xb4vKWVg",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Checking for additional context to resolve the contradictory values before editing memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 08e374e95824c37d] Recorded value: in this system, x + y = 5.\n- [id: ac2963c65203c48d] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 08e374e95824c37d] Recorded value: in this system, x + y = 5.\n- [id: ac2963c65203c48d] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing these two entries contradict each other, so I need to figure out which one is accurate. Since I can't verify which is correct, I'll flag the conflict rather than arbitrarily choosing one, and note both versions as uncertain.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpkFCokBCBAYAipA2/gCASqtn9bdd5r+bcpG+8g7JlletWE8W4PxJI7LVAnGTM28m7isueXJfpLjotIpuakSzC3a6hzLU1v69lnKoTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDFq3bzuhxrZdEn8zcRoMY1EBVR6faQclal7HIjAUSVb6BW1fDqDjqFEl1g/K5I532EZAkPWxD8fTLE4RJD0CaA6zdt0zm+O/LEmxWA8qvAMLGZhurGJDHnEW1B2sifeiJAHeAye8le0H2V16FUrihHb6UY7o7QSulCV0B5cG31AO0SW4WeRCALGLHYebeaZAHBGroFAAodY7RdQkP4BCzfcK+K9xXwfKNfc1gHVcTgQ2gFR5Vl2V0W+CMcfh8gJ96A4iTjoqd+829Hzd2vew+rfm0rGs2+sfgjei8E7slkw9eML4EXPQuIhqb8LOayklBpf/Yc8i3hCgrREIlGoDQOPWBU7NEO+kP2W6g0jyu1dFLfS9sEdLbr2oKlcm+T7HL99GderHKqN0DR7C61Hkjm9vtKapuuWH5cFGMo6f93mhaoFUxNfk+fyEhD8KtcSak/jHyEdBeKIkI0v3Drn892ZWjEGnPpXwJn8cxPE7fMRiM1Zw4I1Wxhi37cGvSDq1h/FXhjNV+pgbvZQ6LyqGCXr+gCdpFL0s4GO6U6O9rp72mPkSi6tXbZqm46qsvZS4GYpEG/UkkvJD3r7hTfsNb9FkFhYXm2UKlzF554KwBCmya6jX1iKuQx5TLeiOTAjxm3btjXuLHWIznGN+2EQ70DloAMmxc514XGHmsbLZCUc9FOnznmqNYkUh17oYAQ==",
+          "thinking": "I'm noticing these two entries contradict each other, so I need to figure out which one is accurate. Since I can't verify which is correct, I'll flag the conflict rather than arbitrarily choosing one, and note both versions as uncertain.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01USKhuex4hAKk67PfSa4NwL",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "08e374e95824c37d",
+            "rationale": "Two contradictory values for x+y exist (5 and 10). Cannot verify which is correct, so consolidating into a single flagged entry rather than keeping two conflicting facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01ESco63ziEWbm6Cpr2i6uTo",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "ac2963c65203c48d",
+            "content": "Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+            "rationale": "Documenting the conflict clearly for future reference and flagging need for clarification."
+          },
+          "name": "update",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+      "prompt": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01WEGxV83btnJM8NUJoZbatM",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system equations",
+            "rationale": "Check for more context on this conflict before deciding what to do"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+      "prompt": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01VT1vN8bxFdpfcCxJyzdDEn",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system value",
+            "rationale": "Check for any additional context before deciding what to do with the conflicting memory entry."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+      "prompt": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_015yNa9bMLyZaYhRg4nrpAPS",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system equations",
+            "rationale": "Checking for additional context about this system before deciding what to do with the conflicting memory."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+      "prompt": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01Bu8rnUA56w3jH7yFJpJQvH",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y system equations",
+            "rationale": "Check context before deciding what to do with the conflicting record."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.",
+      "prompt": "Your memory currently contains:\n- [id: ac2963c65203c48d] Conflicting records found: one stated x + y = 5, another x + y = 10, for \"this system.\" The x+y=5 entry was removed as a duplicate/conflict; need clarification from user on which value is correct, or treat x + y = 10 as the current value pending confirmation.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I should ask the user for clarification before proceeding, since I need more information to help them effectively.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqwCCokBCBAYAipAntDVmg9PD6aNiOmTq5Y9XJuLEuLu8KVD5/iiCx0ESabyWuzEJNWUPLm5GKc6COk7n76zX9XQesNHdyCvaiM+tzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDHTK52yDxTn7uk7T+hoM5GcgnoRpGGf51AK8IjCIkVp0hM/Ut2ulLQuKZsEpi8bHL910BBbiDPyWIa31x+YvurogZZTOZVscfe/srZ8qUHJRYNhpZCX0T36tv8UbORvXuWowbARB9PdA0tsWCnSfSFWK6Mu6KCbmUg1UAoDWou6egqmPaRNewYJ1o4R9jyNWxNCfEhQYuPLAdwJh4Gy2GAE=",
+          "thinking": "I should ask the user for clarification before proceeding, since I need more information to help them effectively.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have an unresolved conflict in memory: one earlier record said x + y = 5 and another said x + y = 10 for \"this system.\" I removed the x+y=5 entry as a likely duplicate/conflict, but I want to confirm with you: is x + y = 10 the correct value, or should it be 5 (or something else)? Let me know and I'll update the memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

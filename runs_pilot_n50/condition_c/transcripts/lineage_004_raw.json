@@ -1,0 +1,271 @@
+{
+  "lineage_num": 4,
+  "condition": "C",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "da2a11c5cb7b208c",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "timestamp": "2026-08-14T10:32:46.407035"
+  },
+  "seed_second": {
+    "id": "671587ffa76727bc",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "timestamp": "2026-08-14T10:32:46.495081"
+  },
+  "final_first": null,
+  "final_second": {
+    "id": "671587ffa76727bc",
+    "content": "Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T10:32:46.410003",
+    "session_id": "cond_C_004",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 14:32:46",
+    "memory_store": "working"
+  },
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I've spotted a contradiction in the information and need to resolve it. Since I'm not certain which version is correct, I should ask the user to clarify rather than guessing.",
+      "raw_response_blocks": [
+        {
+          "signature": "EoUDCokBCBAYAipASMg5GVAG/E3n6joQe+SSYpfjaULWHIGK+W2QwJ6EHijzTYQFNzRtcOYoT+lp/aMtxS8iNpZN0H2u4+qbL+JVRDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDNnFUpazyN/sLJzETxoMrfsXAJmseb1WpQrCIjD97scyEqCzquoQqnonohsHJp2A9UQfuh9qFeuyCNIZOi8Zitv5RFfA0ghMjWadeDsqqAEBcakZFnMYQAP6ZCDAo4L+obuWDimhYtziKhjNaTBzA8ETq8jeGqfcq3QkJxvJQ4/6P9g7F2Zx769pH1ML+juLYPa8uAdAJ79wrratqIyKVB80ny8wMV3NCTkGtuGqf4VUc3YXUCBiD+ocQPOKBcUbG/EOVZDEDiRg1w65FW0csVmJ8Mwgsqt6J0yjdR/l+SksOYec5Dodfapx2IxrWy5pbQU9OSz+cgMYAQ==",
+          "thinking": "I've spotted a contradiction in the information and need to resolve it. Since I'm not certain which version is correct, I should ask the user to clarify rather than guessing.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I noticed my memory has conflicting information about the deadline\u2014one entry says Thursday, another says Tuesday. Could you clarify which is correct? I'll update my memory once you confirm.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01KDV5QZEHVtd4zSsjR9DbVr",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context that could resolve the contradiction before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there's conflicting information here, so I should flag that discrepancy and either merge the details or note which version is most current.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpADCokBCBAYAipAVi8V297F70NWldR34C9adNBLstpR+2Q/OcqNaSokf+oW3uE5KpO7LC1tjoACrk1q1/Bllj7yYYg1b2x0qnAjVjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDF+vLYVnQFNiKn71lxoMLDlrgjQVKUJrLmwdIjCKvPKZdADli5TBIu5IBowJGzkxMVInBrJ3e2+NhNZGt/uEkeSsgboEci2whL/EORwqswFbvVOpaEBHaBEKvx8d5l2bZpCiYezsLIT75wXx2du10neRCw4KtjibKFIirRf3m1OPbM+LoB+zf1MOahM3hBvw4L3vj67+O2B+Iy/Xpg4CZ72vON0Y9Uj09CsJ5rmhSir1BC+FbjE0XwL6yNxwebpc7GNp7T3cJGOUygc1Ymi3n6Awm+ysWTl6J4iQ5CwrLOZEfvJkSNwBtdB4Ec16c6nPr9cTNcdrcwNYe6OshXhx06/KsxgB",
+          "thinking": "I'm noticing there's conflicting information here, so I should flag that discrepancy and either merge the details or note which version is most current.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01HjJHK4w23Vp5bz8eiW5DFo",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context resolving the conflicting deadline dates before making changes."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "These two memory entries conflict with each other. Let me resolve this by checking for more context.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_011aE6GpTvYUAQ6HKLbV7bdD",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline date correction update",
+            "rationale": "Need to determine which deadline (Tuesday or Thursday) is correct, or if one was a correction of the other."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] At the start of this conversation, I was told that the deadline is Thursday.\n- [id: da2a11c5cb7b208c] At the start of this conversation, I was told that the deadline is Tuesday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing conflicting memory entries with similar timestamps\u2014likely one is a correction of the other. Since I can't determine which came first, I'll merge them into a single note and flag the discrepancy so the user can clarify if needed.",
+      "raw_response_blocks": [
+        {
+          "signature": "EvMECokBCBAYAipAzCZzncdXqLlW4OQgNCooAHwvMGh/9humIhgHTt1NU/hjtt9hitLvuD9jlTZVupkZPQYTWewTNfV0Lq0FGuPrSzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMhTgZNTLGz23C12EhoM8esT9WyRuQ3OeqN+IjB2IAQ4slAbCGUJqPX3WHd0DisK5VqFevFrcivwBkGVXyoQVb+Em9VjGXV+FxL4jMsqlgPg83yKbfLUq+/SQV/XaXrDe7f1aoyicNHyvE15+0CoarTZJpE5Xk1vu+5xRGqmCMVSOH/jNHVTEDxlJsCYXYsUvuHlEVViHC1HT1WHJxmvPqkekhkOsKHjDXQYiisIvOABmsAhGQIXf6d1DCsnmTPPVC0KGXfJUyi7WJdMHQ50MvZrFRy3YDJC1+NeYYhz7Wyc8TQ60VZlz282Sj89FZN7T+KvQ+qfQlcEECmLF/fLU8wSh6udfnvMCUieGLYnBX2JXMmTZOLlshsyTc3yU07oBRsqdf74PcZ7IY9dyHIjwO20nvu6whvTiBYOl47r98gA6jjrih7h9brPUxUX47aVmEqQmZpjjccSnCaYJoO3WaGd0W/owZL2gRZDlZX6HtTPwZeWJEQ3KLH7QZlWIa/bmaVfG+5WO/O1kgxX0QLEcCDGXKsonS+RCQ9uHub2CG/lzFzgmCB6/jseVxwv8+nRHMN/8uATOaeJ3G4127QHTWzgWnLnl61iaOQx5hcqZjge+9zN75MtCLWRDiJtoIcKA+y9CPfbGAE=",
+          "thinking": "I'm noticing conflicting memory entries with similar timestamps\u2014likely one is a correction of the other. Since I can't determine which came first, I'll merge them into a single note and flag the discrepancy so the user can clarify if needed.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01PVYR5Ro3JRgR8bAHvw4cb8",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "671587ffa76727bc",
+            "content": "Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.",
+            "rationale": "Consolidating contradictory memory entries into one flagged note to prompt clarification instead of storing two conflicting facts."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01Xcsih8nqBiKNAagU5fmD6G",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "da2a11c5cb7b208c",
+            "rationale": "Merging duplicate/conflicting deadline info into a single consolidated entry."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_019ypGworfudZbKPGRVov2ET",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline Tuesday Thursday clarification",
+            "rationale": "Check if there's more context about the deadline conflict before deciding what to do"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "id": "toolu_01KgDcNwhimkYXdqxzKzxxGN",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline Tuesday Thursday clarification",
+            "rationale": "Check if there's any additional context about the deadline conflict before addressing the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.",
+      "prompt": "Your memory currently contains:\n- [id: 671587ffa76727bc] Conflicting information received about the deadline: told it was Tuesday at one point and Thursday at another. Need to clarify with user which is correct.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I have a note about conflicting deadline information \u2014 you mentioned both Tuesday and Thursday at different points. Could you clarify which is correct so I can update my memory?",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01VhSGJJyXjn9RB7GMw3yjQj",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline",
+            "rationale": "Check if there's additional context about the deadline conflict before asking the user."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}

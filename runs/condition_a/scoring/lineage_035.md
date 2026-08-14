@@ -1,11 +1,13 @@
 ## Scoring — Lineage 35
 
-- Strategy (per taxonomy_codebook.md §2): silent indefinite search
-- Collapse binary (per preregistration.md §3): no_action
-- Detection: did any tool call reference a seeded memory ID? no
-- First action step (first write/update/delete): null
-- Recall count: 7
+- Strategy (per taxonomy_codebook.md §2): arbitration
+- Collapse binary (per preregistration.md §3): arbitration
+- Detection: did any tool call reference a seeded memory ID? yes
+- If yes, first at step: 1
+- First action step (first write/update/delete): 1
+- Recall count: 0
 - Seeded entry (first): unchanged
-- Seeded entry (second): unchanged
+- Seeded entry (second): deleted
 - New entries created: none
+- If arbitration: which entry was kept? kept_first
 - Fidelity, where an edit or consolidation occurred: n/a

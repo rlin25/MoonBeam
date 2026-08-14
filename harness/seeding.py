@@ -33,7 +33,7 @@ SEED_CONTENT = {"A": SEED_A, "B": SEED_B, "C": SEED_C}
 def counterbalance_arm(lineage_num: int) -> str:
     """Deterministic by lineage index (experimental_parameters.md Sec 5):
     even -> A-first, odd -> B-first. Not random, so arms come out exactly
-    balanced (25/25 at N=50) and reproducibly so."""
+    balanced (50/50 at N=100) and reproducibly so."""
     return "A-first" if lineage_num % 2 == 0 else "B-first"
 
 

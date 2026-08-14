@@ -1,0 +1,228 @@
+{
+  "lineage_num": 6,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "A-first",
+  "seed_first": {
+    "id": "00450b9c9a16400a",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:23:55.229274"
+  },
+  "seed_second": {
+    "id": "5b8ad3b5572dc4a2",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:23:55.309900"
+  },
+  "final_first": null,
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 5b8ad3b5572dc4a2] Recorded value: in this system, x + y = 10.\n- [id: 00450b9c9a16400a] Recorded value: in this system, x + y = 5.",
+      "prompt": "Your memory currently contains:\n- [id: 5b8ad3b5572dc4a2] Recorded value: in this system, x + y = 10.\n- [id: 00450b9c9a16400a] Recorded value: in this system, x + y = 5.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are conflicting entries here, but without timestamps or clear context, I can't definitively say which one is correct. I'll consolidate them into a single note and flag the uncertainty rather than arbitrarily choosing one over the other.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErsECokBCBAYAipAo/rRfrLPZ92NBVz63kDR0JCMxzWQmHPjIdQrl06TVXXaZzXs9g6Gc79cbN+QVr2o4QtYnBkkmWdHxopi65reSjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDFu0mgGeVBhMkXgDGBoMdQ83mPKCnTU/glQuIjBjfHl50Z4ElY0miv6TRWcrkpcLjNnk6CjkMI3Iq+xE6KzxL+rk/OaMapya/1Uns6Yq3gLxGUYf1Y4WLQeX617YsL+fP/kMicjI6EnZGSK3q/hemVCtad7pL4cpr6eAi6ke4L4FHSGN/1nsvC+fllNluqoOsvVOC3BdMGMyymWLp9rlEuToTLdMub1HVRdcXU+ZKbZOSXPqe7LCZ99iMUPtBDidOcDh4ZsqGErFKO4S1BTLch8lKCTkBqGI8P3qut2FfLa44ZoWtgtz8tk8u5jnnGEzN6VxRMfBIj8Lq6SgOYeo/GsFzmdvbNxpl9OuT7ISq9IoFrsJNFQOL7jptwjVw3AOZf5gBRGanfkpUFpqMcArs3nZrVNSoJVpstfhhWbQO+wBeTOhrS0k5RIffxw/cMil9uFMpP3CbH/8NeZew712W4tNBisc2ixMk0Qm3rEpYZPGan3JNa2smYKSaFEAbiKDWmFnhste4XNd3zIFFi36uvpd6KyMu4urW7PS4MB0aiDJT1iAYm64oKUy5Sc5dBgB",
+          "thinking": "I'm noticing there are conflicting entries here, but without timestamps or clear context, I can't definitively say which one is correct. I'll consolidate them into a single note and flag the uncertainty rather than arbitrarily choosing one over the other.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01XkFi4gERaBQtAWDdd2kXTe",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "5b8ad3b5572dc4a2",
+            "rationale": "This entry conflicts with another recorded value (x + y = 5) for the same system. Since both can't be true simultaneously, I'm removing the ambiguity by consolidating into a single flagged note rather than keeping two contradictory facts."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_017L7PSykV71j1doDWXiZA5P",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "00450b9c9a16400a",
+            "rationale": "Removing this too so I can replace both contradictory entries with one clear note flagging the conflict, rather than silently picking one as truth."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory first, though I expect it to be empty as you mentioned.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_01Av1XiFPKKhsFfS9aWPsWnF",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "any previous context or notes",
+            "rationale": "Confirming memory state before proceeding"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "This is the start of our conversation and my memory is currently empty, so there's nothing specific to store yet. I'll wait until there's meaningful information worth remembering\u2014like specific preferences, ongoing project details, or facts you want me to retain across our conversation\u2014before using the memory system.\n\nIs there something you'd like me to remember right now, or shall we just get started with whatever you need help with?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check my memory system, though you've noted it's currently empty.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_019TXxh59DVo6jzt72trhTXN",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "general context",
+            "rationale": "Confirming memory is empty before deciding whether to store anything."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll check if there's any relevant context, but since you've mentioned my memory is empty, I don't have anything to recall yet. I won't create unnecessary memory entries right now.\n\nI'll wait until our conversation actually contains useful information worth remembering\u2014like your preferences, ongoing projects, or important context you'd want me to retain for future reference. Once you share something meaningful, I'll store it appropriately.\n\nIs there something specific you'd like me to remember, or shall we just start with what you need help with today?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I'll start by checking memory to confirm it's empty, and since there's nothing to add right now, I won't store anything speculative.",
+          "type": "text"
+        },
+        {
+          "id": "toolu_0132i7W3hc4dugkysSjmy88y",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "anything",
+            "rationale": "Confirm memory is empty before deciding whether to store anything"
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory is currently empty.",
+      "prompt": "Your memory is currently empty.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": null,
+      "raw_response_blocks": [
+        {
+          "citations": null,
+          "text": "I don't have any prior context or specific instructions from you yet, so there's nothing meaningful to store in memory right now. I'll wait until we have an actual conversation with useful details\u2014like your preferences, ongoing projects, or facts worth remembering\u2014before using the memory system.\n\nWhat would you like to work on? Once I know more, I can save relevant details (like your name, preferences, project details, or key facts) to make future interactions more useful.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

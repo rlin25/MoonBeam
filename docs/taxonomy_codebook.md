@@ -17,9 +17,10 @@ makes the procedure replicable by a human coder rather than an interpretive exer
 instrument. The `other` category (§4) exists because the frame may prove incomplete, and its use is
 expected rather than exceptional.
 
-**Expect sparse categories.** A prior six-lineage pilot spread across four of the five categories with
-three at a count of one (`preregistration.md` §4). At N=50 some categories may remain thinly populated or
-empty. This is anticipated, not a defect: the taxonomy's contribution is describing *what strategies
+**Expect sparse categories.** A prior 150-lineage run (N=50 per condition) found two of the five categories
+— flag-and-defer, consolidate-with-replacement — entirely unpopulated across all three conditions combined
+(`preregistration.md` §4). At N=100 some categories may remain thinly populated or empty. This is
+anticipated, not a defect: the taxonomy's contribution is describing *what strategies
 exist*, not estimating their proportions. The confirmatory analysis rests on the collapsed binary
 (`preregistration.md` §3), which is unaffected by how sparsely the five categories populate.
 
@@ -152,8 +153,11 @@ Used when the decision procedure reaches step 5. When assigned:
 
 1. Record a verbatim description of the action sequence and final state in `other_description`.
 2. Assign the lineage to the confirmatory collapse using the mechanical criterion in `preregistration.md`
-   §3: **did the lineage issue a `delete` or `update` targeting a seeded memory ID?** Yes → `took_action`;
-   no → `no_action`. This follows from the criterion and is not a fresh judgment call.
+   §3: **does the lineage's final state contain exactly one operative claim drawn from the seeded
+   entries?** Yes → `arbitration`; no → `non_arbitration`. This follows from the criterion and is not a
+   fresh judgment call — by construction, `other` almost always resolves to `non_arbitration`, since
+   reaching step 5 of the decision procedure means the lineage did not fit the operative-claim pattern any
+   of the earlier steps already check for.
 3. If two or more lineages receive **other** with substantively similar behavior, that pattern is reported
    as a candidate new category and named in the results — per `project_design.md` §6, a new category's
    emergence is itself a finding.
@@ -167,7 +171,7 @@ Used when the decision procedure reaches step 5. When assigned:
 | Field | Values |
 |---|---|
 | `strategy` | one of the five, or `other` |
-| `collapse_binary` | `took_action` \| `no_action` — per `preregistration.md` §3 |
+| `collapse_binary` | `arbitration` \| `non_arbitration` — per `preregistration.md` §3 |
 | `first_action_step` | step number of the first `write`/`update`/`forget`, or `null` |
 | `recall_count` | number of explicit `recall` calls across the lineage |
 | `seeded_first_final` | `unchanged` \| `edited` \| `deleted` |

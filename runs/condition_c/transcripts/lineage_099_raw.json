@@ -1,0 +1,241 @@
+{
+  "lineage_num": 99,
+  "condition": "C",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "2e88403818de22a8",
+    "content": "At the start of this conversation, I was told that the deadline is Thursday.",
+    "timestamp": "2026-08-14T11:34:41.653198"
+  },
+  "seed_second": {
+    "id": "079f1425c08785c7",
+    "content": "At the start of this conversation, I was told that the deadline is Tuesday.",
+    "timestamp": "2026-08-14T11:34:41.670811"
+  },
+  "final_first": {
+    "id": "2e88403818de22a8",
+    "content": "There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:34:41.632704",
+    "session_id": "cond_C_099",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:34:41",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 079f1425c08785c7] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 2e88403818de22a8] At the start of this conversation, I was told that the deadline is Thursday.",
+      "prompt": "Your memory currently contains:\n- [id: 079f1425c08785c7] At the start of this conversation, I was told that the deadline is Tuesday.\n- [id: 2e88403818de22a8] At the start of this conversation, I was told that the deadline is Thursday.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing a conflict between Tuesday and Thursday in the information provided. Since I don't know which was stated first, I'll merge them into a single note and flag the ambiguity rather than arbitrarily choosing one over the other.",
+      "raw_response_blocks": [
+        {
+          "signature": "ErUECokBCBAYAipAlPTaOibS3ZOE4WyoZZ8b2UfY8uLwWcO/1pNseZiLYLF8+VQOTzMG02Gj3HAdMdlLN27wszg5Ev4IGBV+hW7CADIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMS3wrBgFswyFWq5ihoMtQGZeMb7XttUhbQSIjDagSgbinMr2qmp0ht9XlMjjBQ9XZyEvN6zUDCl9Lii4kuaMBeMcSZXd9kxLNU4EUQq2AIqbuWL3NGFmVeSqSZFzyqAc+FPAb8tTaRhu8QbeWQDJDvVUtV0/nVTXDggObRpLXpvo5Sxh+XJasMQBwYNPzHpruEy/JbSSp6TULTuSk/5sgwoD+fZS/h4KHf/BtHt2/HgdCRP02IfnOxQ1mDUmIj2wWptTIG59j7mtfL7ISIEzSbiroRniluNfbENOJ/WZSWhpH/ji3CMkAWEe144XMXeIvGuoY4cr5Kbd50R68/XNRD1kJ2kwOEwCP3s37pqWo65T5Ya04FXXno0EJgfoSa/kusUjPIcuqinvJtS3Psmyw69raV/QcjJzXu5QUoJ8visY6eYkXX2NyGBBVqGzZ7/r2bAD/criRq48Y2F5wW68b/5W5ObRFCRRV1SwyMyoK6mqPcnXexeZtGYcq2zeHrrdIXt4o52EjpaPB3sIcCDLh9KOPa/kVUy9oLjl7Y09yEqgcoehj72RRgB",
+          "thinking": "I'm noticing a conflict between Tuesday and Thursday in the information provided. Since I don't know which was stated first, I'll merge them into a single note and flag the ambiguity rather than arbitrarily choosing one over the other.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_0132y9TXo8ymnbFQaGUJW4ys",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "2e88403818de22a8",
+            "content": "There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+            "rationale": "Consolidating conflicting deadline info into a single flagged note rather than storing two contradictory facts."
+          },
+          "name": "update",
+          "type": "tool_use"
+        },
+        {
+          "id": "toolu_01LDniXEbCmu1KK1XwLU2Pus",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "079f1425c08785c7",
+            "rationale": "Merging duplicate/contradictory deadline entry into the updated consolidated note."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I need to ask the user for more information to help them better.",
+      "raw_response_blocks": [
+        {
+          "signature": "EssCCokBCBAYAipAsheTu6i+tCsMTuFBmmnXFwvOhTTqK1BLUV8vpAA4lzXrlDRA4GGUFWyPTGG42vJRe/sj0k2ie3qVuqZ8j7hgujIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDOmmWyaaCy3qOcVSzBoMrwppCmya18+EZINqIjB/NVx8xJ5okeYC9rjnPkp3AiZbUR3LIaUJiHThcn+4OSonpesVRSW1l6RJXjgFXb4qbxmAdj1ElOL7jg4IzAGp2uzKUhcVOCZNCd35tzgFXM7S7/4Q0V3AxipIMiTxazo8EOYuIVNM8jVGOgfexzchOQ1zazb808L4v00M5EW1Nsm6phuMaMnFPeDJUjijrk4GVfyVg+c8qKWAjwqS8ZOokBgB",
+          "thinking": "I need to ask the user for more information to help them better.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have a pending item in memory noting a conflict between \"Tuesday\" and \"Thursday\" as the deadline. Could you clarify which one is correct? Once I know, I'll update my memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I don't have enough context to proceed, so I should ask the user what they'd like me to help with.",
+      "raw_response_blocks": [
+        {
+          "signature": "EtoDCokBCBAYAipAHMOvyqpgGeKDl1CVtkR+Gd2sBJx6E+ZiCd/6ese24uVCIyRgvhcr/wFZx12cxKJUVFIP9UmrSj3BqXAKdIzuCDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGiJPhHFPgYabLd3EhoMk5PsAr9p8Tz5BQ44IjDDWcJ9uvCPUUlx2etby8kcmeGppYc9Jk4Unq64y+iklNuSpgsR/2VjbSKznhY77Lcq/QGJXC+5IsWK+5PfSOANAR6ajUmRa4hQ4adFqJKTTBPPOUzn0a6Va0iupEFYIM7Ad4XlQ0wThGkp6fAW5NnSHHN2khiEgPT8baZ2T9bb+aKDvQwenDYcZcXRiPVqp1hq5YyjU6Mgdeoaj33/8zJTbAaJZixY4DqUDmx+KVKiqmt0o5Y9ED6ybJYFZmP8pD0Hbv4VIBlgEbq3+mBjqYBEIPpqYtYyjN7B6AUtRaCIkusb5hY/PQfpNqvpyFzPyoQynsco9mG7P2ESzhSjsiM8d2KgGiJbpCKxJ26pXiJUQEVlyQOPlWi+h0EUbyjM6sPvno12giArI9RrnOS5ssBmGAE=",
+          "thinking": "I don't have enough context to proceed, so I should ask the user what they'd like me to help with.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have a note that there's a conflict about the deadline \u2014 one message said Tuesday, another said Thursday. Could you confirm which one is correct so I can update my records?",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I notice there's no new user input, just the memory context, so I should either ask for clarification or proceed based on what's already been established.",
+      "raw_response_blocks": [
+        {
+          "signature": "EpkECokBCBAYAipAckxrOVRvXqlfMjQ/4ml9VWcCS3u/t7m3We5vg+UIEl+wwYt4jSmGqHxPTNgXeUuXjMnWcYS/41XPFq5TaHCm/jIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJQEWtFMNV/dDCVFohoMLbd09lHIi4r3W8bTIjAQ+9ApNPpA2k1PXDD8xirHCUoOVfNgSeI0MRyw6Y3zgodqi3b1P2L1P0yhcneEUTkqvALAo+qO/RRBuzm52t5HusCuxCbUd8fCHlBMOZyKScuSBfNY9Mkm8bf5PJZQuoqlq5AVddqs/YmKf+xrUo9Rz10VtZiIU7pxgLV29pIw00LRd7Sf3VFCipfVSyFrJLY+59NUWcLjSE2ebLxv42PMCfSP09r9CV1C4XyBYW2hTWlydL05Cp+i+SsHbF03ETaJte5FysTyEnMIwxnwSNF8GKO45N0kB4nDNQh53DAvdaiHSmuthxoltwyUu15uOwPME4uyFe77nAHLpkYQQxiz8fyHIne2ezwr1220617fwHkuafzbx3c0h/MG3fz25U7QlSS36Mc5f6vhzYDqLCtimmoGeMgdVswnMfc61CtGieCfKReBzxqok2aFMMhyNBlN8m2mWhsnISXP8SDXRo8AffNY1oH4tIM5GB8eW4GqGAE=",
+          "thinking": "I notice there's no new user input, just the memory context, so I should either ask for clarification or proceed based on what's already been established.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have an unresolved contradiction noted in memory regarding your deadline \u2014 one message indicated Tuesday, another Thursday. Could you clarify which one is correct? I'll update my memory once you confirm.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EtQDCokBCBAYAipAXyeZrg5FVL6sAaMA7HFhwL338ZZ77SPuOeUmreV+eCjMqEgQFt4nu/pLJucneF81tTqSVolcP+CgmRQxh5UtrDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDCk0mpmMyw039bXznxoM9i9XySX5ZgfTTP/nIjBmuUbfWFvT4G8segstJCUZvDCsU21DaCL4WTGQos0lrv4v9KhnUrkgpdhkm+6Nr+Qq9wG6hbrrMIJKnbJ3hWta1QTayMPh4E3VJgCl0Uac1Q4C0/eWPfe1GHqS8ORsy8vlA3C9cMqzJT8CpygEVll1vxRsSskRv9D53gtXIpQ6HZNVyQR+w2CGuiYsCfMaMQM3P7OMoSDExCKzdVqnw2ZZz4OZ4TlxvTrskl7XRAr8fEFicWj5F0DV/1+KYfRoH505Kff+mqmcZKEP03H5A0cDx9T2jDBIhJhi6nlN/VSKgksPtGa0EyP/AdsVdsjqHrrMeF+UV0+ehs/XUcfikbjQPidlkk5EnpDtU2M/9COeMgzegvjCRQSQLNbByagmgUoFtUDKp14hAPqhGAE=",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have an unresolved note about a scheduling conflict \u2014 one message mentioned Tuesday as the deadline, another mentioned Thursday. Could you confirm which day is correct? I'll update my memory once you clarify.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm waiting for the user to provide more context before I can move forward with this.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqcDCokBCBAYAipABsGyZho+l9Ddut4eodJSkqvfr8Ne91gcYMb+tByH2sNl5KftYOd2YXAsXztGNXxa83L7QD9iaf2LwiAHlvwJ/TIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDJKEZwBSntQN7fgOFRoMdntdpV6Lg87dFZL0IjBPFeZJGhA3GHpyeqyj1xghq0e7/bI6eYvRGIjZNQninoVoqRiPsU3bjlqM3mtyZcAqygET+yKGQCr/nDxwuwxr3zDmypi+Zx8ibaGrY97MdNb+dyw47MIWlYwTLaNdFLXdm8yx3QnKg2uZvTV8sQ9Rnmy54nQJ/2MfoR1/BIGaDj0pdZSChVAJxje/ZbE2Fm/cdzPvJrx0P1flbIvCb7A6cCjTq9EvILzJQR8qGlAlj4JjQDZDTWBAXRuJHgunWCDG450gM1VTNAyYbkbd81nBtNJ6St7gsqqYq/rTKX8/m8v9DDZevMWZQMJeROiNzsdSbBzZotAbK2sUelhgGAE=",
+          "thinking": "I'm waiting for the user to provide more context before I can move forward with this.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_012UqZ7f5HyYE4BdE7thDpu3",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "deadline Tuesday Thursday clarification",
+            "rationale": "Check if there's any additional context resolving the contradiction before deciding what to do with the memory entry."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.",
+      "prompt": "Your memory currently contains:\n- [id: 2e88403818de22a8] There is a contradiction in what I was told about the deadline: one message said Tuesday, another said Thursday. This needs clarification from the user to determine the correct deadline.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The user hasn't provided new information yet, just showing me the current memory state. Since the task is to work with what's available, I'll keep things as they are for now until they give me something to work with.",
+      "raw_response_blocks": [
+        {
+          "signature": "EqMDCokBCBAYAipANgkcrqavTsc/wZfxBbW3dCX0x0qtrOG4Z2NpDWcERyZqGjYRXLNB7EIp6wAPWTgEJifdFld8G29GswXoR5BDVDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMKv+bwijdXzaD4ZDhoMkmBrreEl8slcDmOjIjDmTgBkWoaaerdYh4HyXGm7RGJSKD2nkgrrxX/fhRV/Y6ZQQkfJA7cxz15oc8OzkDQqxgGZ9K8HobPipLjQvEA4xYcNdHaCFtqLehRwu9OmPo+Z5IY0jz6h4w8kun7o7zonWAFhRU8jefzfAx0r2AyUmOnUgyMupk6kvlyH6IJTfaGZLr/IjvYQj78uGfWAyfrA0Y6DZy9xVggd7LKz2itFpnL0dep7+H/ZmLoQgKkHUF7tzGzQTBgfECdXIy/IB7ZO/yyFNojO5rnReuCe8umF7uiSbV4Z1+sLagxyim9a99pXd3JiPgABNeYUTydvZhnCAqa2hDzvna4YAQ==",
+          "thinking": "The user hasn't provided new information yet, just showing me the current memory state. Since the task is to work with what's available, I'll keep things as they are for now until they give me something to work with.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I still have an unresolved note about a deadline conflict (Tuesday vs. Thursday) that hasn't been clarified yet. Could you confirm which day is correct? I'll keep the memory entry as-is until you clarify, then update it accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "lineage_num": 19,
+  "condition": "A",
+  "status": "complete",
+  "counterbalance_arm": "B-first",
+  "seed_first": {
+    "id": "e9ae3fbbfebe93a2",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "timestamp": "2026-08-14T11:23:55.188897"
+  },
+  "seed_second": {
+    "id": "14aff77b41263f60",
+    "content": "Recorded value: in this system, x + y = 5.",
+    "timestamp": "2026-08-14T11:23:55.274703"
+  },
+  "final_first": {
+    "id": "e9ae3fbbfebe93a2",
+    "content": "Recorded value: in this system, x + y = 10.",
+    "source": "conversation",
+    "timestamp": "2026-08-14T11:23:55.089742",
+    "session_id": "cond_A_019",
+    "importance": 0.5,
+    "metadata": "{}",
+    "veracity": "unknown",
+    "created_at": "2026-08-14 15:23:55",
+    "memory_store": "working"
+  },
+  "final_second": null,
+  "new_memories": [],
+  "steps": [
+    {
+      "step_num": 1,
+      "injected_context": "Your memory currently contains:\n- [id: 14aff77b41263f60] Recorded value: in this system, x + y = 5.\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: 14aff77b41263f60] Recorded value: in this system, x + y = 5.\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "I'm noticing there are conflicting entries here, so I'll consolidate by keeping the most recent one and removing the outdated version.",
+      "raw_response_blocks": [
+        {
+          "signature": "Er8DCokBCBAYAipAU1UIOUerzuoyB0Ds63QAMI6cV5nqMFb3M4J3tvz5pyIohd0Sr/emXgFyw8JbX+Mn1s7VVGBlcEGGDHtqXDm6CDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDMn8DFfcBK72nravxRoM13Ug63pnbPfPqFjeIjCfdCqqEnuoUAukKY182PdI9fP160ItcRXwSih5rIP4tQS/kasTji6xM+3PwHNMQvQq4gFesWYf7vG1SQ9e0atUW70URYR8gwsdrwVoJKvPct7W4jwQbn92cX33W+UAq5eQnzkFIZiPnqsOw+oJNaAsIrreztuzF1FObRMf491bMyu43cF4u/lhpPIWW+QWtsyHJt4FuGxiQnvuEvTTG7oTsPXl7oBB14t0mBAPmG9TEHWCHl0rzzugXQbIironycxhIePnrh/Vb29F2wDnbnZMHS233RwkDExc2UKinykYefTYPkFV9ZU2o5SY/vZJIqMjUm1PkrW4HOdYWsspT/JzhgVs7bGVRADLbnxK7KvzWc+O2KfRGAE=",
+          "thinking": "I'm noticing there are conflicting entries here, so I'll consolidate by keeping the most recent one and removing the outdated version.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_011ppccRw5e7WyYJ8PUeFCML",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "memory_id": "14aff77b41263f60",
+            "rationale": "Two contradictory values for x+y are stored (5 and 10). Since the system likely changed or was corrected, I'll keep only the more recent entry (10) to avoid confusion."
+          },
+          "name": "forget",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    },
+    {
+      "step_num": 2,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "The memory doesn't seem relevant to what's being asked since there's no new information provided, so I'll leave it as is without making any updates.",
+      "raw_response_blocks": [
+        {
+          "signature": "EvYDCokBCBAYAipA2BvBkF14uxW9vrb8C8b0l+QgKFWCN9hoIJQci7EUtlCW60kXrRuCzL+VO03lnBw6kIK69zRpHxpF/hBKc9hnMTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDNZRiVxY5f0tjlxI4RoMy47XfOIGNJT2wPK1IjBi7DGlqcxxIeKUMldUOEiY85vh+29lCnJPyFkCuCh5v+pPiJows+IGiL1G1uRfRhEqmQKycP0O94aDYO1RahxAPzw1e+msnx9s2uO3bWRPd4JvuJkdtoqhQV83gVse2JSfOWxmuz7rNRH9nvHN6rca329WaX2Ws0473/ro/7u7eslzPYbk7BmV0jbVd21CSHxQo659foSLKdcF5T7Jw9yb9fIlsMneOFTzTPXYPAcN0f00p9bhzDEYgsux6Ii0XnnjlPhKzbbGlHuc3BUa6qO1RK7iN54jBM2mzwIRv+ImppBgVJxCs/rDEa3LQXdUlnHqA9g6M9Qvmbm+o6W9WY6jxPI0g4LTuDywxrBl0J1R+W0wbIUoToi/mgRuU/hMCGGpI2WgtkKu2tfKcT6XunMvhvYUnbMAYQwiSxZBwPi2PlDgbpGPc0tQUI3CSxgB",
+          "thinking": "The memory doesn't seem relevant to what's being asked since there's no new information provided, so I'll leave it as is without making any updates.",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see there's an existing memory noting that x + y = 10 in this system. Since no new information has been provided in this conversation to confirm, contradict, or expand on that fact, I'll leave it as is for now. If you provide additional context (like the value of x or y, or a correction to that equation), I'll update the memory accordingly.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 3,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EvgCCokBCBAYAipA88XXbN/EGrrh1WRiP7b5S01w6y83iDyG3XE34EuEDBGllrJHy7GacPLflJCiOO4wKM/YuypVDZGH2DOsikWQjzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDC9vz2EGKqsXy+Sb4RoMC35v8I4Mk3STZ4E9IjCs/tYii2J63h4CV8e6F5rpkXuX/nc3TdhLiiQ1YCDZT24UNmmENHxYo6IGETS12oUqmwEQVOGtD8Y6/pJRBRfl1fRcfWkw94WIDJcWqUkvxRjUQEbnjh78aHqTcYqqNXjLF7Drds6sL7nuFpvFgjqwasezMO5uH1jeNjHn6ONrdqh962HHDgeoQbauQgGQt6rPJmbQb8eYkCGoN5t7z2JfxwVGp0DOqo5mjWY3+1TQUj3j6cOQ8DZ5IPVCvujKEDFo4mNn56dw0AWvJhGr+hgB",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "Understood \u2014 I see the existing memory noting that x + y = 10 in this system. Since there's no new information to add or update at this time, I'll leave the memory as is. Let me know if you'd like me to modify, add to, or clarify anything about that stored value.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 4,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EukCCokBCBAYAipAgH5b9d1NJAiUimYt4fB6ZCLhoCggsbdLpZa+OhjW2aY8Y8UityeX0t1fjcIwl2fFZg7k+HpaeCHLesKoA1HZ4jIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDGZNqveAiqcXVMNPehoMd9GLgGSfgYI0U/0SIjBVvDuPatldkIX/0WCHpMAGq9ItuDYRU4CYzMNl5Nn+ja3580xDW3jBagOJBJLvxxAqjAFJIa7pIza3TLLW2NLu3zT2xfY4vGRY/aUgtkMAjm0FMqUM/+yt5uVxSwnBYqI89qosyg98KoX4b6ZXNrem1+ik7ntuppowN12z+brQkscvAiQ7BiejmYUZKCW06bSJOFLHBuy24Q/A5lNxmLBka7yJpAvnXVEHSUnKud0ZUtQJ3TWjt/Wmtr/byTPyNBgB",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see the existing memory entry noting that x + y = 10 in this system. Since there's no new information or query provided right now, I'll leave the memory as is. Let me know if you'd like me to update, add, or search for anything specific!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 5,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "Er0CCokBCBAYAipAWCZJr98a4XonYJR9ewFXQlgKWCm4o2lojZUw/KrkUrPULRy4X48TMsusTEOqLP2wYy1faTGtdWUPzLlv2JxKGzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDNDtRIpAhoj+W5JTMRoM3tiqtTFcLy9RZkbBIjDSVjDZ+nbPwZh2ATE0lA0NvOl/VOl7XvKByVZ4MP2Elf2BLwyZRkpFpXsVZnR6KXsqYeocFIugNOxs7sIjcwRWdwYHA6NWMYKM5xFhI2ltSr64U/g/bTLPO0bq4DRfyg7WfjRtB+GqXaa5BjiMEHTIIJ+8kxpnHs9kr3y9HvI9mu11LWCelcV3ydh4wGoeCepWf5MYAQ==",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I see there's an existing memory noting that in this system, x + y = 10. Since you haven't provided any new information or a specific request right now, I don't have anything to add, update, or correct. The memory remains valid and unchanged.\n\nIf you'd like me to update this fact, add related information (like the value of x or y individually), or clear it out, just let me know!",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 6,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "",
+      "raw_response_blocks": [
+        {
+          "signature": "EsQDCokBCBAYAipAX3mSTV73fIW5Jbo0pyq/2rnu0yDjQq3Qr0UB6r+8tJvyMQ/Yw5IxWbhE/KEFlExD9Ht3/oNrJnD8gQGuoUGfpjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDCZIBNTRn4FmrY8JbBoMJwIgWH6WFg7BdL41IjDKA1wVC8IaRir4ULFmxsXgmCYkOehlTCiWyO5q43nPUlpQKT3W5k9kFdoLH6hFu1sq5wF60Wq0p9eQrAi39j74P85JkDm305nL4qxasE7W+ruR7CPllAPPaV5vsnPVNiwQuJtojZVUTTbZKZsDA0E1I/NqlQNe2T8u3udppw3I8m4fL15u5v3hXqfJAPA3xn9ycSg/pdhIG3tQ6xZskcO7ZPWleNByZjVxNhjsa6I5zcuBmuESHzDZbORLNshb29urmi4hOI0JV9w/TMtU6foLgLIgx94Om4HH8oEsfyh/Gmw3zkJj3TYaLazeUCna5qMQBt50UPdN9GdRluo43HD+BDlgrn43XrK+1EnOMUcUHpO3RDHD0IDWmqcYAQ==",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "I reviewed the current memory and there's no new information or context requiring an update at this time. The existing entry (x + y = 10) remains valid and unchanged. I'll leave it as is unless new details emerge that require revision.",
+          "type": "text"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "error": null
+    },
+    {
+      "step_num": 7,
+      "injected_context": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.",
+      "prompt": "Your memory currently contains:\n- [id: e9ae3fbbfebe93a2] Recorded value: in this system, x + y = 10.\n\nYou have access to a memory system tied to this conversation. Do whatever you think is right with it, if anything.",
+      "tools_available": [
+        "remember",
+        "update",
+        "forget",
+        "recall"
+      ],
+      "thinking": "There's no new information from the user, so I'll just acknowledge what we already know from memory.",
+      "raw_response_blocks": [
+        {
+          "signature": "EokDCokBCBAYAipAljQI0V+XgtcxHVTtzbAuWIrUl8TzAgJTOyNnimUABgm0zFyEx4gC7DsyZY1o2MTeYPRle99uhTLWu4LOTTfTlDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ5YjliYjY4Ni05Yjc5LTQ1ZjEtYmI1Zi0zMGM2YmI0OWI0MDYSDPP04Wlgk/C1uucglRoMdhYic879x4tNoThGIjDHmu3seaEJ/XFhomow4HljBk/z/yNlJJFIuvFRxDrI/jLawZasn7ONws39p9kEB8QqrAHBioyv4+pwoLlXjRSA7UDsdh4uv/08H9SShaNPkGHzSJ+a0y3WoLtNrN4e0l0VWcxqEHD1AUD2fM3oI67W0vUgaSjSRF+JcPmYV7CDjJunw22q64vnDz+phLhnveaXk3Mgb4xmSn4HTbBTcz5bkRGrs0IQ9XsE5WdtkD3uwohptYhdIaXywq9syr3SCOlx4RzHWyauHy6RwTK3UdmnC9jol/UZ0KTUoFsa0mYYGAE=",
+          "thinking": "There's no new information from the user, so I'll just acknowledge what we already know from memory.",
+          "type": "thinking"
+        },
+        {
+          "id": "toolu_01XuMiuCc3NkpXCbgwkSDm3s",
+          "caller": {
+            "type": "direct"
+          },
+          "input": {
+            "query": "x + y",
+            "rationale": "Check existing context before deciding whether any update is needed."
+          },
+          "name": "recall",
+          "type": "tool_use"
+        }
+      ],
+      "stop_reason": "tool_use",
+      "error": null
+    }
+  ]
+}
