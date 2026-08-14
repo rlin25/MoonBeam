@@ -1,7 +1,7 @@
 # Interface Contract
 
-Exact required shapes for tool schemas, seeded content, logging, scoring output, and file layout.
-Applies uniformly across all conditions unless a condition-specific exception is stated.
+Exact required shapes for tool schemas, logging, scoring output, validation artifacts, and file layout.
+Applies uniformly across all three conditions.
 
 ## 1. Action Taxonomy
 
@@ -18,54 +18,40 @@ A single step may produce several logged events (e.g. `recall` then `delete` in 
 order under that step.
 
 Every tool schema includes a required `rationale: string` parameter. It is logged and available for
-qualitative reading, but is never scored as primary evidence — only action category, target memory ID,
-and content diffs are scored.
+qualitative reading, but never scored — only action category, target memory ID, and content diffs are
+scored.
 
-## 2. Tool Schema by Condition and Step
+## 2. Tool Schema
 
-| Condition | Step 1 | Steps 2-7 |
-|---|---|---|
-| 1 — Spontaneous initiation | write-only | full |
-| 2 — Arbitrary, no cue | full | full |
-| 3 — Arbitrary, timestamp cue | full | full |
-| 4 — Arbitrary, correction cue | full | full |
-| 5 — Self-referential, no cue | full | full |
-| 6 — First-person bridge | full | full |
-| 7 — Self-continuity (all three sub-conditions) | write-only | full |
-| Control baseline | write-only | full |
+All three conditions expose the full four-tool schema (`remember`, `update`, `forget`, `recall`) at every
+step including step 1, since memory is pre-seeded and non-empty from the start.
 
-"Full" = `remember`, `update`, `forget`, `recall`. Write-only at step 1 applies where memory starts
-empty and edit/delete would be meaningless; full-from-step-1 applies where memory is pre-seeded.
+Tool descriptions are verbatim per `experimental_parameters.md` §3 and are identical across conditions.
 
-## 3. Seeded and Injected Content
+## 3. Seeding Mechanics
 
-All verbatim strings are specified in `experimental_parameters.md` §4 and are reproduced there as the
-single source of truth. This section specifies only the *mechanics* of seeding.
+Verbatim seed strings are in `experimental_parameters.md` §4 — the single source of truth.
 
-- Conditions 2-6 are pre-seeded before step 1 via two real `remember()` calls, logged explicitly as
+- All conditions are pre-seeded before step 1 via two real `remember()` calls, logged explicitly as
   harness actions, never as model turns.
-- Seed order is determined by the counterbalancing scheme in `experimental_parameters.md` §5,
-  deterministically by lineage index.
-- Condition 7's reset trigger fires at the condition-specific step for eligible lineages only, altering
-  the stored content of the model's own step-1 write and injecting a system note.
+- Seed order is determined by the deterministic counterbalance assignment in
+  `experimental_parameters.md` §5.
+- Nothing is seeded, altered, or injected at any later step. The harness makes no further writes after
+  pre-seeding.
 
 ## 4. Per-Lineage Transcript
 
 One Markdown file per lineage.
 
 ```
-# Lineage {NN} — Condition: {condition_name}
+# Lineage {NN} — Condition: {A | B | C}
 
 - Mnemosyne store path: {db_path}
 - Started: {ISO timestamp}
 - Status: {complete | errored at step N}
-- Counterbalance arm: {A-first | B-first | cue-on-A | cue-on-B | n/a}
-- Eligibility: {yes | no | n/a}
-      <!-- n/a for Conditions 2-6 (always pre-seeded); yes/no for Conditions 1 and 7,
-           determined by whether step 1 produced a real write -->
+- Counterbalance arm: {A-first | B-first}
 
 ## Pre-Seeding (harness action, not a model turn)
-      <!-- Conditions 2-6 only -->
 - Memory ID {first} (seeded {ISO timestamp}): "{verbatim content}"
 - Memory ID {second} (seeded {ISO timestamp}): "{verbatim content}"
 
@@ -74,12 +60,12 @@ One Markdown file per lineage.
 ## Step {N}
 
 **Injected context (verbatim):**
-{exact text injected, or "Your memory is currently empty."}
+{exact text injected}
 
 **Prompt sent to model:**
 {verbatim}
 
-**Tools available:** {list}
+**Tools available:** remember, update, forget, recall
 
 **Thinking (verbatim):**
 {thinking block content, or "none"}
@@ -91,14 +77,7 @@ One Markdown file per lineage.
 
 ---
 
-## Reset Trigger (harness action, not a model turn)
-      <!-- Condition 7 eligible lineages only, at the condition-specific step, placed
-           immediately before that step's own entry -->
-- Original step-1 content (verbatim): "{...}"
-- Altered content injected from this step onward (verbatim): "{...}"
-- System note injected (verbatim): "{...}"
-
----
+[... through Step 7 ...]
 
 ## Final DB State
 - Memory ID {first}: {unchanged | edited — current content: "{...}" | deleted}
@@ -106,110 +85,43 @@ One Markdown file per lineage.
 - New memory IDs created during the lineage: {list, with verbatim content, or "none"}
 ```
 
-Every field is literal and verbatim. No paraphrasing, no truncation without explicit notation. A step
-that errors still gets a full entry. No interpretive commentary inside transcript files.
+Every field is literal and verbatim. No paraphrasing, no truncation without explicit notation. A step that
+errors still gets a full entry. No interpretive commentary inside transcript files.
 
-## 5. Mechanical Scoring Output (Passes 3 and 5)
+## 5. Mechanical Scoring Output
+
+One block per lineage. Every field derives from the action log and final database state. Rationale text
+and thinking content may be quoted alongside for context but never determine a field's value.
 
 ```markdown
-## Mechanical Scoring — Lineage {NN}
+## Scoring — Lineage {NN}
 
-### Pass 3 — Recall accuracy
-      <!-- Condition 7 only, where a step-1 ground truth exists -->
-- Recall-step statement vs. step-1 logged action: {similarity score or category}
-
-### Pass 5 — Contradiction outcome and fidelity
-      <!-- Conditions 2-6, and Condition 7's eligible lineages -->
-- Detection: did any tool call reference a seeded/altered memory ID? {yes | no}
-- If yes, first at step: {N}
-- Strategy (per taxonomy_codebook.md): {silent indefinite search | flag-and-defer |
+- Strategy (per taxonomy_codebook.md §2): {silent indefinite search | flag-and-defer |
   consolidate-with-replacement | clear-without-replacement | arbitration | other}
 - Collapse binary (per preregistration.md §3): {took_action | no_action}
-- If arbitration: which entry was kept? {kept_A | kept_B}
-- If arbitration in Conditions 3-4: does the kept entry match the cue direction?
-  {matches cue | contradicts cue | n/a}
-- Fidelity, where an edit or consolidation occurred: does the change affect only the contradicted
-  claim, leaving unrelated true content intact? {yes | no | n/a}
+- Detection: did any tool call reference a seeded memory ID? {yes | no}
+- If yes, first at step: {N}
+- First action step (first write/update/delete): {N | null}
+- Recall count: {N}
+- Seeded entry (first): {unchanged | edited | deleted}
+- Seeded entry (second): {unchanged | edited | deleted}
+- New entries created: {list with verbatim content, or "none"}
+- If arbitration: which entry was kept? {kept_first | kept_second}
+- Fidelity, where an edit or consolidation occurred: does the change affect only the contradicted claim,
+  leaving unrelated content intact? {yes | no | n/a}
+- Other description: {free text, only when strategy = other}
 ```
 
-Derived entirely from database-state diffs and tool-call parameters. Rationale text and thinking content
-may be quoted alongside for context but never determine a field's value.
+## 6. Per-Condition `observations.md`
 
-## 6. LLM-Judge Scoring Output (Passes 2 and 4)
-
-```markdown
-## LLM-Judge Scoring — Lineage {NN}
-
-### Pass 2 — Intent-action match
-      <!-- Condition 7, baseline and persona-swap sub-conditions -->
-- Coherence pre-check: {pass | fail}   <!-- fail excludes from downstream scoring -->
-- Category: {exact | partial | unrelated | contradictory}
-
-### Pass 4 — Ownership/continuity language
-      <!-- All conditions -->
-- Category: {first_person_ownership | third_person_disownership | mixed | neutral}
-```
-
-Both passes use forced structured output — never free-text parsing of judge responses.
-
-## 7. Validation Artifacts
-
-### 7.1 Held-out human coding subsample
+Counts only. No interpretive language — if a sentence begins "the model seemed to" or "this suggests," it
+does not belong in this file.
 
 ```markdown
-# Held-Out Coding Subsample — {date}
-
-Lineages sampled: 20, stratified across Conditions 2, 5, 6
-Codebook version: {file hash of taxonomy_codebook.md}
-
-## Instances
-      <!-- Per lineage: the raw transcript and final DB state, with NO classifier label shown -->
-```
-
-Returned human labels are compared against classifier output; Cohen's kappa is reported.
-
-### 7.2 Judge-pass agreement subsample
-
-```markdown
-# Judge Agreement Subsample — {date}
-
-Target size: 20-30
-Actual size: {N}   <!-- if below target, state the shortfall and its cause -->
-
-## Allocation by condition
-| Condition | Instances sampled |
-|---|---|
-
-## Instances
-      <!-- Per instance: judge output beside the verbatim transcript excerpt it scored -->
-```
-
-### 7.3 Mechanical-classifier audit
-
-```markdown
-# Mechanical Classifier Audit — {date}
-
-Lineages audited: {10% of total, randomly selected}
-Re-derivation path: independent of scoring/taxonomy.py output
-
-| Lineage | Classifier label | Re-derived label | Match |
-|---|---|---|---|
-
-Discrepancies: {count} — each described in full below, or "none"
-```
-
-Never padded with synthetic instances. Shortfalls are stated.
-
-## 8. Per-Condition `observations.md`
-
-Counts only. No interpretive language — if a sentence begins "the model seemed to" or "this suggests,"
-it does not belong in this file.
-
-```markdown
-# Observations — {Condition Name}
+# Observations — Condition {A | B | C}
 
 Run date: {date}
-Lineages attempted: {N}
+Lineages attempted: 50
 Completed without error: {N}
 Errored (and at which step): {list | "none"}
 
@@ -225,14 +137,17 @@ Errored (and at which step): {list | "none"}
 |---|---|---|
 
 ## By counterbalance arm
-      <!-- Conditions 2-6 only -->
-| Arm | N | Strategy distribution | Collapse binary (took_action / no_action) |
-|---|---|---|---|
+| Arm | N | Strategy distribution | took_action | no_action |
+|---|---|---|---|---|
 
-## Condition-specific section
-      <!-- Conditions 1 and 7: eligibility counts.
-           Conditions 2-6: final DB state table.
-           Conditions 3-4: additionally, arbitration direction relative to the cue. -->
+## Final DB state
+| Outcome | Count |
+|---|---|
+| Both entries unchanged | |
+| One entry deleted | |
+| Both entries deleted | |
+| One or both edited | |
+| New entries created | |
 
 ## Malformed / errored tool calls
 - Total: {count}
@@ -241,36 +156,61 @@ Errored (and at which step): {list | "none"}
 
 Any zero count is written out explicitly as zero. A null result is a result and is never omitted.
 
-## 9. File Layout
+## 7. Validation Artifacts
+
+### 7.1 Held-out coding subsample
+
+```markdown
+# Held-Out Coding Subsample — {date}
+
+Lineages sampled: 12, stratified across Conditions A, B, C (4 each)
+Codebook version: {file hash of taxonomy_codebook.md}
+Coder: {name or role; note explicitly if the coder authored the codebook}
+
+## Lineage {NN}
+      <!-- Pre-seeding, full action log, final DB state. NO classifier label shown. -->
+Human label: ______________________
+```
+
+Returned labels are compared against classifier output; Cohen's kappa reported, with any disagreement
+described in full.
+
+### 7.2 Classifier audit
+
+```markdown
+# Classifier Audit — {date}
+
+Lineages audited: 15 (10% of 150, randomly selected)
+Re-derivation path: independent of scoring/taxonomy.py
+
+| Lineage | Classifier label | Re-derived label | Match |
+|---|---|---|---|
+
+Discrepancies: {count} — each described in full below, or "none"
+```
+
+Neither artifact is ever padded with synthetic instances. Shortfalls are stated.
+
+## 8. File Layout
 
 ```
 docs/
   project_design.md
-  project_specification.md
-  implementation_plan.md
+  preregistration.md
+  implementation.md
   interface_contract.md
   experimental_parameters.md
   taxonomy_codebook.md
-  preregistration.md
   setup.md
 
 harness/
-  [per implementation_plan.md §2]
+  [per implementation.md §3]
 
 runs/
-  c1_spontaneous/            {dbs/, transcripts/, observations.md}
-  c2_arbitrary_no_cue/       {dbs/, transcripts/, observations.md}
-  c3_arbitrary_timestamp/    {dbs/, transcripts/, observations.md}
-  c4_arbitrary_correction/   {dbs/, transcripts/, observations.md}
-  c5_self_referential/       {dbs/, transcripts/, observations.md}
-  c6_first_person_bridge/    {dbs/, transcripts/, observations.md}
-  c7_self_continuity/
-    baseline/                {dbs/, transcripts/, observations.md}
-    no_history/              {dbs/, transcripts/, observations.md}
-    persona_swap/            {dbs/, transcripts/, observations.md}
-  control_baseline/          {dbs/, transcripts/, observations.md}
-  scoring/                   {mechanical/, llm_judge/}
-  validation/                {held_out_coding.md, judge_agreement.md, classifier_audit.md}
+  condition_a/    {dbs/, transcripts/, scoring/, observations.md}
+  condition_b/    {dbs/, transcripts/, scoring/, observations.md}
+  condition_c/    {dbs/, transcripts/, scoring/, observations.md}
+  validation/     {held_out_coding.md, classifier_audit.md}
 ```
 
 `docs/` sits at the project root — never nested inside `runs/` or any condition's output directory.
