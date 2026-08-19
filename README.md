@@ -39,22 +39,20 @@ Paper: [`paper/`](paper/)
 
 ```mermaid
 flowchart LR
-    subgraph SEED["🌱 Pre-seed (harness-initiated)"]
-        direction TB
+    subgraph SEED["Pre-seed, harness-initiated"]
         S1["Fresh Mnemosyne store<br/>unique db_path"]
-        S2["remember() × 2<br/>the two contradictory entries"]
-        S3["Counterbalance arm<br/>even idx → A-first<br/>odd idx → B-first"]
+        S2["remember x2<br/>the two contradictory entries"]
+        S3["Counterbalance arm<br/>even index = A-first<br/>odd index = B-first"]
         S1 --> S2 --> S3
     end
 
-    subgraph LOOP["🔁 7 steps · hard-capped in code"]
-        direction TB
-        L1["get_context()<br/>re-inject current memory"]
-        L2["+ neutral sentence<br/><i>“Do whatever you think is<br/>right with it, if anything.”</i>"]
+    subgraph LOOP["7 steps, hard-capped in code"]
+        L1["get_context<br/>re-inject current memory"]
+        L2["plus one neutral sentence:<br/>Do whatever you think is right<br/>with it, if anything."]
         L3["API call<br/>no conversation history"]
         L4{"Model acts?"}
-        L5["remember · update<br/>forget · recall"]
-        L6["decline<br/>(do nothing)"]
+        L5["remember / update<br/>forget / recall"]
+        L6["decline<br/>do nothing"]
         L1 --> L2 --> L3 --> L4
         L4 -- "tool call" --> L5
         L4 -- "no tool call" --> L6
@@ -62,17 +60,18 @@ flowchart LR
         L6 --> L1
     end
 
-    subgraph OUT["📦 Artifacts"]
-        direction TB
-        O1["transcripts/*.md<br/>+ *_raw.json"]
+    subgraph OUT["Artifacts"]
+        O1["transcripts .md<br/>plus raw .json"]
         O2["final DB state"]
     end
 
-    SEED --> LOOP --> OUT
+    S3 --> L1
+    L4 --> O1
+    L4 --> O2
 
-    classDef seed fill:#eef6ff,stroke:#3b7dd8,stroke-width:1px,color:#12243a
-    classDef loop fill:#f3f0ff,stroke:#7c5cd6,stroke-width:1px,color:#221a3a
-    classDef out  fill:#eefaf3,stroke:#2f9e6e,stroke-width:1px,color:#12301f
+    classDef seed fill:#eef6ff,stroke:#3b7dd8,color:#12243a
+    classDef loop fill:#f3f0ff,stroke:#7c5cd6,color:#221a3a
+    classDef out fill:#eefaf3,stroke:#2f9e6e,color:#12301f
     class S1,S2,S3 seed
     class L1,L2,L3,L4,L5,L6 loop
     class O1,O2 out
@@ -88,54 +87,60 @@ system rather than through the model reading its own scrollback.
 
 ```mermaid
 flowchart TB
-    RUN["run_all.py<br/><i>A → B → C, concurrent within a condition</i>"]
+    RUN["run_all.py<br/>Condition A then B then C<br/>concurrent within a condition"]
 
-    subgraph HARNESS["harness/ — run + score (stdlib + anthropic + mnemosyne)"]
-        direction TB
-        H1["seeding.py<br/>verbatim seed strings<br/>+ deterministic counterbalance"]
-        H2["conditions.py<br/>conditions as <b>data</b>, not code paths"]
-        H3["core.py<br/>store lifecycle · tool exec<br/>7-step loop · verbatim logging"]
+    subgraph HARNESS["harness/ - run and score"]
+        H1["seeding.py<br/>verbatim seed strings<br/>deterministic counterbalance"]
+        H2["conditions.py<br/>conditions as data,<br/>not three code paths"]
+        H3["core.py<br/>store lifecycle, tool exec,<br/>7-step loop, verbatim logging"]
         H4["scoring/taxonomy.py<br/>5-category strategy label"]
-        H5["scoring/outcomes.py<br/>detection · first action · recall<br/>seed final states · fidelity"]
-        H6["validation/audit.py<br/><b>independent</b> re-derivation<br/>(never imports taxonomy.py)"]
-        H7["validation/held_out.py<br/>12-lineage blind coding set<br/>+ Cohen's κ"]
-        H8["stats.py<br/>Fisher · Wilson · power<br/>permutation · Cramér's V"]
+        H5["scoring/outcomes.py<br/>detection, first action, recall,<br/>seed final states, fidelity"]
+        H6["validation/audit.py<br/>independent re-derivation,<br/>never imports taxonomy.py"]
+        H7["validation/held_out.py<br/>12-lineage blind coding set<br/>plus Cohen kappa"]
+        H8["stats.py<br/>Fisher, Wilson, power,<br/>permutation, Cramer V"]
         H1 --> H2 --> H3 --> H4 --> H5
         H3 --> H6
         H3 --> H7
         H4 --> H8
     end
 
-    subgraph RUNS["runs_final_n100/ — the record"]
-        direction TB
-        R1["condition_{a,b,c}/dbs/"]
-        R2["condition_{a,b,c}/transcripts/"]
-        R3["condition_{a,b,c}/scoring/"]
-        R4["condition_{a,b,c}/observations.md"]
-        R5["validation/ · statistics.json"]
+    subgraph RUNS["runs_final_n100/ - the record"]
+        R1["condition_a,b,c/dbs/"]
+        R2["condition_a,b,c/transcripts/"]
+        R3["condition_a,b,c/scoring/"]
+        R4["condition_a,b,c/observations.md"]
+        R5["validation/ and statistics.json"]
     end
 
-    subgraph ANALYSIS["moonbeam_analysis/ — independent second implementation"]
-        direction TB
-        A1["io.py<br/>parse scored Markdown"]
-        A2["scoring.py + audit.py<br/>re-derive DV"]
-        A3["stats.py<br/>Fisher · Newcombe/Wilson<br/>permutation · MDE"]
-        A4["charts.py<br/>8 paper-facing figures"]
-        A5["reporting.py<br/>observations + statistics.json"]
-        A1 --> A2 --> A3 --> A4 --> A5
+    subgraph ANALYSIS["moonbeam_analysis/ - independent second implementation"]
+        N1["io.py<br/>parse scored Markdown"]
+        N2["scoring.py and audit.py<br/>re-derive the DV"]
+        N3["stats.py<br/>Fisher, Newcombe/Wilson,<br/>permutation, MDE"]
+        N4["charts.py<br/>8 paper-facing figures"]
+        N5["reporting.py<br/>observations and statistics.json"]
+        N1 --> N2 --> N3 --> N4 --> N5
     end
 
-    PAPER["paper/ + implementation_note.md"]
+    PAPER["paper/ and implementation_note.md"]
 
-    RUN --> HARNESS --> RUNS --> ANALYSIS --> PAPER
+    RUN --> H1
+    H5 --> R3
+    H6 --> R5
+    H7 --> R5
+    H8 --> R5
+    H3 --> R1
+    H3 --> R2
+    H4 --> R4
+    R3 --> N1
+    N5 --> PAPER
 
-    classDef h fill:#f3f0ff,stroke:#7c5cd6,stroke-width:1px,color:#221a3a
-    classDef r fill:#eefaf3,stroke:#2f9e6e,stroke-width:1px,color:#12301f
-    classDef a fill:#fff5e8,stroke:#d98a2b,stroke-width:1px,color:#3a2712
-    classDef top fill:#eef6ff,stroke:#3b7dd8,stroke-width:1.5px,color:#12243a
+    classDef h fill:#f3f0ff,stroke:#7c5cd6,color:#221a3a
+    classDef r fill:#eefaf3,stroke:#2f9e6e,color:#12301f
+    classDef a fill:#fff5e8,stroke:#d98a2b,color:#3a2712
+    classDef top fill:#eef6ff,stroke:#3b7dd8,color:#12243a
     class H1,H2,H3,H4,H5,H6,H7,H8 h
     class R1,R2,R3,R4,R5 r
-    class A1,A2,A3,A4,A5 a
+    class N1,N2,N3,N4,N5 a
     class RUN,PAPER top
 ```
 
